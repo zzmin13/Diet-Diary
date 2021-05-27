@@ -1,8 +1,22 @@
-import './app.css';
+import { BrowserRouter, Route } from "react-router-dom";
+import "./app.css";
+import Footer from "./components/footer/footer";
+import Header from "./components/header/header";
+import Home from "./routes/home/home";
 
 function App() {
   return (
-    <h1>Hello :)</h1>
+    <BrowserRouter>
+      <Header />
+      <Route
+        path={["/", "/home"]}
+        exact={true}
+        render={(props) => {
+          return <Home {...props} />;
+        }}
+      />
+      <Footer />
+    </BrowserRouter>
   );
 }
 

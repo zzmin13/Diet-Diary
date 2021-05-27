@@ -1,0 +1,41 @@
+@value colorMint from '../../common/color.css';
+@value colorPurple from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+
+.header {
+  font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  background-color: colorPink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  color: white;
+}
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.navbar {
+  font-size: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+  margin-right: 20px;
+}
+.navbar_item {
+  margin-right: 20px;
+  color: white;
+}

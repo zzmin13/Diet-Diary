@@ -1,7 +1,7 @@
 @value colorPink from "../../common/color.css";
 
 .container {
-  height: 92vh;
+  height: 84vh;
   display: flex;
   justify-content: center;
   align-items: center;

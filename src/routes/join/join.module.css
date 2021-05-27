@@ -1,0 +1,38 @@
+@value colorBorderGrey from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+
+.container {
+  height: 84vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 10px 25px;
+}
+
+.input {
+  margin: 5px 0px;
+  width: 250px;
+  height: 30px;
+  border: 0.5px solid colorBorderGrey;
+  border-radius: 5px;
+  padding: 5px 5px;
+  font-weight: 700;
+}

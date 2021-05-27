@@ -3,13 +3,15 @@
 @value colorPink from "../../common/color.css";
 
 .header {
+  height: 8vh;
   font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
-  background-color: colorPink;
+  /* background-color: colorPink; */
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 600;
 }
 .logo {
   margin-left: 20px;
@@ -21,12 +23,14 @@
 .title {
   font-size: 1.2rem;
   font-weight: 600;
-  color: white;
+  /* color: white; */
+  color: colorPink;
 }
 .icon {
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  color: colorPink;
 }
 .navbar {
   font-size: 1rem;
@@ -36,6 +40,8 @@
   margin-right: 20px;
 }
 .navbar_item {
+  cursor: pointer;
   margin-right: 20px;
-  color: white;
+  /* color: white; */
+  color: colorPink;
 }

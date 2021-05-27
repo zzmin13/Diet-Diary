@@ -1,9 +1,9 @@
 import React from "react";
-
+import styles from "./footer.module.css";
 const Footer = (props) => {
   return (
-    <footer>
-      <h1>Made by nyang-in</h1>
+    <footer className={styles.footer}>
+      <h1 className={styles.title}>Made by nyang-in</h1>
     </footer>
   );
 };

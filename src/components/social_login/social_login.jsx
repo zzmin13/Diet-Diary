@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./social_login.module.css";
-const SocialLogin = (props) => {
-  const { text1, text2, text3 } = props;
+
+const SocialLogin = ({ handleOnClick, text1, text2, text3 }) => {
   return (
-    <>
+    <div className={styles.socialLogin}>
       <span className={styles.text1}>{text1}</span>
       <div className={styles.socialLoginButton_box}>
         <button type="button" className={styles.socialLoginButton}>
@@ -28,11 +28,13 @@ const SocialLogin = (props) => {
           />
         </button>
       </div>
-      <div className={styles.textBox}>
+      <div className={styles.texts}>
         <span className={styles.text2}>{text2}</span>
-        <span className={styles.text3}>{text3}</span>
+        <span onClick={handleOnClick} className={styles.text3}>
+          {text3}
+        </span>
       </div>
-    </>
+    </div>
   );
 };
 

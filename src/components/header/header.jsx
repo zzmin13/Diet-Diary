@@ -5,6 +5,12 @@ import Login from "../../routes/login/login";
 import styles from "./header.module.css";
 
 const Header = (props) => {
+  const changeToLogin = () => {
+    setModalTarget("login");
+  };
+  const changeToJoin = () => {
+    setModalTarget("join");
+  };
   window.onclick = (event) => {
     if (event.target.className === `${styles.modal} ${modalDisplay}`) {
       setModalDisplay(styles.none);
@@ -47,7 +53,11 @@ const Header = (props) => {
             &times;
           </span>
           <div ref={modalRef}>
-            {modalTarget === "login" ? <Login /> : <Join />}
+            {modalTarget === "login" ? (
+              <Login changeToJoin={changeToJoin} />
+            ) : (
+              <Join changeToLogin={changeToLogin} />
+            )}
           </div>
         </div>
       </div>

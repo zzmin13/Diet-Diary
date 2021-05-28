@@ -7,6 +7,12 @@
   color: grey;
   margin-bottom: 15px;
 }
+.socialLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .socialLoginButton_box {
   width: 150px;
   display: flex;
@@ -32,7 +38,7 @@
   height: 40px;
   border-radius: 50px;
 }
-.textBox {
+.texts {
   font-size: 0.9rem;
   margin-top: 30px;
   display: flex;
@@ -44,4 +50,5 @@
 .text3 {
   color: colorPink;
   font-weight: 600;
+  cursor: pointer;
 }

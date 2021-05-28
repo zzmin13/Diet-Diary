@@ -6,6 +6,10 @@ const Login = (props) => {
   const text1 = "소셜계정으로 간편하게 로그인하세요!";
   const text2 = "아직 회원이 아니신가요?";
   const text3 = "가입하기";
+  const historyPushJoin = () => {
+    props.history.push("/join");
+  };
+
   return (
     <section className={styles.container}>
       <div className={styles.content}>
@@ -48,7 +52,14 @@ const Login = (props) => {
           <span className={styles.or}>OR</span>
           <hr className={styles.line} />
         </div>
-        <SocialLogin text1={text1} text2={text2} text3={text3} />
+        <SocialLogin
+          text1={text1}
+          text2={text2}
+          text3={text3}
+          handleOnClick={
+            props.changeToJoin ? props.changeToJoin : historyPushJoin
+          }
+        />
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 @value colorMint from '../../common/color.css';
 @value colorPurple from "../../common/color.css";
 @value colorPink from "../../common/color.css";
+@value colorBorderGrey from "../../common/color.css";
 
 .header {
   height: 8vh;
@@ -65,15 +66,16 @@
 .modal_content {
   position: relative;
   background-color: #fefefe;
-  margin: 30px auto; /* 15% from the top and centered */
+  margin: 0 auto;
   padding: 10px;
-  border: 1px solid #888;
+  border: 1px solid colorBorderGrey;
   width: 50%; /* Could be more or less, depending on screen size */
+  height: 100%;
 }
 .close {
   color: #aaa;
   position: absolute;
-  right: 2px;
+  right: 5px;
   top: 0;
   font-size: 28px;
   font-weight: bold;

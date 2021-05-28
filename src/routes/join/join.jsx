@@ -7,35 +7,46 @@ const Join = (props) => {
         <div className={styles.content}>
           <h1 className={styles.title}>Join</h1>
           <form className={styles.form}>
-            <label htmlFor="email">이메일</label>
-            <input
-              className={styles.input}
-              id="email"
-              type="email"
-              name="email"
-              placeholder="email"
-            />
-            <label htmlFor="password">비밀번호</label>
-            <input
-              className={styles.input}
-              id="password"
-              type="password"
-              name="password"
-              placeholder="Enter Password"
-            />
-            <label htmlFor="password2">비밀번호 확인</label>
-            <input
-              className={styles.input}
-              id="password2"
-              type="password2"
-              name="password2"
-              placeholder="Verify Password"
-            />
+            <div className={styles.inputBox}>
+              <input
+                className={styles.input}
+                type="email"
+                name="email"
+                required
+              />
+              <label className={styles.label}>
+                <span className={styles.label_content}>이메일</span>
+              </label>
+            </div>
+            <div className={styles.inputBox}>
+              <input
+                className={styles.input}
+                type="password"
+                name="password"
+                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{8,16}$"
+                required
+              />
+              <label className={styles.label}>
+                <span className={styles.label_content}>비밀번호</span>
+              </label>
+            </div>
+            <div className={styles.inputBox}>
+              <input
+                className={styles.input}
+                type="password"
+                name="password2"
+                required
+              />
+              <label className={styles.label}>
+                <span className={styles.label_content}>비밀번호 확인</span>
+              </label>
+            </div>
             <input
               className={styles.input}
               type="number"
               name="age"
               placeholder="age"
+              required
             />
             <select className={styles.input} name="sex">
               <option value="male">남성</option>
@@ -46,12 +57,14 @@ const Join = (props) => {
               type="number"
               name="height"
               placeholder="height"
+              required
             />
             <input
               className={styles.input}
               type="number"
               name="weight"
               placeholder="weight"
+              required
             />
             <select className={styles.input} name="activity">
               <option value="large">활발하게 활동적</option>

@@ -31,6 +31,7 @@ const Header = (props) => {
     setModalDisplay(styles.block);
     setModalTarget("join");
   };
+
   return (
     <>
       <header className={styles.header}>
@@ -54,9 +55,9 @@ const Header = (props) => {
           </span>
           <div ref={modalRef}>
             {modalTarget === "login" ? (
-              <Login changeToJoin={changeToJoin} />
+              <Login changeToJoin={changeToJoin} closeModal={closeModal} />
             ) : (
-              <Join changeToLogin={changeToLogin} />
+              <Join changeToLogin={changeToLogin} closeModal={closeModal} />
             )}
           </div>
         </div>

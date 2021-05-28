@@ -9,7 +9,12 @@ const Login = (props) => {
   const historyPushJoin = () => {
     props.history.push("/join");
   };
-
+  const handleSocialLogin = () => {
+    if (props.closeModal) {
+      props.closeModal();
+    }
+    console.log(`handleSocialLogin`);
+  };
   return (
     <section className={styles.container}>
       <div className={styles.content}>
@@ -59,6 +64,7 @@ const Login = (props) => {
           handleOnClick={
             props.changeToJoin ? props.changeToJoin : historyPushJoin
           }
+          handleSocialLogin={handleSocialLogin}
         />
       </div>
     </section>

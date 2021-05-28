@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SocialLogin from "../../components/social_login/social_login";
 import styles from "./login.module.css";
 const Login = (props) => {
+  const text1 = "소셜계정으로 간편하게 로그인하세요!";
+  const text2 = "아직 회원이 아니신가요?";
+  const text3 = "가입하기";
   return (
     <section className={styles.container}>
       <div className={styles.content}>
@@ -44,22 +48,7 @@ const Login = (props) => {
           <span className={styles.or}>OR</span>
           <hr className={styles.line} />
         </div>
-        <button
-          type="button"
-          name="Github"
-          className={`${styles.socialLogin} ${styles.button} ${styles.github}`}
-        >
-          <i className={`fab fa-github ${styles.socialIcon}`}></i>
-          깃허브로 로그인 →
-        </button>
-        <button
-          type="button"
-          name="Google"
-          className={`${styles.socialLogin} ${styles.button} ${styles.google}`}
-        >
-          <i className={`fab fa-google ${styles.socialIcon}`}></i>
-          구글로 로그인 →
-        </button>
+        <SocialLogin text1={text1} text2={text2} text3={text3} />
       </div>
     </section>
   );

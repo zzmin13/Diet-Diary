@@ -69,7 +69,7 @@
   margin: 0 auto;
   padding: 10px;
   border: 1px solid colorBorderGrey;
-  width: 50%; /* Could be more or less, depending on screen size */
+  width: 40%; /* Could be more or less, depending on screen size */
   height: 100%;
 }
 .close {

@@ -1,0 +1,47 @@
+@value colorBorderGrey from "../../common/color.css";
+@value colorInactiveGrey from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+
+.text1 {
+  font-size: 0.9rem;
+  color: grey;
+  margin-bottom: 15px;
+}
+.socialLoginButton_box {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+.socialLoginButton {
+  border: none;
+  background-color: white;
+  padding: 0;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.socialLoginButton_img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  border: 1px solid colorBorderGrey;
+}
+.socialLoginButton_img_facebook {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+.textBox {
+  font-size: 0.9rem;
+  margin-top: 30px;
+  display: flex;
+}
+.text2 {
+  color: grey;
+  margin-right: 10px;
+}
+.text3 {
+  color: colorPink;
+  font-weight: 600;
+}

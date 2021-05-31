@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./home.module.css";
 
 const Home = (props) => {
@@ -6,6 +6,15 @@ const Home = (props) => {
   const goLogin = (event) => {
     history.push("/login");
   };
+  useEffect(() => {
+    authService.onAuthStateChanged((user) => {
+      if (user) {
+        console.log(`user가 있으므로 main으로 보냅니다.`);
+        history.push("/main");
+      } else {
+      }
+    });
+  }, [authService, history]);
   return (
     <>
       <main className={styles.container}>

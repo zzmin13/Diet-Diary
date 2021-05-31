@@ -1,18 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router";
 import styles from "./social_login.module.css";
 
-const SocialLogin = ({
-  authService,
-  handleOnClick,
-  handleSocialLogin,
-  text1,
-  text2,
-  text3,
-}) => {
-  const goSocialLogin = (event) => {
+const SocialLogin = (props) => {
+  const { authService, handleOnClick, closeModal, text1, text2, text3 } = props;
+  const history = useHistory();
+  const goSocialLogin = async (event) => {
     const providerName = event.currentTarget.name;
-    handleSocialLogin(providerName);
-    authService.OauthLogin(providerName);
+    closeModal();
+    await authService.OauthLogin(providerName);
   };
   return (
     <div className={styles.socialLogin}>

@@ -1,4 +1,4 @@
-import { firebase_Auth, googleProvider, githubProvider } from "./firebase";
+import { firebaseAuth, googleProvider, githubProvider } from "./firebase";
 
 class AuthService {
   getProvider(providerName) {
@@ -11,13 +11,24 @@ class AuthService {
         throw new Error(`not supported provider : ${providerName}`);
     }
   }
-  OauthLogin(providerName) {
+  async OauthLogin(providerName) {
     const provider = this.getProvider(providerName);
-    firebase_Auth
-      .signInWithPopup(provider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
+    try {
+      return firebaseAuth.signInWithPopup(provider);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  onAuthStateChanged(callback) {
+    firebaseAuth.onAuthStateChanged((user) => {
+      callback(user);
+    });
+  }
+  logout() {
+    firebaseAuth
+      .signOut()
+      .then(() => {
+        console.log(`로그아웃 되었습니다.`);
       })
       .catch((error) => {
         console.log(error);

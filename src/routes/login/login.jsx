@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import SocialLogin from "../../components/social_login/social_login";
 import styles from "./login.module.css";
 const Login = (props) => {
-  console.log(props);
   const { authService } = props;
   const text1 = "소셜계정으로 간편하게 로그인하세요!";
   const text2 = "아직 회원이 아니신가요?";
@@ -11,11 +10,10 @@ const Login = (props) => {
   const historyPushJoin = () => {
     props.history.push("/join");
   };
-  const handleSocialLogin = (providerName) => {
+  const closeModal = () => {
     if (props.closeModal) {
       props.closeModal();
     }
-    console.log(`handleSocialLogin : ${providerName}`);
   };
   return (
     <section className={styles.container}>
@@ -67,7 +65,7 @@ const Login = (props) => {
           handleOnClick={
             props.changeToJoin ? props.changeToJoin : historyPushJoin
           }
-          handleSocialLogin={handleSocialLogin}
+          closeModal={closeModal}
         />
       </div>
     </section>

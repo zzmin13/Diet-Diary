@@ -15,6 +15,9 @@ const Main = memo((props) => {
         history.push("/");
       }
     });
+    return () => {
+      setLoginUser();
+    };
   }, [authService, history]);
   return (
     <>

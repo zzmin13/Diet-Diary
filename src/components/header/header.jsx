@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Join from "../../routes/join/join";
 import Login from "../../routes/login/login";
 import styles from "./header.module.css";
 
-const Header = (props) => {
+const Header = memo((props) => {
   const { authService } = props;
   const changeToLogin = () => {
     setModalTarget("login");
@@ -13,16 +13,16 @@ const Header = (props) => {
     setModalTarget("join");
   };
   window.onclick = (event) => {
-    if (event.target.className === `${styles.modal} ${modalDisplay}`) {
-      setModalDisplay(styles.none);
+    if (event.target.className === `${styles.modal}`) {
+      setModalDisplay(false);
     }
   };
-  const [modalDisplay, setModalDisplay] = useState(styles.none);
+  const [modalDisplay, setModalDisplay] = useState(false);
   const [modalTarget, setModalTarget] = useState(null);
   const modalRef = useRef();
 
   const closeModal = () => {
-    setModalDisplay(styles.none);
+    setModalDisplay(false);
   };
   const showLoginPopup = (event) => {
     setModalDisplay(styles.block);
@@ -32,7 +32,7 @@ const Header = (props) => {
     setModalDisplay(styles.block);
     setModalTarget("join");
   };
-
+  console.log(`header`);
   return (
     <>
       <header className={styles.header}>
@@ -49,30 +49,32 @@ const Header = (props) => {
           </li>
         </ul>
       </header>
-      <div className={`${styles.modal} ${modalDisplay}`}>
-        <div className={styles.modal_content}>
-          <span onClick={closeModal} className={styles.close}>
-            &times;
-          </span>
-          <div ref={modalRef}>
-            {modalTarget === "login" ? (
-              <Login
-                authService={authService}
-                changeToJoin={changeToJoin}
-                closeModal={closeModal}
-              />
-            ) : (
-              <Join
-                authService={authService}
-                changeToLogin={changeToLogin}
-                closeModal={closeModal}
-              />
-            )}
+      {modalDisplay ? (
+        <div className={`${styles.modal}`}>
+          <div className={styles.modal_content}>
+            <span onClick={closeModal} className={styles.close}>
+              &times;
+            </span>
+            <div ref={modalRef}>
+              {modalTarget === "login" ? (
+                <Login
+                  authService={authService}
+                  changeToJoin={changeToJoin}
+                  closeModal={closeModal}
+                />
+              ) : (
+                <Join
+                  authService={authService}
+                  changeToLogin={changeToLogin}
+                  closeModal={closeModal}
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
     </>
   );
-};
+});
 
 export default Header;

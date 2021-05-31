@@ -9,12 +9,12 @@ const Home = (props) => {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        console.log(`user가 있으므로 main으로 보냅니다.`);
         history.push("/main");
       } else {
       }
     });
   }, [authService, history]);
+  console.log(`home`);
   return (
     <>
       <main className={styles.container}>

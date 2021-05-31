@@ -10,6 +10,7 @@ const SocialLogin = (props) => {
     closeModal();
     await authService.OauthLogin(providerName);
   };
+  console.log(`socialLogin`);
   return (
     <div className={styles.socialLogin}>
       <span className={styles.text1}>{text1}</span>

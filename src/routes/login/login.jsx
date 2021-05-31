@@ -15,6 +15,7 @@ const Login = (props) => {
       props.closeModal();
     }
   };
+  console.log(`login`);
   return (
     <section className={styles.container}>
       <div className={styles.content}>

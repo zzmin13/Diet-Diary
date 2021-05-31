@@ -8,6 +8,7 @@ const Join = (props) => {
   const historyPushLogin = () => {
     props.history.push("/login");
   };
+  console.log(`join`);
   return (
     <>
       <section className={styles.container}>

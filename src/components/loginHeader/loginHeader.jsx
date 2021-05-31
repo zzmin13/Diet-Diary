@@ -17,7 +17,6 @@ const LoginHeader = (props) => {
           <li onClick={handleLogout} className={styles.navbar_item}>
             로그아웃
           </li>
-          <li className={styles.navbar_item}>음..</li>
         </ul>
       </header>
     </>

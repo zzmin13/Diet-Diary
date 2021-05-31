@@ -178,3 +178,9 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+.alertMessage {
+  font-size: 0.8rem;
+  color: red;
+  font-weight: 600;
+}

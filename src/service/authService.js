@@ -34,6 +34,21 @@ class AuthService {
         console.log(error);
       });
   }
+  createAccount(email, password) {
+    firebaseAuth
+      .createUserWithEmailAndPassword(email, password)
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (errorCode === "auth/email-already-in-use") {
+          alert("이미 사용중인 이메일 입니다.");
+        } else if (errorCode === "auth/invalid-email") {
+          alert("유효하지 않은 이메일 형식입니다.");
+        } else {
+          alert(errorMessage);
+        }
+      });
+  }
 }
 
 export default AuthService;

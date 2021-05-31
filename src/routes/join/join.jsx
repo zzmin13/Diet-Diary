@@ -1,10 +1,49 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./join.module.css";
 import SocialLogin from "../../components/social_login/social_login";
+import { useHistory } from "react-router";
 const Join = (props) => {
+  const { authService } = props;
+  const history = useHistory();
   const text1 = "소셜계정으로 간편하게 가입하세요!";
   const text2 = "이미 회원이신가요?";
   const text3 = "로그인하기";
+  useEffect(() => {
+    authService.onAuthStateChange((user) => {
+      if (user) {
+        history.push("/main");
+      }
+    });
+  }, []);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const password2Ref = useRef();
+  const alertRef = useRef();
+  const signUp = async () => {
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    const password2 = password2Ref.current.value;
+    console.log(email);
+    console.log(password);
+    console.log(password2);
+
+    if (password !== password2) {
+      alert("비밀번호가 일치하지 않습니다.");
+    } else if (!checkPassword(password)) {
+      alert(
+        "비밀번호는 8~15자리의 영문, 숫자, 특수문자를 모두 포함하여야 합니다."
+      );
+    } else {
+      await authService.createAccount(email, password);
+
+      // history.push("/main");
+    }
+  };
+  const checkPassword = (password) => {
+    return /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}.$/.test(
+      password
+    );
+  };
   const historyPushLogin = () => {
     props.history.push("/login");
   };
@@ -17,6 +56,7 @@ const Join = (props) => {
           <form className={styles.form}>
             <div className={styles.inputBox}>
               <input
+                ref={emailRef}
                 className={styles.input}
                 type="email"
                 name="email"
@@ -28,10 +68,10 @@ const Join = (props) => {
             </div>
             <div className={styles.inputBox}>
               <input
+                ref={passwordRef}
                 className={styles.input}
                 type="password"
                 name="password"
-                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{8,16}$"
                 required
               />
               <label className={styles.label}>
@@ -40,6 +80,7 @@ const Join = (props) => {
             </div>
             <div className={styles.inputBox}>
               <input
+                ref={password2Ref}
                 className={styles.input}
                 type="password"
                 name="password2"
@@ -49,9 +90,16 @@ const Join = (props) => {
                 <span className={styles.label_content}>비밀번호 확인</span>
               </label>
             </div>
-            <button className={styles.joinButton} type="button">
+            <button
+              onClick={signUp}
+              className={styles.joinButton}
+              type="button"
+            >
               가입하기
             </button>
+            <h6 ref={alertRef} className={styles.alertMessage}>
+              {" "}
+            </h6>
             {/* <div className={styles.healthInfo}>
               <input
                 className={styles.healthInput}

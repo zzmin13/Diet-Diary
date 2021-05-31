@@ -5,6 +5,7 @@ import Login from "../../routes/login/login";
 import styles from "./header.module.css";
 
 const Header = (props) => {
+  const { authService } = props;
   const changeToLogin = () => {
     setModalTarget("login");
   };
@@ -55,9 +56,17 @@ const Header = (props) => {
           </span>
           <div ref={modalRef}>
             {modalTarget === "login" ? (
-              <Login changeToJoin={changeToJoin} closeModal={closeModal} />
+              <Login
+                authService={authService}
+                changeToJoin={changeToJoin}
+                closeModal={closeModal}
+              />
             ) : (
-              <Join changeToLogin={changeToLogin} closeModal={closeModal} />
+              <Join
+                authService={authService}
+                changeToLogin={changeToLogin}
+                closeModal={closeModal}
+              />
             )}
           </div>
         </div>

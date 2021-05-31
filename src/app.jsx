@@ -6,10 +6,10 @@ import Home from "./routes/home/home";
 import Login from "./routes/login/login";
 import Join from "./routes/join/join";
 
-function App() {
+function App({ authService }) {
   return (
     <BrowserRouter>
-      <Header />
+      <Header authService={authService} />
       <Route
         path={["/", "/home"]}
         exact={true}
@@ -21,14 +21,14 @@ function App() {
         path="/login"
         exact={true}
         render={(props) => {
-          return <Login {...props} />;
+          return <Login authService={authService} {...props} />;
         }}
       />
       <Route
         path="/join"
         exact={true}
         render={(props) => {
-          return <Join {...props} />;
+          return <Join authService={authService} {...props} />;
         }}
       />
       <Footer />

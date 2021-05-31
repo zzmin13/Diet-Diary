@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./home.module.css";
 
 const Home = (props) => {
-  const { history } = props;
+  const { history, authService } = props;
   const goLogin = (event) => {
     history.push("/login");
   };

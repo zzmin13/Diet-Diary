@@ -2,20 +2,27 @@ import React from "react";
 import styles from "./social_login.module.css";
 
 const SocialLogin = ({
+  authService,
   handleOnClick,
   handleSocialLogin,
   text1,
   text2,
   text3,
 }) => {
+  const goSocialLogin = (event) => {
+    const providerName = event.currentTarget.name;
+    handleSocialLogin(providerName);
+    authService.OauthLogin(providerName);
+  };
   return (
     <div className={styles.socialLogin}>
       <span className={styles.text1}>{text1}</span>
       <div className={styles.socialLoginButton_box}>
         <button
-          onClick={handleSocialLogin}
+          onClick={goSocialLogin}
           type="button"
           className={styles.socialLoginButton}
+          name="Google"
         >
           <img
             className={styles.socialLoginButton_img}
@@ -24,9 +31,10 @@ const SocialLogin = ({
           />
         </button>
         <button
-          onClick={handleSocialLogin}
+          onClick={goSocialLogin}
           type="button"
           className={styles.socialLoginButton}
+          name="Github"
         >
           <img
             className={styles.socialLoginButton_img}
@@ -35,9 +43,10 @@ const SocialLogin = ({
           />
         </button>
         <button
-          onClick={handleSocialLogin}
+          onClick={goSocialLogin}
           type="button"
           className={styles.socialLoginButton}
+          name="Facebook"
         >
           <img
             className={styles.socialLoginButton_img_facebook}

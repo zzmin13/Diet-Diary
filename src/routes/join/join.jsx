@@ -8,8 +8,9 @@ const Join = (props) => {
   const text1 = "소셜계정으로 간편하게 가입하세요!";
   const text2 = "이미 회원이신가요?";
   const text3 = "로그인하기";
+  console.log(props);
   useEffect(() => {
-    authService.onAuthStateChange((user) => {
+    authService.onAuthStateChanged((user) => {
       if (user) {
         history.push("/main");
       }

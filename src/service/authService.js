@@ -49,6 +49,13 @@ class AuthService {
         }
       });
   }
+  async emailLogin(email, password) {
+    try {
+      return firebaseAuth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default AuthService;

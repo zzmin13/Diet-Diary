@@ -8,6 +8,7 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: "diet-diary-d973a.appspot.com",
   appId: process.env.REACT_APP_ID,
+  databaseURL: "https://diet-diary-d973a-default-rtdb.firebaseio.com/",
 };
 // Initialize Firebase
 const firebaseApp = firebase.initializeApp(firebaseConfig);

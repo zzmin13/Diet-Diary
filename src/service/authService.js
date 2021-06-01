@@ -35,7 +35,7 @@ class AuthService {
       });
   }
   createAccount(email, password) {
-    firebaseAuth
+    return firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .catch((error) => {
         const errorCode = error.code;

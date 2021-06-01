@@ -3,7 +3,7 @@ import styles from "./join.module.css";
 import SocialLogin from "../../components/social_login/social_login";
 import { useHistory } from "react-router";
 const Join = (props) => {
-  const { authService } = props;
+  const { authService, database } = props;
   const history = useHistory();
   const text1 = "소셜계정으로 간편하게 가입하세요!";
   const text2 = "이미 회원이신가요?";
@@ -35,9 +35,15 @@ const Join = (props) => {
         "비밀번호는 8~15자리의 영문, 숫자, 특수문자를 모두 포함하여야 합니다."
       );
     } else {
-      await authService.createAccount(email, password);
-
-      // history.push("/main");
+      const response = await authService.createAccount(email, password);
+      console.log(response.user.uid);
+      console.log(response.user.email);
+      console.log(response.user.photoURL);
+      await database.registerUser(
+        response.user.uid,
+        response.user.email,
+        response.user.photoURL
+      );
     }
   };
   const checkPassword = (password) => {
@@ -101,38 +107,6 @@ const Join = (props) => {
             <h6 ref={alertRef} className={styles.alertMessage}>
               {" "}
             </h6>
-            {/* <div className={styles.healthInfo}>
-              <input
-                className={styles.healthInput}
-                type="number"
-                name="age"
-                placeholder="age"
-                required
-              />
-              <select className={styles.healthInput} name="sex">
-                <option value="male">남성</option>
-                <option value="female">여성</option>
-              </select>
-              <input
-                className={styles.healthInput}
-                type="number"
-                name="height"
-                placeholder="height"
-                required
-              />
-              <input
-                className={styles.healthInput}
-                type="number"
-                name="weight"
-                placeholder="weight"
-                required
-              />
-              <select className={styles.healthInput} name="activity">
-                <option value="large">활발하게 활동적</option>
-                <option value="medium">중간 정도 활동적</option>
-                <option value="small">조금 활동적</option>
-              </select>
-            </div> */}
           </form>
           <div className={styles.lineBox}>
             <hr className={styles.line} />

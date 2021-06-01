@@ -8,7 +8,7 @@ import Join from "./routes/join/join";
 import Main from "./routes/main/main";
 import LoginHeader from "./components/loginHeader/loginHeader";
 
-function App({ authService }) {
+function App({ authService, database }) {
   return (
     <>
       <BrowserRouter>
@@ -18,7 +18,7 @@ function App({ authService }) {
           render={(props) => {
             return (
               <>
-                <Header authService={authService} />
+                <Header authService={authService} database={database} />
                 <Home authService={authService} {...props} />
                 <Footer />
               </>
@@ -31,7 +31,7 @@ function App({ authService }) {
           render={(props) => {
             return (
               <>
-                <Header authService={authService} />
+                <Header authService={authService} database={database} />
                 <Login authService={authService} {...props} />
                 <Footer />
               </>
@@ -44,8 +44,12 @@ function App({ authService }) {
           render={(props) => {
             return (
               <>
-                <Header authService={authService} />
-                <Join authService={authService} {...props} />
+                <Header authService={authService} database={database} />
+                <Join
+                  authService={authService}
+                  database={database}
+                  {...props}
+                />
                 <Footer />
               </>
             );
@@ -57,8 +61,12 @@ function App({ authService }) {
           render={(props) => {
             return (
               <>
-                <LoginHeader authService={authService} />
-                <Main authService={authService} {...props} />
+                <LoginHeader authService={authService} database={database} />
+                <Main
+                  authService={authService}
+                  database={database}
+                  {...props}
+                />
                 <Footer />
               </>
             );

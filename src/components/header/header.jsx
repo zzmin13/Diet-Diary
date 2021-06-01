@@ -5,7 +5,7 @@ import Login from "../../routes/login/login";
 import styles from "./header.module.css";
 
 const Header = memo((props) => {
-  const { authService } = props;
+  const { authService, database } = props;
   const changeToLogin = () => {
     setModalTarget("login");
   };
@@ -61,12 +61,14 @@ const Header = memo((props) => {
                   authService={authService}
                   changeToJoin={changeToJoin}
                   closeModal={closeModal}
+                  database={database}
                 />
               ) : (
                 <Join
                   authService={authService}
                   changeToLogin={changeToLogin}
                   closeModal={closeModal}
+                  database={database}
                 />
               )}
             </div>

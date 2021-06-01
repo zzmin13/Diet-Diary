@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SocialLogin from "../../components/social_login/social_login";
 import styles from "./login.module.css";
 const Login = (props) => {
-  const { authService } = props;
+  const { authService, database } = props;
   const text1 = "소셜계정으로 간편하게 로그인하세요!";
   const text2 = "아직 회원이 아니신가요?";
   const text3 = "가입하기";
@@ -19,7 +19,8 @@ const Login = (props) => {
       props.closeModal();
     }
   };
-  const goLogin = async () => {
+  const goLogin = async (event) => {
+    event.preventDefault();
     if (props.closeModal) {
       closeModal();
     }
@@ -27,14 +28,21 @@ const Login = (props) => {
     const password = passwordRef.current.value;
 
     const response = await authService.emailLogin(email, password);
-    console.log(response);
+    console.log(response.user.uid);
+    database.getRequiredInformation(response.user.uid).then((response) => {
+      if (response === false) {
+        props.history.push("/register");
+      } else {
+        props.history.push("/main");
+      }
+    });
   };
   console.log(`login`);
   return (
     <section className={styles.container}>
       <div className={styles.content}>
         <h1 className={styles.title}>Login</h1>
-        <form className={styles.form}>
+        <form method="post" onSubmit={goLogin} className={styles.form}>
           <input
             className={styles.input}
             type="email"

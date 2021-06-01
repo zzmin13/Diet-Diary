@@ -140,5 +140,5 @@ a {
 input,
 textarea,
 button {
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
 }

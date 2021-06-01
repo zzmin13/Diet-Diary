@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 
 const Main = memo((props) => {
-  const { authService, history } = props;
+  const { authService, database, history } = props;
   const [loginUser, setLoginUser] = useState();
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
@@ -19,6 +19,17 @@ const Main = memo((props) => {
       setLoginUser();
     };
   }, [authService, history]);
+  useEffect(() => {
+    if (loginUser) {
+      try {
+        database.getRequiredInformation(loginUser.userid).then((response) => {
+          if (response === false) {
+            history.push("/register");
+          }
+        });
+      } catch (error) {}
+    }
+  }, [loginUser]);
   return (
     <>
       {loginUser ? (

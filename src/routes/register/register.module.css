@@ -1,0 +1,48 @@
+.section {
+  overflow: hidden;
+  width: 100vw;
+  height: 84vh;
+}
+.slide[id="slide01"]:checked ~ .slidelist li {
+  transform: translateX(0%);
+}
+.slide[id="slide02"]:checked ~ .slidelist li {
+  transform: translateX(-100%);
+}
+.slide[id="slide03"]:checked ~ .slidelist li {
+  transform: translateX(-200%);
+}
+
+.slidelist {
+  display: flex;
+
+  width: 300vw;
+  height: 100%;
+}
+.slidelist li {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+}
+.image {
+  background-color: yellow;
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 50px;
+  cursor: pointer;
+}
+.left {
+  left: 30px;
+}
+.right {
+  right: 30px;
+}

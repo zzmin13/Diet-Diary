@@ -6,6 +6,7 @@ import Home from "./routes/home/home";
 import Login from "./routes/login/login";
 import Join from "./routes/join/join";
 import Main from "./routes/main/main";
+import Register from "./routes/register/register";
 import LoginHeader from "./components/loginHeader/loginHeader";
 
 function App({ authService, database }) {
@@ -32,7 +33,11 @@ function App({ authService, database }) {
             return (
               <>
                 <Header authService={authService} database={database} />
-                <Login authService={authService} {...props} />
+                <Login
+                  authService={authService}
+                  database={database}
+                  {...props}
+                />
                 <Footer />
               </>
             );
@@ -63,6 +68,23 @@ function App({ authService, database }) {
               <>
                 <LoginHeader authService={authService} database={database} />
                 <Main
+                  authService={authService}
+                  database={database}
+                  {...props}
+                />
+                <Footer />
+              </>
+            );
+          }}
+        />
+        <Route
+          path="/register"
+          exact={true}
+          render={(props) => {
+            return (
+              <>
+                <LoginHeader authService={authService} database={database} />
+                <Register
                   authService={authService}
                   database={database}
                   {...props}

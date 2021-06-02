@@ -54,6 +54,7 @@ const Register = (props) => {
         recommendedCalories,
       };
       database.setRequiredInformation(loginUser.userid, requiredInformation);
+      history.push("/main");
     }
   };
   const hideAlertMessage = () => {

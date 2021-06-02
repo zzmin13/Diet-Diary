@@ -1,13 +1,46 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useHistory } from "react-router";
 import styles from "./register.module.css";
 
 const Register = (props) => {
+  const history = useHistory();
+  const sexRef = useRef();
+  const ageRef = useRef();
+  const heightRef = useRef();
+  const weightRef = useRef();
+  const activityRef = useRef();
+  const alertMessageRef = useRef();
+  const handleOnSubmit = () => {
+    const sex = sexRef.current.value;
+    const age = ageRef.current.value;
+    const height = heightRef.current.value;
+    const weight = weightRef.current.value;
+    const activity = activityRef.current.value;
+    if (age === "" || height === "" || weight === "") {
+      alertMessageRef.current.innerText = `입력하지 않은 항목이 있습니다. 작성 후 다시 제출해주세요.`;
+    } else {
+      let activityPoint;
+      if (activity === "large") {
+        activityPoint = 40;
+      } else if (activity === "medium") {
+        activityPoint = 33;
+      } else if (activity === "small") {
+        activityPoint = 25;
+      }
+      const recommendedCalories = (height - 100) * 0.9 * activityPoint; // 하루 권장 칼로리
+      console.log(recommendedCalories);
+    }
+  };
+  const hideAlertMessage = () => {
+    alertMessageRef.current.innerText = "";
+  };
+
   return (
     <>
       <div className={styles.section}>
         <div className={styles.textBox}>
           <p className={styles.bigText}>다다를 이용하기 전에</p>
-          <p className={styles.bigText}>입력해야 할 정보가 있어요</p>
+          <p className={styles.bigText}>입력해야 할 정보가 있어요🎵</p>
           <p className={styles.middleText}>
             원활한 이용을 위해 고객님의 정보를 등록해주세요📝
           </p>
@@ -47,7 +80,7 @@ const Register = (props) => {
           <li className={styles.li1}>
             <div className={styles.display}>
               <p className={styles.titleText}>1. 성별을 입력해주세요</p>
-              <select className={styles.healthInput} name="sex">
+              <select ref={sexRef} className={styles.healthInput} name="sex">
                 <option value="male">남성</option>
                 <option value="female">여성</option>
               </select>
@@ -64,6 +97,7 @@ const Register = (props) => {
             <div className={styles.display}>
               <p className={styles.titleText}>2. 나이를 입력해주세요</p>
               <input
+                ref={ageRef}
                 className={styles.healthInput}
                 type="number"
                 name="age"
@@ -92,6 +126,7 @@ const Register = (props) => {
             <div className={styles.display}>
               <p className={styles.titleText}>3. 키를 입력해주세요</p>
               <input
+                ref={heightRef}
                 className={styles.healthInput}
                 type="number"
                 name="height"
@@ -120,6 +155,7 @@ const Register = (props) => {
             <div className={styles.display}>
               <p className={styles.titleText}>4. 몸무게를 입력해주세요</p>
               <input
+                ref={weightRef}
                 className={styles.healthInput}
                 type="number"
                 name="weight"
@@ -147,7 +183,11 @@ const Register = (props) => {
           <li className={styles.li5}>
             <div className={styles.display}>
               <p className={styles.titleText}>5. 활동량을 입력해주세요</p>
-              <select className={styles.healthInput} name="activity">
+              <select
+                ref={activityRef}
+                className={styles.healthInput}
+                name="activity"
+              >
                 <option value="large">활발하게 활동적</option>
                 <option value="medium">중간 정도 활동적</option>
                 <option value="small">조금 활동적</option>
@@ -170,17 +210,19 @@ const Register = (props) => {
                 <label
                   htmlFor="slide04"
                   className={`${styles.left} ${styles.label}`}
+                  onClick={hideAlertMessage}
                 >
                   <i className={`fas fa-arrow-left ${styles.icon}`}></i>
                   <div className={styles.labelText}>이전</div>
                 </label>
-                <div className={styles.completeBtn}>
+                <div onClick={handleOnSubmit} className={styles.completeBtn}>
                   <i
                     className={`fas fa-check-circle ${styles.completeIcon}`}
                   ></i>
                   <p className={styles.completeText}>작성완료</p>
                 </div>
               </div>
+              <div ref={alertMessageRef} className={styles.alertMessage}></div>
             </div>
           </li>
         </ul>

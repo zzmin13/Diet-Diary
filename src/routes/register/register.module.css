@@ -61,7 +61,8 @@
   flex-direction: column;
   align-items: center;
   z-index: 10;
-  padding: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
   cursor: pointer;
 }
 .label:hover {
@@ -118,6 +119,7 @@
 }
 .lastLabelBox {
   display: flex;
+  margin: 20px;
   width: 320px;
   justify-content: space-between;
   align-items: center;
@@ -141,6 +143,12 @@
   margin-top: 10px;
   font-weight: 600;
   color: green;
+}
+.alertMessage {
+  color: red;
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
 }
 
 /* tablet(768~1024px) */

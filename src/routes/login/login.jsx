@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SocialLogin from "../../components/social_login/social_login";
 import styles from "./login.module.css";
 const Login = (props) => {
   const { authService, database } = props;
+  const history = useHistory();
   const text1 = "소셜계정으로 간편하게 로그인하세요!";
   const text2 = "아직 회원이 아니신가요?";
   const text3 = "가입하기";
@@ -31,9 +32,9 @@ const Login = (props) => {
     console.log(response.user.uid);
     database.getRequiredInformation(response.user.uid).then((response) => {
       if (response === false) {
-        props.history.push("/register");
+        history.push("/register");
       } else {
-        props.history.push("/main");
+        history.push("/main");
       }
     });
   };
@@ -93,6 +94,7 @@ const Login = (props) => {
           handleOnClick={
             props.changeToJoin ? props.changeToJoin : historyPushJoin
           }
+          database={database}
           closeModal={closeModal}
         />
       </div>

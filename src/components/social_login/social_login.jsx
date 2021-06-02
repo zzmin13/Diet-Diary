@@ -3,12 +3,32 @@ import { useHistory } from "react-router";
 import styles from "./social_login.module.css";
 
 const SocialLogin = (props) => {
-  const { authService, handleOnClick, closeModal, text1, text2, text3 } = props;
+  const {
+    authService,
+    database,
+    handleOnClick,
+    closeModal,
+    text1,
+    text2,
+    text3,
+  } = props;
   const history = useHistory();
   const goSocialLogin = async (event) => {
     const providerName = event.currentTarget.name;
     closeModal();
-    await authService.OauthLogin(providerName);
+    const response = await authService.OauthLogin(providerName);
+    console.log(response.user.uid);
+    const uid = response.user.uid;
+    const email = response.user.email;
+    const photoURL = response.user.photoURL;
+
+    database.isUserExistInDatabase(response.user.uid).then((response) => {
+      if (response === false) {
+        database.registerUser(uid, email, photoURL);
+      } else {
+        history.push("/main");
+      }
+    });
   };
   console.log(`socialLogin`);
   return (

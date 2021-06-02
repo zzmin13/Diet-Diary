@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import styles from "./register.module.css";
 
 const Register = (props) => {
+  const { authService, database } = props;
   const history = useHistory();
   const sexRef = useRef();
   const ageRef = useRef();
@@ -10,6 +11,21 @@ const Register = (props) => {
   const weightRef = useRef();
   const activityRef = useRef();
   const alertMessageRef = useRef();
+  const [loginUser, setLoginUser] = useState();
+  useEffect(() => {
+    authService.onAuthStateChanged((user) => {
+      if (user) {
+        setLoginUser({
+          userid: user.uid,
+        });
+      } else {
+        history.push("/");
+      }
+    });
+    return () => {
+      setLoginUser();
+    };
+  }, [authService, history]);
   const handleOnSubmit = () => {
     const sex = sexRef.current.value;
     const age = ageRef.current.value;
@@ -28,7 +44,16 @@ const Register = (props) => {
         activityPoint = 25;
       }
       const recommendedCalories = (height - 100) * 0.9 * activityPoint; // 하루 권장 칼로리
-      console.log(recommendedCalories);
+      const requiredInformation = {
+        sex,
+        age,
+        height,
+        weight,
+        activity,
+        activityPoint,
+        recommendedCalories,
+      };
+      database.setRequiredInformation(loginUser.userid, requiredInformation);
     }
   };
   const hideAlertMessage = () => {

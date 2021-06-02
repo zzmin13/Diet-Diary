@@ -111,6 +111,8 @@ const Join = (props) => {
             text1={text1}
             text2={text2}
             text3={text3}
+            authService={authService}
+            database={database}
             handleOnClick={
               props.changeToLogin ? props.changeToLogin : historyPushLogin
             }

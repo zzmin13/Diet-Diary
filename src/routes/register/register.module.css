@@ -1,7 +1,18 @@
+@value colorBorderGrey from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+@value colorInactiveGrey from "../../common/color.css";
+
 .section {
   overflow: hidden;
   width: 100vw;
   height: 84vh;
+  /* padding: 20px; */
+  font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+}
+.slide {
+  display: none;
 }
 .slide[id="slide01"]:checked ~ .slidelist li {
   transform: translateX(0%);
@@ -12,11 +23,16 @@
 .slide[id="slide03"]:checked ~ .slidelist li {
   transform: translateX(-200%);
 }
+.slide[id="slide04"]:checked ~ .slidelist li {
+  transform: translateX(-300%);
+}
+.slide[id="slide05"]:checked ~ .slidelist li {
+  transform: translateX(-400%);
+}
 
 .slidelist {
   display: flex;
-
-  width: 300vw;
+  width: 500vw;
   height: 100%;
 }
 .slidelist li {
@@ -26,23 +42,119 @@
   flex-wrap: nowrap;
   position: relative;
 }
-.image {
-  background-color: yellow;
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
 }
 
+.labelBox {
+  width: 320px;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
 .label {
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   z-index: 10;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 50px;
+  padding: 30px;
   cursor: pointer;
 }
-.left {
-  left: 30px;
+.label:hover {
+  opacity: 0.9;
+  transform: scale(0.98);
 }
-.right {
-  right: 30px;
+.labelText {
+  margin-top: 10px;
+  color: colorPink;
+  font-weight: 600;
+}
+.icon {
+  font-size: 30px;
+  color: colorPink;
+}
+
+.textBox {
+  align-self: flex-start;
+  padding: 20px;
+  margin: 20px;
+}
+.bigText {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+.middleText {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+.titleText {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: colorPink;
+}
+.healthInput {
+  margin: 20px;
+  padding: 10px;
+  width: 320px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.descriptionBox {
+  width: 320px;
+}
+.description {
+  font-size: 0.7rem;
+  line-height: 150%;
+}
+.description span {
+  color: colorPink;
+}
+.lastLabelBox {
+  display: flex;
+  width: 320px;
+  justify-content: space-between;
+  align-items: center;
+}
+.completeBtn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.completeBtn:hover {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+.completeIcon {
+  color: green;
+  font-size: 30px;
+}
+.completeText {
+  margin-top: 10px;
+  font-weight: 600;
+  color: green;
+}
+
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .bigText {
+    font-size: 1.6rem;
+  }
+  .middleText {
+    font-size: 0.8rem;
+  }
+}
+/* pc (1025px 이상) */
+@media (min-width: 1025px) {
 }

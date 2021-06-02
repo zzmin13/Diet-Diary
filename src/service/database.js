@@ -1,13 +1,25 @@
 import { firebaseDatabase } from "./firebase";
 
 class Database {
-  registerUser(uid, email, photoURL) {
-    firebaseDatabase.ref(`users/${uid}/information/basic`).set({
-      userName: "",
-      email: email,
-      avatar:
-        photoURL ||
-        "https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg",
+  registerUser(uid, email, photoURL, currentDate) {
+    firebaseDatabase.ref(`users/${uid}`).set({
+      information: {
+        basic: {
+          userName: "",
+          email: email,
+          avatar:
+            photoURL ||
+            "https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg",
+        },
+      },
+      userDiary: {
+        [currentDate]: {
+          diet: "",
+          diary: "",
+          exercise: "",
+          water: "",
+        },
+      },
     });
   }
   isUserExistInDatabase(uid) {
@@ -25,14 +37,29 @@ class Database {
         console.error(error);
       });
   }
+  getUserData(uid) {
+    return firebaseDatabase
+      .ref(`users/${uid}`)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          console.log(snapshot.val());
+          return snapshot.val();
+        } else {
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   getRequiredInformation(uid) {
     return firebaseDatabase
       .ref(`users/${uid}/information/required`)
       .get()
       .then((snapshot) => {
         if (snapshot.exists()) {
-          console.log(snapshot.val());
-          return true;
+          return snapshot.val();
         } else {
           return false;
         }

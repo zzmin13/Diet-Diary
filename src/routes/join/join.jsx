@@ -8,6 +8,16 @@ const Join = (props) => {
   const text1 = "소셜계정으로 간편하게 가입하세요!";
   const text2 = "이미 회원이신가요?";
   const text3 = "로그인하기";
+  const currentYear = `${new Date().getFullYear()}`;
+  const currentMonth =
+    new Date().getMonth() + 1 < 10
+      ? `0${new Date().getMonth() + 1}`
+      : `${new Date().getMonth() + 1}`;
+  const currentDate =
+    new Date().getDate() < 10
+      ? `0${new Date().getDate()}`
+      : `${new Date().getDate()}`;
+  const current = currentYear + currentMonth + currentDate;
   console.log(props);
 
   const emailRef = useRef();
@@ -36,7 +46,8 @@ const Join = (props) => {
       await database.registerUser(
         response.user.uid,
         response.user.email,
-        response.user.photoURL
+        response.user.photoURL,
+        current
       );
     }
   };
@@ -47,6 +58,11 @@ const Join = (props) => {
   };
   const historyPushLogin = () => {
     props.history.push("/login");
+  };
+  const closeModal = () => {
+    if (props.closeModal) {
+      props.closeModal();
+    }
   };
   console.log(`join`);
   return (
@@ -113,6 +129,7 @@ const Join = (props) => {
             text3={text3}
             authService={authService}
             database={database}
+            closeModal={closeModal}
             handleOnClick={
               props.changeToLogin ? props.changeToLogin : historyPushLogin
             }

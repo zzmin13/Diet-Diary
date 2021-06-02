@@ -49,12 +49,20 @@ class AuthService {
         }
       });
   }
-  async emailLogin(email, password) {
-    try {
-      return firebaseAuth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.log(error);
-    }
+  emailLogin(email, password) {
+    return firebaseAuth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (errorCode === "auth/wrong-password") {
+          alert("비밀번호가 틀렸습니다.");
+        } else if (errorCode === "auth/user-not-found") {
+          alert("등록되지 않은 계정입니다.");
+        } else {
+          alert(errorMessage);
+        }
+      });
   }
 }
 

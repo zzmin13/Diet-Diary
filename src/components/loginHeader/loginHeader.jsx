@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styles from "./loginHeader.module.css";
 const LoginHeader = (props) => {
   const { authService } = props;
+  const history = useHistory();
   const handleLogout = () => {
     authService.logout();
+    history.push("/");
   };
   return (
     <>

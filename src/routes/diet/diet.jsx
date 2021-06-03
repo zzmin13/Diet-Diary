@@ -24,6 +24,15 @@ const Diet = (props) => {
   const searchRef = useRef();
   const timeRef = useRef();
 
+  const foodNameRef = useRef();
+  const foodOneServingSizeRef = useRef();
+  const foodKcalRef = useRef();
+  const foodCarbohydratesRef = useRef();
+  const foodProteinsRef = useRef();
+  const foodFatsRef = useRef();
+  const totalSizeRef = useRef();
+  const totalKcalRef = useRef();
+
   useEffect(() => {
     if (uid === undefined) {
       history.push("/main");
@@ -77,6 +86,22 @@ const Diet = (props) => {
     //   [time]: newDiet,
     // });
   };
+  const onSelectFood = (value) => {
+    foodNameRef.current.innerText = searchResult[value].name;
+    foodOneServingSizeRef.current.innerText =
+      searchResult[value].oneServingSize;
+    foodKcalRef.current.innerText = searchResult[value].kcal;
+    // foodCarbohydratesRef.current.innerText = `탄수화물(g) : ${searchResult[value].carbohydrates} `;
+    // foodProteinsRef.current.innerText = `단백질(g): ${searchResult[value].proteins} `;
+    // foodFatsRef.current.innerText = `지방(g): ${searchResult[value].fats} `;
+  };
+  const onNumberChange = (event) => {
+    const number = event.currentTarget.value;
+    totalSizeRef.current.innerText =
+      number * Number(foodOneServingSizeRef.current.innerText);
+    totalKcalRef.current.innerText =
+      number * Number(foodKcalRef.current.innerText);
+  };
   console.log({ ...diet });
   return (
     <>
@@ -110,10 +135,39 @@ const Diet = (props) => {
             </button>
           </form>
           <div>
-            <h1>결과</h1>
-            {Object.keys(searchResult).map((key) => {
-              return <SearchResult key={key} result={searchResult[key]} />;
-            })}
+            <h1>검색 결과</h1>
+            <form>
+              {Object.keys(searchResult).map((key) => {
+                return (
+                  <SearchResult
+                    key={key}
+                    result={searchResult[key]}
+                    id={key}
+                    onSelectFood={onSelectFood}
+                  />
+                );
+              })}
+              <div>
+                <h1>[선택된 음식] </h1>
+                <span>이름: </span>
+                <span ref={foodNameRef}></span>
+                <span> / 1회 제공량(g): </span>
+                <span ref={foodOneServingSizeRef}></span>
+                <span> / 열량(kcal) : </span>
+                <span ref={foodKcalRef}></span>
+              </div>
+            </form>
+            <input
+              type="number"
+              placeholder="몇 개? (숫자로만 입력)"
+              onChange={onNumberChange}
+            />
+            <br></br>
+            <span>양(g) : </span>
+            <span ref={totalSizeRef}></span>
+            <br></br>
+            <span>칼로리(kcal) : </span>
+            <span ref={totalKcalRef}></span>
             <select ref={timeRef}>
               <option>아침</option>
               <option>점심</option>

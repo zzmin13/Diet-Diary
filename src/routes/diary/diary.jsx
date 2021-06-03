@@ -1,23 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 
-const Diary = (props) => {
+const Diary = memo((props) => {
   console.log(props);
-  const { authService, database, history, location } = props;
-  const [userid, setUserId] = useState();
+  const {
+    authService,
+    database,
+    history,
+    location: { state },
+  } = props;
+  const diaryRef = useRef();
+
+  const submitDiary = () => {
+    const content = diaryRef.current.value;
+    database.createOrUpdateTodayDiary(state.uid, state.currentDate, content);
+    history.push("/main");
+  };
   useEffect(() => {
-    if (location.state === undefined) {
+    if (state.uid === undefined) {
       history.push("/main");
-    } else {
-      setUserId(location.state.uid);
     }
-  });
+  }, [history]);
   return (
     <>
-      <h1>오늘의 일기</h1>
-      <textArea placeholder="일기를 작성해보세요!"></textArea>
-      <button>작성하기</button>
+      {state.uid && (
+        <>
+          <h1>오늘의 일기</h1>
+          <textarea
+            defaultValue={state.todayDiary}
+            ref={diaryRef}
+            placeholder="일기를 작성해보세요!"
+          ></textarea>
+          <button onClick={submitDiary}>작성하기</button>
+        </>
+      )}
     </>
   );
-};
+});
 
 export default Diary;

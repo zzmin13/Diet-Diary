@@ -15,10 +15,21 @@ class Database {
       },
       userDiary: {
         [currentDate]: {
-          diet: "",
           diary: "",
+          diet: {
+            breakfast: "",
+            lunch: "",
+            dinner: "",
+            dessert: "",
+            totalCalories: "",
+          },
           exercise: "",
-          water: "",
+          water: {
+            breakfast: "",
+            lunch: "",
+            dinner: "",
+            totalWater: "",
+          },
         },
       },
     });
@@ -81,10 +92,21 @@ class Database {
   // 오늘 날짜 일기 템플릿 만들기
   setTodayDiaryTemplate(uid, currentDate) {
     firebaseDatabase.ref(`users/${uid}/userDiary/${currentDate}`).set({
-      diet: "",
       diary: "",
+      diet: {
+        breakfast: "",
+        lunch: "",
+        dinner: "",
+        dessert: "",
+        totalCalories: "",
+      },
       exercise: "",
-      water: "",
+      water: {
+        breakfast: "",
+        lunch: "",
+        dinner: "",
+        totalWater: "",
+      },
     });
   }
 

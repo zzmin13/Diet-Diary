@@ -27,6 +27,10 @@ const Main = memo((props) => {
     },
     userDiary: "",
   });
+  const {
+    information: { basic, required },
+    userDiary,
+  } = loginUser;
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
@@ -78,6 +82,8 @@ const Main = memo((props) => {
       pathname: "/diet",
       state: {
         uid: loginUser.uid,
+        todayDiet: loginUser.userDiary[current].diet,
+        currentDate: current,
       },
     });
   };
@@ -105,10 +111,7 @@ const Main = memo((props) => {
       },
     });
   };
-  const {
-    information: { basic, required },
-    userDiary,
-  } = loginUser;
+
   return (
     <>
       {loginUser.uid ? (
@@ -118,8 +121,8 @@ const Main = memo((props) => {
           <h1>{`목표 몸무게 : `}</h1>
           <h1>{`하루 권장 칼로리 : ${required.recommendedCalories}`}</h1>
           <p>{`오늘의 일기 : ${userDiary[current].diary}`}</p>
-          <p>{`오늘의 식사 : ${userDiary[current].diet}`}</p>
-          <p>{`오늘의 물 : ${userDiary[current].water}`}</p>
+          <p>{`오늘의 식사 : `}</p>
+          <p>{`오늘의 물 : `}</p>
           <p>{`오늘의 운동 : ${userDiary[current].exercise}`}</p>
           <button onClick={goDiaryPage}>일기 작성하기</button>
           <button onClick={goDietPage}>식사 입력하기</button>

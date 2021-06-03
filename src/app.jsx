@@ -14,7 +14,7 @@ import Exercise from "./routes/exercise/exercise";
 import Water from "./routes/water/water";
 import Goal from "./routes/goal/goal";
 
-function App({ authService, database }) {
+function App({ authService, database, foodSearch }) {
   return (
     <>
       <BrowserRouter>
@@ -126,6 +126,7 @@ function App({ authService, database }) {
                 <Diet
                   authService={authService}
                   database={database}
+                  foodSearch={foodSearch}
                   {...props}
                 />
                 <Footer />

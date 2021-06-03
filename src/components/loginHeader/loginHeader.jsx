@@ -11,7 +11,7 @@ const LoginHeader = (props) => {
   return (
     <>
       <header className={styles.header}>
-        <Link to={{ pathname: "/" }} className={styles.logo}>
+        <Link to={{ pathname: "/main" }} className={styles.logo}>
           <i className={`fas fa-book ${styles.icon}`}></i>
           <h1 className={styles.title}>Diet Diary</h1>
         </Link>

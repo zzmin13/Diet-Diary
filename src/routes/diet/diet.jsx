@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import DietItem from "../../components/diet_item/diet_item";
+import SearchResult from "../../components/search_result/search_result";
+
 const Diet = (props) => {
   console.log(props);
   const {
@@ -18,6 +20,7 @@ const Diet = (props) => {
   } = props;
 
   const [diet, setDiet] = useState();
+  const [searchResult, setSearchResult] = useState({});
   const searchRef = useRef();
   const timeRef = useRef();
 
@@ -29,18 +32,37 @@ const Diet = (props) => {
     }
   }, [history]);
 
-  const handleFoodSearch = (event) => {
+  const handleFoodSearch = async (event) => {
     event.preventDefault();
     const term = searchRef.current.value;
-    foodSearch.getFoodInformation(term);
-    // let time;
-    // if (timeRef.current.value === "아침") {
-    //   time = "breakfast";
-    // } else if (timeRef.current.value === "점심") {
-    //   time = "lunch";
-    // } else if (timeRef.current.value === "저녁") {
-    //   time = "dinner";
-    // }
+    const response = await foodSearch.getFoodInformation(term);
+    const result = {};
+    response.data.body.items.map((element, index) => {
+      result[index] = {
+        name: element.DESC_KOR,
+        oneServingSize: element.SERVING_WT,
+        kcal: element.NUTR_CONT1,
+        carbohydrates: element.NUTR_CONT2,
+        proteins: element.NUTR_CONT3,
+        fats: element.NUTR_CONT4,
+      };
+    });
+    setSearchResult(result);
+    // 받아온 데이터는 response.data.body.items에 있음
+    // SERVING_WT : 1회 제공량 (g)
+    // NUTR_CONT1 : 열량(kcal)
+    // NUTR_CONT2 : 탄수화물(g)
+    // NUTR_CONT3 : 단백질(g)
+    // NUTR_CONT4 : 지방(g)
+
+    let time;
+    if (timeRef.current.value === "아침") {
+      time = "breakfast";
+    } else if (timeRef.current.value === "점심") {
+      time = "lunch";
+    } else if (timeRef.current.value === "저녁") {
+      time = "dinner";
+    }
     // const number = Object.keys(diet.breakfast).length;
     // const newDiet = {
     //   [number]: {
@@ -89,6 +111,9 @@ const Diet = (props) => {
           </form>
           <div>
             <h1>결과</h1>
+            {Object.keys(searchResult).map((key) => {
+              return <SearchResult key={key} result={searchResult[key]} />;
+            })}
             <select ref={timeRef}>
               <option>아침</option>
               <option>점심</option>

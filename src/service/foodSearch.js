@@ -5,9 +5,9 @@ class FoodSearch {
     this.key = key;
   }
   async getFoodInformation(term) {
-    const URL = `/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList?ServiceKey=${this.key}&type=json&desc_kor=${term}&pageNo=1&numOfRows=1`;
+    const URL = `/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList?ServiceKey=${this.key}&type=json&desc_kor=${term}&pageNo=1&numOfRows=10`;
     const response = await axios.get(URL);
-    console.log(response);
+    return response;
   }
 }
 

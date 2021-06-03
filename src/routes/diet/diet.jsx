@@ -32,27 +32,28 @@ const Diet = (props) => {
   const handleFoodSearch = (event) => {
     event.preventDefault();
     const term = searchRef.current.value;
-    let time;
-    if (timeRef.current.value === "아침") {
-      time = "breakfast";
-    } else if (timeRef.current.value === "점심") {
-      time = "lunch";
-    } else if (timeRef.current.value === "저녁") {
-      time = "dinner";
-    }
-    const number = Object.keys(diet.breakfast).length;
-    const newDiet = {
-      [number]: {
-        name: term,
-        amount: "200g",
-        calories: "150kcal",
-        id: Date.now(),
-      },
-    };
-    setDiet({
-      ...diet,
-      [time]: newDiet,
-    });
+    foodSearch.getFoodInformation(term);
+    // let time;
+    // if (timeRef.current.value === "아침") {
+    //   time = "breakfast";
+    // } else if (timeRef.current.value === "점심") {
+    //   time = "lunch";
+    // } else if (timeRef.current.value === "저녁") {
+    //   time = "dinner";
+    // }
+    // const number = Object.keys(diet.breakfast).length;
+    // const newDiet = {
+    //   [number]: {
+    //     name: term,
+    //     amount: "200g",
+    //     calories: "150kcal",
+    //     id: Date.now(),
+    //   },
+    // };
+    // setDiet({
+    //   ...diet,
+    //   [time]: newDiet,
+    // });
   };
   console.log({ ...diet });
   return (

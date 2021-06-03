@@ -2,13 +2,13 @@ import React from "react";
 
 const DietItem = (props) => {
   const {
-    food: { amount, calories, id, name },
+    food: { totalSize, kcal, id, name },
   } = props;
   return (
     <>
       <span>{name}</span>
-      <span>{amount}</span>
-      <span>{calories}</span>
+      <span>{totalSize}</span>
+      <span>{kcal}</span>
     </>
   );
 };

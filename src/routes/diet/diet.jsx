@@ -27,9 +27,6 @@ const Diet = (props) => {
   const foodNameRef = useRef();
   const foodOneServingSizeRef = useRef();
   const foodKcalRef = useRef();
-  const foodCarbohydratesRef = useRef();
-  const foodProteinsRef = useRef();
-  const foodFatsRef = useRef();
   const totalSizeRef = useRef();
   const totalKcalRef = useRef();
 
@@ -48,22 +45,32 @@ const Diet = (props) => {
     const result = {};
     response.data.body.items.map((element, index) => {
       result[index] = {
-        name: element.DESC_KOR,
-        oneServingSize: element.SERVING_WT,
-        kcal: element.NUTR_CONT1,
-        carbohydrates: element.NUTR_CONT2,
-        proteins: element.NUTR_CONT3,
-        fats: element.NUTR_CONT4,
+        name: element.DESC_KOR, // 이름
+        oneServingSize: element.SERVING_WT, // 1회 제공량(g)
+        kcal: element.NUTR_CONT1, // 열량(kcal)
+        carbohydrates: element.NUTR_CONT2, // 탄수화물(g)
+        proteins: element.NUTR_CONT3, // 단백질(g)
+        fats: element.NUTR_CONT4, // 지방(g)
       };
     });
     setSearchResult(result);
-    // 받아온 데이터는 response.data.body.items에 있음
-    // SERVING_WT : 1회 제공량 (g)
-    // NUTR_CONT1 : 열량(kcal)
-    // NUTR_CONT2 : 탄수화물(g)
-    // NUTR_CONT3 : 단백질(g)
-    // NUTR_CONT4 : 지방(g)
-
+  };
+  const onSelectFood = (value) => {
+    foodNameRef.current.innerText = searchResult[value].name;
+    foodOneServingSizeRef.current.innerText =
+      searchResult[value].oneServingSize;
+    foodKcalRef.current.innerText = searchResult[value].kcal;
+    totalSizeRef.current.innerText = searchResult[value].oneServingSize;
+    totalKcalRef.current.innerText = searchResult[value].kcal;
+  };
+  const onNumberChange = (event) => {
+    const number = event.currentTarget.value;
+    totalSizeRef.current.innerText =
+      number * Number(foodOneServingSizeRef.current.innerText);
+    totalKcalRef.current.innerText =
+      number * Number(foodKcalRef.current.innerText);
+  };
+  const addDiet = () => {
     let time;
     if (timeRef.current.value === "아침") {
       time = "breakfast";
@@ -72,35 +79,19 @@ const Diet = (props) => {
     } else if (timeRef.current.value === "저녁") {
       time = "dinner";
     }
-    // const number = Object.keys(diet.breakfast).length;
-    // const newDiet = {
-    //   [number]: {
-    //     name: term,
-    //     amount: "200g",
-    //     calories: "150kcal",
-    //     id: Date.now(),
-    //   },
-    // };
-    // setDiet({
-    //   ...diet,
-    //   [time]: newDiet,
-    // });
-  };
-  const onSelectFood = (value) => {
-    foodNameRef.current.innerText = searchResult[value].name;
-    foodOneServingSizeRef.current.innerText =
-      searchResult[value].oneServingSize;
-    foodKcalRef.current.innerText = searchResult[value].kcal;
-    // foodCarbohydratesRef.current.innerText = `탄수화물(g) : ${searchResult[value].carbohydrates} `;
-    // foodProteinsRef.current.innerText = `단백질(g): ${searchResult[value].proteins} `;
-    // foodFatsRef.current.innerText = `지방(g): ${searchResult[value].fats} `;
-  };
-  const onNumberChange = (event) => {
-    const number = event.currentTarget.value;
-    totalSizeRef.current.innerText =
-      number * Number(foodOneServingSizeRef.current.innerText);
-    totalKcalRef.current.innerText =
-      number * Number(foodKcalRef.current.innerText);
+    const number = Object.keys(diet[time]).length;
+    const newDiet = {
+      [number]: {
+        name: foodNameRef.current.innerText,
+        totalSize: totalSizeRef.current.innerText,
+        kcal: totalKcalRef.current.innerText,
+        id: Date.now(),
+      },
+    };
+    setDiet({
+      ...diet,
+      [time]: newDiet,
+    });
   };
   console.log({ ...diet });
   return (
@@ -174,6 +165,7 @@ const Diet = (props) => {
               <option>저녁</option>
             </select>
           </div>
+          <button onClick={addDiet}>추가하기</button>
         </>
       )}
     </>

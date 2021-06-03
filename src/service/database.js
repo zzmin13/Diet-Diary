@@ -43,7 +43,6 @@ class Database {
       .get()
       .then((snapshot) => {
         if (snapshot.exists()) {
-          console.log(snapshot.val());
           return snapshot.val();
         } else {
           return false;
@@ -70,6 +69,14 @@ class Database {
   }
   setRequiredInformation(uid, information) {
     firebaseDatabase.ref(`users/${uid}/information/required`).set(information);
+  }
+  setTodayDiaryTemplate(uid, currentDate) {
+    firebaseDatabase.ref(`users/${uid}/userDiary/${currentDate}`).set({
+      diet: "",
+      diary: "",
+      exercise: "",
+      water: "",
+    });
   }
 }
 export default Database;

@@ -43,7 +43,9 @@ const Register = (props) => {
       } else if (activity === "small") {
         activityPoint = 25;
       }
-      const recommendedCalories = (height - 100) * 0.9 * activityPoint; // 하루 권장 칼로리
+      const recommendedCalories = Math.round(
+        (height - 100) * 0.9 * activityPoint
+      ); // 하루 권장 칼로리
       const requiredInformation = {
         sex,
         age,

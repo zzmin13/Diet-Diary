@@ -32,7 +32,7 @@ const Home = (props) => {
               기록을 하면 원인을 파악하고 더 나은 변화를 만들어낼 수 있답니다.
             </p>
             <p className={styles.paragraph}>
-              Diet Diary와 함께 식단기록와 운동기록, 신체기록을 남겨보세요.
+              다다와 함께 식단기록와 운동기록, 신체기록을 남겨보세요.
             </p>
           </div>
           <button className={styles.button} onClick={goLogin}>

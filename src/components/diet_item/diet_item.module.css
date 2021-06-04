@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  /* border: 1px solid gray; */
+}
+.box1 {
+  width: 50%;
+  /* border: 1px solid pink; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.icon_cooking {
+  font-size: 2rem;
+  color: skyblue;
+  margin-right: 10px;
+}
+.name {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-right: 5px;
+}
+.amount {
+  color: gray;
+}
+.box2 {
+  width: 30%;
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.calories {
+  font-weight: 600;
+}
+.box3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon_trash {
+  margin-left: 20px;
+  font-size: 1rem;
+  color: red;
+  cursor: pointer;
+}

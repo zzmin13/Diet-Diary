@@ -10,22 +10,23 @@ const SearchResult = (props) => {
     onSelectFood(event.target.value);
   };
   return (
-    <>
+    <div className={styles.container}>
       <input
+        className={styles.radio}
         type="radio"
         name="searchResult"
         value={id}
         onClick={onRadioClick}
       />
-      <div className={styles.container}>
-        <h1>{`이름: ${name}`}</h1>
-        <span>{`1회 제공량(g): ${oneServingSize} `}</span>
-        <span>{`열량(kcal) : ${kcal} `}</span>
-        <span>{`탄수화물: ${carbohydrates} `}</span>
-        <span>{`단백질: ${proteins} `}</span>
-        <span>{`지방: ${fats} `}</span>
+      <div className={styles.box1}>
+        {/* <i className={`fas fa-utensils ${styles.icon_cooking}`}></i> */}
+        <p className={styles.name}>{name}</p>
+        <p className={styles.amount}>{`${oneServingSize}g `}</p>
       </div>
-    </>
+      <div className={styles.box2}>
+        <p className={styles.calories}>{`${kcal} kcal`}</p>
+      </div>
+    </div>
   );
 };
 

@@ -114,16 +114,18 @@ const Main = memo((props) => {
 
   return (
     <>
-      {loginUser.uid ? (
+      {loginUser.uid && userDiary[current] ? (
         <div className={styles.container}>
           <h1>반갑습니다.</h1>
           <h1>{`현재 몸무게 : ${required.weight}`}</h1>
           <h1>{`목표 몸무게 : `}</h1>
           <h1>{`하루 권장 칼로리 : ${required.recommendedCalories}`}</h1>
-          <p>{`오늘의 일기 : ${userDiary[current].diary}`}</p>
+          <p>{`오늘의 일기 : `}</p>
+          <p>{userDiary[current].diary}</p>
           <p>{`오늘의 식사 : `}</p>
           <p>{`오늘의 물 : `}</p>
-          <p>{`오늘의 운동 : ${userDiary[current].exercise}`}</p>
+          <p>{`오늘의 운동 :`}</p>
+          <p>{userDiary[current].exercise}</p>
           <button onClick={goDiaryPage}>일기 작성하기</button>
           <button onClick={goDietPage}>식사 입력하기</button>
           <button onClick={goWaterPage}>물 입력하기</button>

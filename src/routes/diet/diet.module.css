@@ -1,0 +1,99 @@
+@value colorMint from '../../common/color.css';
+@value colorPurple from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+@value colorBorderGrey from "../../common/color.css";
+
+.container {
+  display: flex;
+  height: 84vh;
+  overflow-y: scroll;
+  font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+}
+.subBox {
+  width: 30%;
+  background-color: beige;
+  display: flex;
+  flex-direction: column;
+}
+.search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.search_title {
+  margin: 10px;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.search_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+.search_input {
+  width: 320px;
+  height: 30px;
+  border: 1px solid colorBorderGrey;
+}
+.search_btn {
+  border: none;
+  background-color: transparent;
+}
+.search_icon {
+  font-size: 1.3rem;
+  color: grey;
+}
+.result {
+  border: 1px solid purple;
+}
+.result_form {
+  border: 2px solid red;
+  height: 50%;
+  overflow-y: scroll;
+}
+.metadata {
+  width: 70%;
+}
+.metadata_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.metadata_item_title {
+  color: colorPink;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.metadata_item_title2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.time {
+  /* border: 1px solid blue; */
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+}
+.time_item {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+.time_title {
+  margin: 10px;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.time_dietList {
+  width: 90%;
+  height: 100%;
+  overflow-y: scroll;
+}

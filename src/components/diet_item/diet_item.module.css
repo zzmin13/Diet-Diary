@@ -2,23 +2,21 @@
   display: flex;
   width: 100%;
   margin-bottom: 20px;
-  /* border: 1px solid gray; */
 }
 .box1 {
   width: 50%;
-  /* border: 1px solid pink; */
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 .icon_cooking {
-  font-size: 2rem;
+  font-size: 1.3rem;
   color: skyblue;
   margin-right: 10px;
 }
 .name {
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1rem;
   margin-right: 5px;
 }
 .amount {

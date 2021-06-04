@@ -163,7 +163,7 @@ const Diet = (props) => {
               <div className={styles.add_section}>
                 <div className={styles.add_section_item1}>
                   <div className={styles.search}>
-                    <h1 className={styles.search_text}>음식 검색</h1>
+                    <h1>음식 검색</h1>
                     <form
                       onSubmit={handleFoodSearch}
                       className={styles.search_form}

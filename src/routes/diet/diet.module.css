@@ -5,38 +5,96 @@
 
 .container {
   display: flex;
-  height: 84vh;
-  overflow-y: scroll;
+  flex-direction: column;
+  min-height: 84vh;
   font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
 }
-.subBox {
-  width: 30%;
-  background-color: beige;
+.text {
+}
+.text_title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: colorPink;
+  margin: 10px;
+}
+.text_title2 {
+  font-weight: 600;
+  margin: 10px;
+}
+.content {
+  display: flex;
+  /* flex-direction: column; */
+}
+.time {
+  width: 70%;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+}
+.time_item {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid colorBorderGrey;
+}
+.time_title {
+  margin-left: 10px;
+  margin-right: 20px;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.time_dietList {
+  border-radius: 5px;
+  width: 90%;
+  height: 100%;
+  /* overflow-y: scroll; */
+}
+
+.add {
+  width: 30%;
+  height: 100%;
+  min-height: 84vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add_title {
+  font-weight: 600;
+  margin: 10px;
+  font-size: 1.3rem;
+}
+.add_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.add_section_item1 {
+  width: 100%;
+  height: 50%;
 }
 .search {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
-.search_title {
+.search_text {
   margin: 10px;
-  font-weight: 600;
-  font-size: 1.2rem;
 }
 .search_form {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin: 10px;
 }
 .search_input {
-  width: 320px;
-  height: 30px;
+  min-width: 150px;
+  width: 50%;
   border: 1px solid colorBorderGrey;
 }
 .search_btn {
@@ -44,56 +102,17 @@
   background-color: transparent;
 }
 .search_icon {
-  font-size: 1.3rem;
   color: grey;
+  font-size: 1.3rem;
+}
+.add_section_item2 {
+  height: 50%;
 }
 .result {
-  border: 1px solid purple;
+  border: 1px solid red;
+  max-height: 50%;
 }
 .result_form {
-  border: 2px solid red;
-  height: 50%;
-  overflow-y: scroll;
-}
-.metadata {
-  width: 70%;
-}
-.metadata_item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.metadata_item_title {
-  color: colorPink;
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-.metadata_item_title2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-.time {
-  /* border: 1px solid blue; */
-  height: 30vh;
-  display: flex;
-  justify-content: center;
-}
-.time_item {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* border: 1px solid red; */
-}
-.time_title {
-  margin: 10px;
-  font-weight: 600;
-  font-size: 1.3rem;
-}
-.time_dietList {
-  width: 90%;
-  height: 100%;
+  max-height: 100px;
   overflow-y: scroll;
 }

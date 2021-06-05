@@ -77,7 +77,6 @@ function App({ authService, database, foodSearch }) {
                   database={database}
                   {...props}
                 />
-                <Footer />
               </>
             );
           }}
@@ -94,7 +93,6 @@ function App({ authService, database, foodSearch }) {
                   database={database}
                   {...props}
                 />
-                <Footer />
               </>
             );
           }}
@@ -111,7 +109,6 @@ function App({ authService, database, foodSearch }) {
                   database={database}
                   {...props}
                 />
-                <Footer />
               </>
             );
           }}
@@ -129,7 +126,6 @@ function App({ authService, database, foodSearch }) {
                   foodSearch={foodSearch}
                   {...props}
                 />
-                <Footer />
               </>
             );
           }}
@@ -146,7 +142,6 @@ function App({ authService, database, foodSearch }) {
                   database={database}
                   {...props}
                 />
-                <Footer />
               </>
             );
           }}
@@ -163,7 +158,6 @@ function App({ authService, database, foodSearch }) {
                   database={database}
                   {...props}
                 />
-                <Footer />
               </>
             );
           }}
@@ -180,7 +174,6 @@ function App({ authService, database, foodSearch }) {
                   database={database}
                   {...props}
                 />
-                <Footer />
               </>
             );
           }}

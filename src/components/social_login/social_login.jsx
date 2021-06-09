@@ -4,6 +4,9 @@ import styles from "./social_login.module.css";
 
 const SocialLogin = (props) => {
   const {
+    user,
+    loginUser,
+    logoutUser,
     authService,
     database,
     handleOnClick,

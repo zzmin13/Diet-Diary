@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import SocialLogin from "../../components/social_login/social_login";
+import SocialLoginContainer from "../../containers/social_login_container";
 import styles from "./login.module.css";
 const Login = (props) => {
   const { authService, database } = props;
@@ -88,16 +88,16 @@ const Login = (props) => {
           <span className={styles.or}>OR</span>
           <hr className={styles.line} />
         </div>
-        <SocialLogin
-          text1={text1}
-          text2={text2}
-          text3={text3}
+        <SocialLoginContainer
           authService={authService}
           handleOnClick={
             props.changeToJoin ? props.changeToJoin : historyPushJoin
           }
           database={database}
           closeModal={closeModal}
+          text1={text1}
+          text2={text2}
+          text3={text3}
         />
       </div>
     </section>

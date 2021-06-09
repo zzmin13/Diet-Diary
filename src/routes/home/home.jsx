@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 import styles from "./home.module.css";
 
 const Home = (props) => {
-  const { history, authService } = props;
+  const { history, authService, user, loginUser } = props;
   const goLogin = (event) => {
     history.push("/login");
   };
   useEffect(() => {
-    authService.onAuthStateChanged((user) => {
-      if (user) {
+    authService.onAuthStateChanged((USER) => {
+      if (USER) {
         console.log(`로그인한 유저가 있으므로 main으로 보냅니다.`);
+        loginUser();
         history.push("/main");
       } else {
       }

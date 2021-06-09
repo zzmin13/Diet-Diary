@@ -1,0 +1,7 @@
+.container {
+  min-height: 84vh;
+  display: flex;
+}
+.body {
+  padding-left: 70px;
+}

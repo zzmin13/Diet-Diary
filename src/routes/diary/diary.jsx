@@ -1,4 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from "react";
+import Navbar from "../../components/navbar/navbar";
+import styles from "./diary.module.css";
 
 const Diary = memo((props) => {
   console.log(props);
@@ -23,15 +25,18 @@ const Diary = memo((props) => {
   return (
     <>
       {state.uid && (
-        <>
-          <h1>오늘의 일기</h1>
-          <textarea
-            defaultValue={state.todayDiary}
-            ref={diaryRef}
-            placeholder="일기를 작성해보세요!"
-          ></textarea>
-          <button onClick={submitDiary}>작성하기</button>
-        </>
+        <div className={styles.container}>
+          {/* <Navbar /> */}
+          <div className={styles.body}>
+            <h1>오늘의 일기</h1>
+            <textarea
+              defaultValue={state.todayDiary}
+              ref={diaryRef}
+              placeholder="일기를 작성해보세요!"
+            ></textarea>
+            <button onClick={submitDiary}>작성하기</button>
+          </div>
+        </div>
       )}
     </>
   );

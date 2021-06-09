@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
 
 const Navbar = (props) => {
+  const { loginUser, current } = props;
   return (
     <ul className={styles.navbar}>
       <li className={styles.item}>
@@ -20,6 +21,11 @@ const Navbar = (props) => {
         <Link
           to={{
             pathname: "/diary",
+            state: {
+              uid: loginUser.uid,
+              todayDiary: loginUser.userDiary[current].diary,
+              currentDate: current,
+            },
           }}
           className={styles.item_content}
         >
@@ -31,6 +37,11 @@ const Navbar = (props) => {
         <Link
           to={{
             pathname: "/diet",
+            state: {
+              uid: loginUser.uid,
+              todayDiet: loginUser.userDiary[current].diet,
+              currentDate: current,
+            },
           }}
           className={styles.item_content}
         >
@@ -42,6 +53,9 @@ const Navbar = (props) => {
         <Link
           to={{
             pathname: "/water",
+            state: {
+              uid: loginUser.uid,
+            },
           }}
           className={styles.item_content}
         >
@@ -53,6 +67,9 @@ const Navbar = (props) => {
         <Link
           to={{
             pathname: "/exercise",
+            state: {
+              uid: loginUser.uid,
+            },
           }}
           className={styles.item_content}
         >

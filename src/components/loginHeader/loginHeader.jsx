@@ -1,13 +1,14 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "./loginHeader.module.css";
-const LoginHeader = (props) => {
+const LoginHeader = memo((props) => {
   const { authService } = props;
   const history = useHistory();
   const handleLogout = () => {
     authService.logout();
     history.push("/");
   };
+  console.log(`login_header`);
   return (
     <>
       <header className={styles.header}>
@@ -23,6 +24,6 @@ const LoginHeader = (props) => {
       </header>
     </>
   );
-};
+});
 
 export default LoginHeader;

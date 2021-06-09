@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styles from "./home.module.css";
 
 const Home = (props) => {
-  const { history, authService, user, loginUser } = props;
+  const { history, authService, user, loginUser, logoutUser } = props;
   const goLogin = (event) => {
     history.push("/login");
   };

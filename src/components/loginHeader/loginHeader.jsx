@@ -6,7 +6,6 @@ const LoginHeader = memo((props) => {
   const history = useHistory();
   const handleLogout = () => {
     authService.logout();
-    history.push("/");
   };
   console.log(`login_header`);
   return (

@@ -6,6 +6,7 @@ import HomeContainer from "./containers/home_container";
 import Login from "./routes/login/login";
 import Join from "./routes/join/join";
 import Main from "./routes/main/main";
+import MainContainer from "./containers/main_container";
 import Register from "./routes/register/register";
 import LoginHeader from "./components/loginHeader/loginHeader";
 import LogoutHeader from "./components/logout_header/logout_header";
@@ -68,8 +69,7 @@ function App({ authService, database, foodSearch }) {
           render={(props) => {
             return (
               <>
-                {/* <LoginHeader authService={authService} database={database} /> */}
-                <Main
+                <MainContainer
                   authService={authService}
                   database={database}
                   {...props}

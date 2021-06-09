@@ -1,6 +1,7 @@
 // 액션 생성 함수 만들기
-export const loginUser = () => ({
+export const loginUser = (currentUser) => ({
   type: "LOGIN_USER",
+  currentUser,
 });
 export const logoutUser = () => ({
   type: "LOGOUT_USER",
@@ -8,25 +9,38 @@ export const logoutUser = () => ({
 
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
-  user: false,
+  isUser: false,
+  user: {
+    displayName: "",
+    photoURL: "",
+    uid: "",
+    email: "",
+  },
 };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN_USER":
-      console.log(`hi`);
       return {
         ...state,
-        user: true,
+        isUser: true,
+        user: {
+          ...state.user,
+          displayName: action.currentUser.displayName || "user",
+          photoURL:
+            action.currentUser.photoURL ||
+            "https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg",
+          uid: action.currentUser.uid,
+          email: action.currentUser.email,
+        },
       };
     case "LOGOUT_USER":
-      console.log(`hello`);
       return {
         ...state,
-        user: false,
+        isUser: false,
+        user: "",
       };
     default:
-      console.log(`ㅠㅠ`);
       return state;
   }
 };

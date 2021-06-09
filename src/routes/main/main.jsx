@@ -1,7 +1,15 @@
 import React, { useEffect } from "react";
 
 const Main = (props) => {
-  const { authService, database, history, user, logoutUser } = props;
+  const {
+    authService,
+    database,
+    history,
+    isUser,
+    user,
+    loginUser,
+    logoutUser,
+  } = props;
   console.log(props);
 
   const currentYear = `${new Date().getFullYear()}`;
@@ -32,24 +40,15 @@ const Main = (props) => {
                   database.setTodayDiaryTemplate(USER.uid, current);
                 }
               }
-              // setLoginUser({
-              //   ...response,
-              //   uid: USER.uid,
-              // });
             }
           });
         } catch (error) {
           console.log(error);
         }
       } else {
-        logoutUser();
-        console.log(`user: ${user}`);
         history.push("/");
       }
     });
-    // return () => {
-    //   setLoginUser();
-    // };
   }, []);
   return <h1>Main!!</h1>;
 };

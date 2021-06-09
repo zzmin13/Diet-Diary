@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "./common/reset.css";
-import App from "./app";
+// import App from "./app";
+import AppContainer from "./containers/app_container";
 import "@fortawesome/fontawesome-free/js/all.js";
 import AuthService from "./service/authService";
 import Database from "./service/database";
@@ -20,7 +21,7 @@ const store = createStore(rootReducer, composeWithDevTools());
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
+      <AppContainer
         authService={authService}
         database={database}
         foodSearch={foodSearch}

@@ -7,11 +7,12 @@ const MainContainer = (props) => {
 };
 
 const mapStateToProps = (state) => ({
+  isUser: state.userReducer.isUser,
   user: state.userReducer.user,
 });
 const mapDispatchToProps = (dispatch) => ({
-  loginUser: () => {
-    dispatch(loginUser());
+  loginUser: (currentUser) => {
+    dispatch(loginUser(currentUser));
   },
   logoutUser: () => {
     dispatch(logoutUser());

@@ -1,13 +1,12 @@
 import React, { memo } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./loginHeader.module.css";
 const LoginHeader = memo((props) => {
-  const { authService } = props;
-  const history = useHistory();
+  const { authService, logoutUser } = props;
   const handleLogout = () => {
     authService.logout();
+    logoutUser();
   };
-  console.log(`login_header`);
   return (
     <>
       <header className={styles.header}>

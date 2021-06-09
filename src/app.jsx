@@ -1,23 +1,36 @@
 import { BrowserRouter, Route } from "react-router-dom";
 import "./app.css";
-import Footer from "./components/footer/footer";
-import Home from "./routes/home/home";
 import HomeContainer from "./containers/home_container";
 import Login from "./routes/login/login";
 import Join from "./routes/join/join";
-import Main from "./routes/main/main";
 import MainContainer from "./containers/main_container";
 import Register from "./routes/register/register";
-import LoginHeader from "./components/loginHeader/loginHeader";
-import LogoutHeader from "./components/logout_header/logout_header";
 import Diary from "./routes/diary/diary";
 import Diet from "./routes/diet/diet";
 import Exercise from "./routes/exercise/exercise";
 import Water from "./routes/water/water";
 import Goal from "./routes/goal/goal";
 import HeaderContainer from "./containers/header_container";
+import { useEffect } from "react";
 
-function App({ authService, database, foodSearch }) {
+function App({
+  authService,
+  database,
+  foodSearch,
+  isUser,
+  loginUser,
+  logoutUser,
+  user,
+}) {
+  console.log(`App`);
+  useEffect(() => {
+    authService.onAuthStateChanged((USER) => {
+      if (USER) {
+        loginUser(USER);
+      } else {
+      }
+    });
+  }, []);
   return (
     <>
       <BrowserRouter>

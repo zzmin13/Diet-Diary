@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import Home from "../routes/home/home";
+import LoginHeader from "../components/loginHeader/loginHeader";
 import { loginUser, logoutUser } from "../modules/user";
 
-const HomeContainer = (props) => {
-  return <Home {...props} />;
+const LoginHeaderContainer = (props) => {
+  return <LoginHeader {...props} />;
 };
 const mapStateToProps = (state) => ({
   isUser: state.userReducer.isUser,
@@ -18,4 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(logoutUser());
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginHeaderContainer);

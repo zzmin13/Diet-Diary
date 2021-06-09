@@ -6,6 +6,7 @@ import { loginUser, logoutUser } from "../modules/user";
 const HeaderContainer = ({
   authService,
   database,
+  isUser,
   user,
   loginUser,
   logoutUser,
@@ -14,6 +15,7 @@ const HeaderContainer = ({
     <Header
       authService={authService}
       database={database}
+      isUser={isUser}
       user={user}
       loginUser={loginUser}
       logoutUser={logoutUser}
@@ -22,12 +24,13 @@ const HeaderContainer = ({
 };
 
 const mapStateToProps = (state) => ({
+  isUser: state.userReducer.isUser,
   user: state.userReducer.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loginUser: () => {
-    dispatch(loginUser());
+  loginUser: (currentUser) => {
+    dispatch(loginUser(currentUser));
   },
   logoutUser: () => {
     dispatch(logoutUser());

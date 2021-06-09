@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import SocialLoginContainer from "../../containers/social_login_container";
+import SocialLogin from "../../components/social_login/social_login";
 import styles from "./login.module.css";
 const Login = (props) => {
   const { authService, database } = props;
@@ -88,7 +88,7 @@ const Login = (props) => {
           <span className={styles.or}>OR</span>
           <hr className={styles.line} />
         </div>
-        <SocialLoginContainer
+        <SocialLogin
           authService={authService}
           handleOnClick={
             props.changeToJoin ? props.changeToJoin : historyPushJoin

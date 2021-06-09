@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
-import LoginHeader from "../loginHeader/loginHeader";
+import React from "react";
+import LoginHeaderContainer from "../../containers/loginHeader_container";
 import LogoutHeader from "../logout_header/logout_header";
 
 const Header = (props) => {
-  const { authService, database, user, loginUser, logoutUser } = props;
-  console.log(`header`);
-  console.log(`user: ${user}`);
+  const { authService, database, isUser, user } = props;
   return (
     <>
-      {user ? (
-        <LoginHeader authService={authService} />
+      {isUser ? (
+        <LoginHeaderContainer authService={authService} />
       ) : (
         <LogoutHeader authService={authService} database={database} />
       )}

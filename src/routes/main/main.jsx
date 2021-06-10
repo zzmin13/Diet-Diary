@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Loading from "../../components/loading/loading";
 import styles from "./main.module.css";
 const Main = ({
   authService,
@@ -78,7 +79,7 @@ const Main = ({
       {isLoading && user ? (
         <div className={styles.main}>
           <p className={styles.title}>
-            {currentMonth}월 {currentDate}일 {currentDay}요일
+            {currentMonth}월 {currentDate}일 {currentDay}요일🎵
           </p>
           <div className={`${styles.text_row} ${styles.text_first}`}>
             <div className={styles.text_text1}>
@@ -293,7 +294,7 @@ const Main = ({
           </div>
         </div>
       ) : (
-        <h1>Loading....</h1>
+        <Loading />
       )}
     </div>
   );

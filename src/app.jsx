@@ -4,11 +4,10 @@ import Login from "./routes/login/login";
 import Join from "./routes/join/join";
 import MainContainer from "./containers/main_container";
 import RegisterContainer from "./containers/register_contatiner";
-import Diary from "./routes/diary/diary";
-import Diet from "./routes/diet/diet";
-import Exercise from "./routes/exercise/exercise";
-import Water from "./routes/water/water";
-import Goal from "./routes/goal/goal";
+import DiaryContainer from "./containers/diary_container";
+import DietContainer from "./containers/diet_container";
+import ExerciseContainer from "./containers/exercise_container";
+import WaterContainer from "./containers/water_container";
 import HeaderContainer from "./containers/header_container";
 import NavbarContainer from "./containers/navbar_container";
 import { useEffect } from "react";
@@ -119,7 +118,7 @@ function App({
             render={(props) => {
               return (
                 <>
-                  <Diary
+                  <DiaryContainer
                     authService={authService}
                     database={database}
                     {...props}
@@ -134,7 +133,7 @@ function App({
             render={(props) => {
               return (
                 <>
-                  <Diet
+                  <DietContainer
                     authService={authService}
                     database={database}
                     foodSearch={foodSearch}
@@ -150,7 +149,7 @@ function App({
             render={(props) => {
               return (
                 <>
-                  <Exercise
+                  <ExerciseContainer
                     authService={authService}
                     database={database}
                     {...props}
@@ -165,22 +164,7 @@ function App({
             render={(props) => {
               return (
                 <>
-                  <Water
-                    authService={authService}
-                    database={database}
-                    {...props}
-                  />
-                </>
-              );
-            }}
-          />
-          <Route
-            path="/goal"
-            exact={true}
-            render={(props) => {
-              return (
-                <>
-                  <Goal
+                  <WaterContainer
                     authService={authService}
                     database={database}
                     {...props}

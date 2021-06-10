@@ -20,19 +20,6 @@ const Main = ({
   const week = ["일", "월", "화", "수", "목", "금", "토"];
   const currentDay = week[new Date().getDay()];
   const [isLoading, setIsLoading] = useState(false);
-  const {
-    information: {
-      required: { recommendedCalories, weight },
-    },
-    userDiary: {
-      [current]: {
-        diary,
-        diet: { breakfast, lunch, dinner, dessert, totalCalories },
-        exercise,
-        water,
-      },
-    },
-  } = user;
 
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
@@ -72,6 +59,8 @@ const Main = ({
                   },
                 };
                 loadUserInformation(data);
+              } else {
+                loadUserInformation(response);
               }
               setIsLoading(true);
             }
@@ -86,7 +75,7 @@ const Main = ({
   }, []);
   return (
     <div className={styles.container}>
-      {isLoading ? (
+      {isLoading && user ? (
         <div className={styles.main}>
           <p className={styles.title}>
             {currentMonth}월 {currentDate}일 {currentDay}요일
@@ -99,7 +88,7 @@ const Main = ({
               <span className={styles.bold}>하루 권장 칼로리</span>
             </div>
             <div className={styles.text_text2}>
-              <span>{recommendedCalories} </span>
+              <span>{user.information.required.recommendedCalories} </span>
               <span> Kcal</span>
             </div>
           </div>
@@ -111,7 +100,7 @@ const Main = ({
               <span className={styles.bold}>현재 몸무게</span>
             </div>
             <div className={styles.text_text2}>
-              <span>{weight} </span>
+              <span>{user.information.required.weight} </span>
               <span> Kg</span>
             </div>
           </div>
@@ -124,7 +113,9 @@ const Main = ({
             </div>
             <div className={styles.text_column_child}>
               <p className={styles.text_diary}>
-                {diary ? diary : "일기가 아직 없습니다."}
+                {user.userDiary[current].diary
+                  ? user.userDiary[current].diary
+                  : "일기가 아직 없습니다."}
               </p>
             </div>
           </div>
@@ -137,7 +128,12 @@ const Main = ({
                 <span className={styles.bold}>오늘의 식사</span>
               </div>
               <div className={styles.text_text2}>
-                <span> {totalCalories ? totalCalories : 0} </span>
+                <span>
+                  {" "}
+                  {user.userDiary[current].diet.totalCalories
+                    ? user.userDiary[current].diet.totalCalories
+                    : 0}{" "}
+                </span>
                 <span> Kcal</span>
               </div>
             </div>
@@ -147,7 +143,11 @@ const Main = ({
                   <div className={styles.text_diet_time}>
                     <h1 className={styles.text_diet_title}>아침</h1>
                     <div className={styles.text_text2}>
-                      <span>{breakfast ? breakfast.calories : 0}</span>
+                      <span>
+                        {user.userDiary[current].diet.breakfast
+                          ? user.userDiary[current].diet.breakfast
+                          : 0}
+                      </span>
                       <span>Kcal</span>
                     </div>
                   </div>
@@ -162,7 +162,11 @@ const Main = ({
                   <div className={styles.text_diet_time}>
                     <h1 className={styles.text_diet_title}>점심</h1>
                     <div className={styles.text_text2}>
-                      <span>{lunch ? lunch.calories : 0}</span>
+                      <span>
+                        {user.userDiary[current].diet.lunch
+                          ? user.userDiary[current].diet.lunch.calories
+                          : 0}
+                      </span>
                       <span>Kcal</span>
                     </div>
                   </div>
@@ -177,7 +181,11 @@ const Main = ({
                   <div className={styles.text_diet_time}>
                     <h1 className={styles.text_diet_title}>저녁</h1>
                     <div className={styles.text_text2}>
-                      <span>{dinner ? dinner.calories : 0}</span>
+                      <span>
+                        {user.userDiary[current].diet.dinner
+                          ? user.userDiary[current].diet.dinner.calories
+                          : 0}
+                      </span>
                       <span>Kcal</span>
                     </div>
                   </div>
@@ -192,7 +200,11 @@ const Main = ({
                   <div className={styles.text_diet_time}>
                     <h1 className={styles.text_diet_title}>간식</h1>
                     <div className={styles.text_text2}>
-                      <span>{dessert ? dessert.calories : 0}</span>
+                      <span>
+                        {user.userDiary[current].diet.dessert
+                          ? user.userDiary[current].diet.dessert.calories
+                          : 0}
+                      </span>
                       <span>Kcal</span>
                     </div>
                   </div>
@@ -213,7 +225,11 @@ const Main = ({
                 <span className={styles.bold}>오늘의 물</span>
               </div>
               <div className={styles.text_text2}>
-                <span>{water.totalWater ? water.totalWater : 0} </span>
+                <span>
+                  {user.userDiary[current].water.totalWater
+                    ? user.userDiary[current].water.totalWater
+                    : 0}{" "}
+                </span>
                 <span> ml</span>
               </div>
             </div>
@@ -223,7 +239,11 @@ const Main = ({
                   <h1 className={styles.text_diet_title}>아침</h1>
                 </div>
                 <div className={styles.text_text2}>
-                  <span>{water.breakfast ? water.breakfast : 0} </span>
+                  <span>
+                    {user.userDiary[current].water.breakfast
+                      ? user.userDiary[current].water.breakfast
+                      : 0}{" "}
+                  </span>
                   <span> ml</span>
                 </div>
               </div>
@@ -232,7 +252,11 @@ const Main = ({
                   <h1 className={styles.text_diet_title}>점심</h1>
                 </div>
                 <div className={styles.text_text2}>
-                  <span>{water.lunch ? water.lunch : 0} </span>
+                  <span>
+                    {user.userDiary[current].water.lunch
+                      ? user.userDiary[current].water.lunch
+                      : 0}{" "}
+                  </span>
                   <span> ml</span>
                 </div>
               </div>
@@ -241,7 +265,11 @@ const Main = ({
                   <h1 className={styles.text_diet_title}>저녁</h1>
                 </div>
                 <div className={styles.text_text2}>
-                  <span>{water.dinner ? water.dinner : 0} </span>
+                  <span>
+                    {user.userDiary[current].water.dinner
+                      ? user.userDiary[current].water.dinner
+                      : 0}{" "}
+                  </span>
                   <span> ml</span>
                 </div>
               </div>
@@ -255,7 +283,11 @@ const Main = ({
               <span className={styles.bold}>오늘의 운동</span>
             </div>
             <div className={styles.text_text2}>
-              <span>{exercise ? exercise : 0} </span>
+              <span>
+                {user.userDiary[current].exercise
+                  ? user.userDiary[current].exercise
+                  : 0}{" "}
+              </span>
               <span> Kcal</span>
             </div>
           </div>

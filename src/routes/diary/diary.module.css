@@ -1,7 +1,62 @@
+@value colorMint from '../../common/color.css';
+@value colorPurple from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+@value colorBorderGrey from "../../common/color.css";
 .container {
-  min-height: 84vh;
+  font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  min-height: 92vh;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.body {
-  padding-left: 70px;
+.main {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #ffebee;
+  /* border: 5px solid #ffebee; */
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 80%;
+  height: 90vh;
+  overflow-y: auto;
+}
+.title {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin: 20px;
+}
+
+.textarea {
+  font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  resize: none;
+  padding: 20px;
+  width: 80%;
+  height: 75%;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.button {
+  width: 250px;
+  font-weight: 600;
+  font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  color: white;
+  border: none;
+  background-color: colorPink;
+  margin: 20px 0px;
+  padding: 7px 0px;
+  border-radius: 5px;
+}
+.button:hover {
+  opacity: 0.9;
+  transform: scale(0.99);
+  cursor: pointer;
 }

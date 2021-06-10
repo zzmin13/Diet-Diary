@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./main.module.css";
-const Main = (props) => {
-  const { authService, database, history, isUser, user, loadUserInformation } =
-    props;
-
+const Main = ({
+  authService,
+  database,
+  history,
+  user,
+  loadUserInformation,
+}) => {
   const currentYear = `${new Date().getFullYear()}`;
   const currentMonth =
     new Date().getMonth() + 1 < 10
@@ -17,6 +20,20 @@ const Main = (props) => {
   const week = ["일", "월", "화", "수", "목", "금", "토"];
   const currentDay = week[new Date().getDay()];
   const [isLoading, setIsLoading] = useState(false);
+  const {
+    information: {
+      required: { recommendedCalories, weight },
+    },
+    userDiary: {
+      [current]: {
+        diary,
+        diet: { breakfast, lunch, dinner, dessert, totalCalories },
+        exercise,
+        water,
+      },
+    },
+  } = user;
+
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (USER) {
@@ -69,7 +86,7 @@ const Main = (props) => {
   }, []);
   return (
     <div className={styles.container}>
-      {isUser ? (
+      {isLoading ? (
         <div className={styles.main}>
           <p className={styles.title}>
             {currentMonth}월 {currentDate}일 {currentDay}요일
@@ -82,7 +99,7 @@ const Main = (props) => {
               <span className={styles.bold}>하루 권장 칼로리</span>
             </div>
             <div className={styles.text_text2}>
-              <span>1500 </span>
+              <span>{recommendedCalories} </span>
               <span> Kcal</span>
             </div>
           </div>
@@ -94,7 +111,7 @@ const Main = (props) => {
               <span className={styles.bold}>현재 몸무게</span>
             </div>
             <div className={styles.text_text2}>
-              <span>60 </span>
+              <span>{weight} </span>
               <span> Kg</span>
             </div>
           </div>
@@ -107,10 +124,7 @@ const Main = (props) => {
             </div>
             <div className={styles.text_column_child}>
               <p className={styles.text_diary}>
-                오늘은 방울토마토를 존나 먹었다. 그리고 닭가슴살도 먹었는데,
-                역시 맛이 없다. 내일은 다이어트 하기 전 마지막 술을 먹을 건데
-                닭갈비집가서 소맥을 먹기로 했다. 얼른 내일이 왔으면
-                좋겠다.😍🍴✨
+                {diary ? diary : "일기가 아직 없습니다."}
               </p>
             </div>
           </div>
@@ -123,7 +137,7 @@ const Main = (props) => {
                 <span className={styles.bold}>오늘의 식사</span>
               </div>
               <div className={styles.text_text2}>
-                <span> 648 </span>
+                <span> {totalCalories ? totalCalories : 0} </span>
                 <span> Kcal</span>
               </div>
             </div>
@@ -133,7 +147,7 @@ const Main = (props) => {
                   <div className={styles.text_diet_time}>
                     <h1 className={styles.text_diet_title}>아침</h1>
                     <div className={styles.text_text2}>
-                      <span>216</span>
+                      <span>{breakfast ? breakfast.calories : 0}</span>
                       <span>Kcal</span>
                     </div>
                   </div>
@@ -148,7 +162,7 @@ const Main = (props) => {
                   <div className={styles.text_diet_time}>
                     <h1 className={styles.text_diet_title}>점심</h1>
                     <div className={styles.text_text2}>
-                      <span>216</span>
+                      <span>{lunch ? lunch.calories : 0}</span>
                       <span>Kcal</span>
                     </div>
                   </div>
@@ -163,7 +177,7 @@ const Main = (props) => {
                   <div className={styles.text_diet_time}>
                     <h1 className={styles.text_diet_title}>저녁</h1>
                     <div className={styles.text_text2}>
-                      <span>216</span>
+                      <span>{dinner ? dinner.calories : 0}</span>
                       <span>Kcal</span>
                     </div>
                   </div>
@@ -178,7 +192,7 @@ const Main = (props) => {
                   <div className={styles.text_diet_time}>
                     <h1 className={styles.text_diet_title}>간식</h1>
                     <div className={styles.text_text2}>
-                      <span>0</span>
+                      <span>{dessert ? dessert.calories : 0}</span>
                       <span>Kcal</span>
                     </div>
                   </div>
@@ -199,7 +213,7 @@ const Main = (props) => {
                 <span className={styles.bold}>오늘의 물</span>
               </div>
               <div className={styles.text_text2}>
-                <span> 648 </span>
+                <span>{water.totalWater ? water.totalWater : 0} </span>
                 <span> ml</span>
               </div>
             </div>
@@ -209,7 +223,8 @@ const Main = (props) => {
                   <h1 className={styles.text_diet_title}>아침</h1>
                 </div>
                 <div className={styles.text_text2}>
-                  <h1>216ml</h1>
+                  <span>{water.breakfast ? water.breakfast : 0} </span>
+                  <span> ml</span>
                 </div>
               </div>
               <div className={styles.text_diet}>
@@ -217,7 +232,8 @@ const Main = (props) => {
                   <h1 className={styles.text_diet_title}>점심</h1>
                 </div>
                 <div className={styles.text_text2}>
-                  <h1>216ml</h1>
+                  <span>{water.lunch ? water.lunch : 0} </span>
+                  <span> ml</span>
                 </div>
               </div>
               <div className={styles.text_diet}>
@@ -225,7 +241,8 @@ const Main = (props) => {
                   <h1 className={styles.text_diet_title}>저녁</h1>
                 </div>
                 <div className={styles.text_text2}>
-                  <h1>216ml</h1>
+                  <span>{water.dinner ? water.dinner : 0} </span>
+                  <span> ml</span>
                 </div>
               </div>
             </div>
@@ -238,7 +255,7 @@ const Main = (props) => {
               <span className={styles.bold}>오늘의 운동</span>
             </div>
             <div className={styles.text_text2}>
-              <span>500 </span>
+              <span>{exercise ? exercise : 0} </span>
               <span> Kcal</span>
             </div>
           </div>

@@ -6,6 +6,7 @@ import MainContainer from "./containers/main_container";
 import RegisterContainer from "./containers/register_contatiner";
 import DiaryContainer from "./containers/diary_container";
 import DietContainer from "./containers/diet_container";
+import DietAddContainer from "./containers/diet_add_container";
 import ExerciseContainer from "./containers/exercise_container";
 import WaterContainer from "./containers/water_container";
 import HeaderContainer from "./containers/header_container";
@@ -138,6 +139,20 @@ function App({
                     database={database}
                     foodSearch={foodSearch}
                     {...props}
+                  />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/diet/add"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <DietAddContainer
+                    database={database}
+                    foodSearch={foodSearch}
                   />
                 </>
               );

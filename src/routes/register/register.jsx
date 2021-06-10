@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import styles from "./register.module.css";
 
-const Register = (props) => {
-  const { authService, database } = props;
+const Register = ({ authService, database, uid, loadUserInformation }) => {
   const history = useHistory();
   const sexRef = useRef();
   const ageRef = useRef();
@@ -56,6 +55,16 @@ const Register = (props) => {
         recommendedCalories,
       };
       database.setRequiredInformation(loginUser.userid, requiredInformation);
+      database.getUserData(uid).then((response) => {
+        const data = {
+          ...response,
+          information: {
+            ...response.information,
+            required: requiredInformation,
+          },
+        };
+        loadUserInformation(data);
+      });
       history.push("/main");
     }
   };

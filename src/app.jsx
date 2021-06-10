@@ -3,7 +3,7 @@ import HomeContainer from "./containers/home_container";
 import Login from "./routes/login/login";
 import Join from "./routes/join/join";
 import MainContainer from "./containers/main_container";
-import Register from "./routes/register/register";
+import RegisterContainer from "./containers/register_contatiner";
 import Diary from "./routes/diary/diary";
 import Diet from "./routes/diet/diet";
 import Exercise from "./routes/exercise/exercise";
@@ -14,22 +14,25 @@ import NavbarContainer from "./containers/navbar_container";
 import { useEffect } from "react";
 import styles from "./app.module.css";
 
-function App({ authService, database, foodSearch, loginUser }) {
+function App({
+  authService,
+  database,
+  foodSearch,
+  loginUser,
+  loadUserInformation,
+}) {
   console.log(`App`);
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (USER) {
         loginUser(USER);
+        database.getUserData(USER.uid).then((response) => {
+          if (response === false) {
+            window.location.reload();
+          } else {
+            loadUserInformation(response);
+          }
+        });
       }
     });
   }, []);
@@ -101,7 +104,7 @@ function App({ authService, database, foodSearch, loginUser }) {
             render={(props) => {
               return (
                 <>
-                  <Register
+                  <RegisterContainer
                     authService={authService}
                     database={database}
                     {...props}

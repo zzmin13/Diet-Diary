@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./main.module.css";
 const Main = (props) => {
-  const {
-    authService,
-    database,
-    history,
-    isUser,
-    user,
-    loginUser,
-    logoutUser,
-  } = props;
+  const { authService, database, history, isUser, user, loadUserInformation } =
+    props;
 
   const currentYear = `${new Date().getFullYear()}`;
   const currentMonth =
@@ -23,24 +16,6 @@ const Main = (props) => {
   const current = currentYear + currentMonth + currentDate;
   const week = ["일", "월", "화", "수", "목", "금", "토"];
   const currentDay = week[new Date().getDay()];
-  const [currentUser, setcurrentUser] = useState({
-    information: {
-      basic: {
-        avatar: "",
-        email: "",
-        userName: "",
-      },
-      required: {
-        recommendedCalories: "",
-        weight: "",
-      },
-    },
-    userDiary: "",
-  });
-  const {
-    information: { basic, required },
-    userDiary,
-  } = currentUser;
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
@@ -56,7 +31,7 @@ const Main = (props) => {
               }
               if (response.userDiary[current] === undefined) {
                 database.setTodayDiaryTemplate(USER.uid, current);
-                setcurrentUser({
+                const data = {
                   ...response,
                   userDiary: {
                     ...response.userDiary,
@@ -78,11 +53,8 @@ const Main = (props) => {
                       },
                     },
                   },
-                });
-              } else {
-                setcurrentUser({
-                  ...response,
-                });
+                };
+                loadUserInformation(data);
               }
               setIsLoading(true);
             }
@@ -94,13 +66,10 @@ const Main = (props) => {
         history.push("/");
       }
     });
-    return () => {
-      setcurrentUser();
-    };
   }, []);
   return (
     <div className={styles.container}>
-      {isLoading ? (
+      {isUser ? (
         <div className={styles.main}>
           <p className={styles.title}>
             {currentMonth}월 {currentDate}일 {currentDay}요일
@@ -113,7 +82,7 @@ const Main = (props) => {
               <span className={styles.bold}>하루 권장 칼로리</span>
             </div>
             <div className={styles.text_text2}>
-              <span>{required.recommendedCalories} </span>
+              <span>1500 </span>
               <span> Kcal</span>
             </div>
           </div>
@@ -125,7 +94,7 @@ const Main = (props) => {
               <span className={styles.bold}>현재 몸무게</span>
             </div>
             <div className={styles.text_text2}>
-              <span>{required.weight} </span>
+              <span>60 </span>
               <span> Kg</span>
             </div>
           </div>
@@ -201,6 +170,21 @@ const Main = (props) => {
                   <ul className={styles.text_diet_list}>
                     <li>토마토(데친것) 1회분 (17kcal)</li>
                     <li>닭가슴살 스테이크(오리지널) 1인분(팩) (199kcal)</li>
+                  </ul>
+                </div>
+              </div>
+              <div className={styles.text_diet}>
+                <div className={styles.text_diet_meta}>
+                  <div className={styles.text_diet_time}>
+                    <h1 className={styles.text_diet_title}>간식</h1>
+                    <div className={styles.text_text2}>
+                      <span>0</span>
+                      <span>Kcal</span>
+                    </div>
+                  </div>
+                  <ul className={styles.text_diet_list}>
+                    <li></li>
+                    <li></li>
                   </ul>
                 </div>
               </div>

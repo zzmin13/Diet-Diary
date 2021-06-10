@@ -1,13 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
-import Main from "../routes/main/main";
+import Register from "../routes/register/register";
 import { loginUser, logoutUser, loadUserInformation } from "../modules/user";
-const MainContainer = (props) => {
-  return <Main {...props} />;
-};
+import { connect } from "react-redux";
 
+const RegisterContainer = (props) => {
+  return <Register {...props} />;
+};
 const mapStateToProps = (state) => ({
   isUser: state.userReducer.isUser,
+  uid: state.userReducer.uid,
   user: state.userReducer.user,
 });
 const mapDispatchToProps = (dispatch) => ({
@@ -21,4 +22,4 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(loadUserInformation(response));
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

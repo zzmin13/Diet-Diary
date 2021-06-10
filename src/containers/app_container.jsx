@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import App from "../app";
-import { loginUser, logoutUser } from "../modules/user";
+import { loginUser, logoutUser, loadUserInformation } from "../modules/user";
 
 const AppContainer = (props) => {
   return <App {...props} />;
 };
 const mapStateToProps = (state) => ({
   isUser: state.userReducer.isUser,
+  uid: state.userReducer.uid,
   user: state.userReducer.user,
 });
 const mapDispatchToProps = (dispatch) => ({
@@ -16,6 +17,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   logoutUser: () => {
     dispatch(logoutUser());
+  },
+  loadUserInformation: (response) => {
+    dispatch(loadUserInformation(response));
   },
 });
 

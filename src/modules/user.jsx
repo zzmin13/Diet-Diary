@@ -6,16 +6,15 @@ export const loginUser = (currentUser) => ({
 export const logoutUser = () => ({
   type: "LOGOUT_USER",
 });
-
+export const loadUserInformation = (response) => ({
+  type: "LOAD_USER_INFORMATION",
+  response,
+});
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
-  user: {
-    displayName: "",
-    photoURL: "",
-    uid: "",
-    email: "",
-  },
+  uid: "",
+  user: "",
 };
 
 const userReducer = (state = initialState, action) => {
@@ -24,21 +23,19 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isUser: true,
-        user: {
-          ...state.user,
-          displayName: action.currentUser.displayName || "user",
-          photoURL:
-            action.currentUser.photoURL ||
-            "https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg",
-          uid: action.currentUser.uid,
-          email: action.currentUser.email,
-        },
+        uid: action.currentUser.uid,
       };
     case "LOGOUT_USER":
       return {
         ...state,
         isUser: false,
+        uid: "",
         user: "",
+      };
+    case "LOAD_USER_INFORMATION":
+      return {
+        ...state,
+        user: action.response,
       };
     default:
       return state;

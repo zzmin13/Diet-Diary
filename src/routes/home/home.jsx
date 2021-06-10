@@ -9,7 +9,6 @@ const Home = (props) => {
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (USER) {
-        console.log(`로그인한 유저가 있으므로 main으로 보냅니다.`);
         history.push("/main");
       } else {
       }

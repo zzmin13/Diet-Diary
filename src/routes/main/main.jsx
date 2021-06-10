@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
+import styles from "./main.module.css";
 const Main = (props) => {
   const {
     authService,
@@ -10,7 +10,6 @@ const Main = (props) => {
     loginUser,
     logoutUser,
   } = props;
-  console.log(props);
 
   const currentYear = `${new Date().getFullYear()}`;
   const currentMonth =
@@ -22,7 +21,27 @@ const Main = (props) => {
       ? `0${new Date().getDate()}`
       : `${new Date().getDate()}`;
   const current = currentYear + currentMonth + currentDate;
-
+  const week = ["일", "월", "화", "수", "목", "금", "토"];
+  const currentDay = week[new Date().getDay()];
+  const [currentUser, setcurrentUser] = useState({
+    information: {
+      basic: {
+        avatar: "",
+        email: "",
+        userName: "",
+      },
+      required: {
+        recommendedCalories: "",
+        weight: "",
+      },
+    },
+    userDiary: "",
+  });
+  const {
+    information: { basic, required },
+    userDiary,
+  } = currentUser;
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (USER) {
@@ -34,12 +53,38 @@ const Main = (props) => {
               if (response.information.required === undefined) {
                 // 필수 정보가 없으면 /register로 이동
                 history.push("/register");
-              } else {
-                if (response.userDiary[current] === undefined) {
-                  // 오늘 날짜 일기가 없으면 오늘날짜로 템플릿을 만듬
-                  database.setTodayDiaryTemplate(USER.uid, current);
-                }
               }
+              if (response.userDiary[current] === undefined) {
+                database.setTodayDiaryTemplate(USER.uid, current);
+                setcurrentUser({
+                  ...response,
+                  userDiary: {
+                    ...response.userDiary,
+                    [current]: {
+                      diary: "",
+                      diet: {
+                        breakfast: "",
+                        lunch: "",
+                        dinner: "",
+                        dessert: "",
+                        totalCalories: "",
+                      },
+                      exercise: "",
+                      water: {
+                        breakfast: "",
+                        lunch: "",
+                        dinner: "",
+                        totalWater: "",
+                      },
+                    },
+                  },
+                });
+              } else {
+                setcurrentUser({
+                  ...response,
+                });
+              }
+              setIsLoading(true);
             }
           });
         } catch (error) {
@@ -49,8 +94,33 @@ const Main = (props) => {
         history.push("/");
       }
     });
+    return () => {
+      setcurrentUser();
+    };
   }, []);
-  return <h1>Main!!</h1>;
+  return (
+    <div className={styles.container}>
+      {isLoading ? (
+        <div className={styles.main}>
+          <p className={styles.title}>
+            {currentMonth}월 {currentDate}일 {currentDay}요일
+          </p>
+          <div className={styles.text}>
+            <div className={styles.text_text1}>
+              <i className={`fas fa-cookie-bite ${styles.icon}`}></i>
+              <span>하루 권장 칼로리</span>
+            </div>
+            <div className={styles.text_text2}>
+              <span>{required.recommendedCalories} </span>
+              <span> Kcal</span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <h1>Loading....</h1>
+      )}
+    </div>
+  );
 };
 
 export default Main;

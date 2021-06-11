@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DietSearch from "../../components/diet_search/diet_search";
 import styles from "./diet_add.module.css";
-const DietAdd = ({ database, foodSearch, loadUserInformation, uid, user }) => {
+const DietAdd = ({
+  authService,
+  history,
+  database,
+  foodSearch,
+  loadUserInformation,
+  uid,
+  user,
+}) => {
+  useEffect(() => {
+    authService.onAuthStateChanged((USER) => {
+      if (!USER) {
+        history.push("/");
+      }
+    });
+  });
   return (
     <div className={styles.container}>
       <div className={styles.main}>

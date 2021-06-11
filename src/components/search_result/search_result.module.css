@@ -1,8 +1,16 @@
 .container {
   display: flex;
 }
+.radio:checked + .label {
+  background-color: #ffcdd2;
+}
 .label {
   cursor: pointer;
   font-weight: 600;
-  margin: 10px;
+  margin: 5px;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+.label:hover {
+  background-color: #eceeef;
 }

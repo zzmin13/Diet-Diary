@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./diet.module.css";
-const Diet = ({ foodSearch, user, database, history }) => {
+const Diet = ({ authService, foodSearch, user, database, history }) => {
   const goDietAddPage = () => {
     history.push("/diet/add");
   };
+  useEffect(() => {
+    authService.onAuthStateChanged((USER) => {
+      if (!USER) {
+        history.push("/");
+      }
+    });
+  });
   return (
     <>
       {user.userDiary ? (

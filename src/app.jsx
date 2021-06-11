@@ -151,8 +151,10 @@ function App({
               return (
                 <>
                   <DietAddContainer
+                    authService={authService}
                     database={database}
                     foodSearch={foodSearch}
+                    {...props}
                   />
                 </>
               );

@@ -18,6 +18,7 @@ const SearchResult = (props) => {
         onClick={onRadioClick}
         id={id}
         style={{ display: "none" }}
+        className={styles.radio}
       />
       <label htmlFor={id} className={styles.label}>
         {name}

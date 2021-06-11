@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./diary.module.css";
-const Diary = ({ database, history, uid, user }) => {
+const Diary = ({ authService, database, history, uid, user }) => {
   const currentYear = `${new Date().getFullYear()}`;
   const currentMonth =
     new Date().getMonth() + 1 < 10
@@ -18,6 +18,13 @@ const Diary = ({ database, history, uid, user }) => {
     alert("일기가 작성되었습니다🎵");
     history.push("/main");
   };
+  useEffect(() => {
+    authService.onAuthStateChanged((USER) => {
+      if (!USER) {
+        history.push("/");
+      }
+    });
+  }, [authService, history]);
   return (
     <>
       {user.userDiary ? (

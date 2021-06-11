@@ -116,5 +116,12 @@ class Database {
     updates[`users/${uid}/userDiary/${currentDate}/diary`] = content;
     return firebaseDatabase.ref().update(updates);
   }
+
+  // 식단 추가하기
+  addTodayDiet(uid, currentDate, time, content) {
+    const updates = {};
+    updates[`users/${uid}/userDiary/${currentDate}/diet/${time}`] = content;
+    return firebaseDatabase.ref().update(updates);
+  }
 }
 export default Database;

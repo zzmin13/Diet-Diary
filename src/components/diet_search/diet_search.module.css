@@ -89,3 +89,29 @@
   margin-top: 20px;
   margin-bottom: 15px;
 }
+.select_box1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.select_box2 {
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+}
+.size {
+  display: flex;
+}
+.gram {
+  display: flex;
+}
+.total {
+  display: flex;
+}
+.input_number {
+  width: 100px;
+}
+.icon_up,
+.icon_down {
+  cursor: pointer;
+}

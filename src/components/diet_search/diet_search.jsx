@@ -65,11 +65,15 @@ const DietSearch = ({
     // selectedFood.oneServingSize 1인분 g
     // selectedFood.kcal : 1인분의 kcal
     totalServingRef.current.value = 1;
-    totalSizeRef.current.innerText = selectedFood.oneServingSize;
-    totalKcalRef.current.innerText = selectedFood.kcal;
+    totalSizeRef.current.innerText = Math.floor(
+      Number(selectedFood.oneServingSize)
+    );
+    totalKcalRef.current.innerText = Math.floor(Number(selectedFood.kcal));
     foodNameRef.current.innerText = selectedFood.name;
-    foodKcalRef.current.innerText = selectedFood.kcal;
-    foodOneServingSizeRef.current.innerText = selectedFood.oneServingSize;
+    foodKcalRef.current.innerText = Math.floor(Number(selectedFood.kcal));
+    foodOneServingSizeRef.current.innerText = Math.floor(
+      Number(selectedFood.oneServingSize)
+    );
   };
 
   const onServingChange = (event) => {
@@ -90,9 +94,9 @@ const DietSearch = ({
   };
   const addDiet = () => {
     if (
-      foodNameRef.current.innerText === undefined ||
-      totalSizeRef.current.innerText === undefined ||
-      totalKcalRef.current.innerText === undefined
+      foodNameRef.current.innerText === "" ||
+      totalSizeRef.current.innerText === "" ||
+      totalKcalRef.current.innerText === ""
     ) {
       alert("음식이 선택되지 않았습니다.");
     } else if (Number(totalSizeRef.current.innerText) === 0) {
@@ -170,17 +174,26 @@ const DietSearch = ({
       <div className={styles.select}>
         <h1 className={styles.select_title}>선택된 항목</h1>
         <div className={styles.select_box1}>
-          <span ref={foodNameRef}></span>
-          <div>
-            <span ref={foodOneServingSizeRef}></span>
-            <span>g(1인분)</span>
-          </div>
-          <div>
-            <span ref={foodKcalRef}></span>
-            <span>kcal</span>
+          <span ref={foodNameRef} className={styles.food_name}></span>
+          <div className={styles.select_mini}>
+            <div>
+              <span>(1인분 : </span>
+              <span ref={foodOneServingSizeRef}></span>
+              <span>g,&nbsp;</span>
+            </div>
+            <div>
+              <span ref={foodKcalRef}></span>
+              <span>kcal)</span>
+            </div>
           </div>
         </div>
         <div className={styles.select_box2}>
+          <select ref={timeRef} className={styles.time_select}>
+            <option>아침</option>
+            <option>점심</option>
+            <option>저녁</option>
+            <option>간식</option>
+          </select>
           <div className={styles.size}>
             <input
               ref={totalServingRef}
@@ -192,24 +205,21 @@ const DietSearch = ({
               placeholder="몇 개? (숫자로만 입력)"
               onChange={onServingChange}
             />
-            <span>인분</span>
+            <span className={styles.size_text}>인분</span>
           </div>
           <div className={styles.gram}>
-            <span ref={totalSizeRef}></span>
+            <span ref={totalSizeRef} className={styles.gram_ref}></span>
             <span>(g) </span>
           </div>
-          <div>
-            <span ref={totalKcalRef}></span>
+          <div className={styles.total}>
+            <span ref={totalKcalRef} className={styles.total_ref}></span>
             <span>(kcal)</span>
           </div>
         </div>
-        <select ref={timeRef}>
-          <option>아침</option>
-          <option>점심</option>
-          <option>저녁</option>
-          <option>간식</option>
-        </select>
-        <button onClick={addDiet}>추가하기</button>
+
+        <button className={styles.addButton} onClick={addDiet}>
+          추가하기
+        </button>
       </div>
     </div>
   );

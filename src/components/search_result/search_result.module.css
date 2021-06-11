@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+}
+.label {
+  cursor: pointer;
+  font-weight: 600;
+  margin: 10px;
+}

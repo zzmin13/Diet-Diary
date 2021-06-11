@@ -23,7 +23,7 @@ const DietSearch = ({
   const current = currentYear + currentMonth + currentDate;
 
   const [searchResult, setSearchResult] = useState({});
-
+  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef();
   const foodNameRef = useRef();
   const foodOneServingSizeRef = useRef();
@@ -33,22 +33,29 @@ const DietSearch = ({
   const totalSizeRef = useRef();
   const timeRef = useRef();
 
-  const handleSearch = async (event) => {
+  const handleSearch = (event) => {
+    setIsLoading(true);
     event.preventDefault();
     const term = inputRef.current.value;
-    const response = await foodSearch.getFoodInformation(term);
-    const result = {};
-    response.data.body.items.map((element, index) => {
-      result[index] = {
-        name: element.DESC_KOR, // 이름
-        oneServingSize: element.SERVING_WT, // 1회 제공량(g)
-        kcal: element.NUTR_CONT1, // 열량(kcal)
-        carbohydrates: element.NUTR_CONT2, // 탄수화물(g)
-        proteins: element.NUTR_CONT3, // 단백질(g)
-        fats: element.NUTR_CONT4, // 지방(g)
-      };
+    foodSearch.getFoodInformation(term).then((response) => {
+      const result = {};
+      if (response.data.body.items) {
+        response.data.body.items.map((element, index) => {
+          result[index] = {
+            name: element.DESC_KOR, // 이름
+            oneServingSize: element.SERVING_WT, // 1회 제공량(g)
+            kcal: element.NUTR_CONT1, // 열량(kcal)
+            carbohydrates: element.NUTR_CONT2, // 탄수화물(g)
+            proteins: element.NUTR_CONT3, // 단백질(g)
+            fats: element.NUTR_CONT4, // 지방(g)
+          };
+        });
+        setSearchResult(result);
+      } else {
+        setSearchResult(false);
+      }
+      setIsLoading(false);
     });
-    setSearchResult(result);
   };
 
   const onSelectFood = (value) => {
@@ -100,19 +107,27 @@ const DietSearch = ({
       } else if (timeRef.current.value === "간식") {
         time = "dessert";
       }
-      const number = Object.keys(user.userDiary[current].diet[time]).length;
+      let number = Object.keys(user.userDiary[current].diet[time]).length - 1;
       const newDiet = {
         ...user.userDiary[current].diet[time],
+        totalCalories: user.userDiary[current].diet[time].totalCalories
+          ? Number(user.userDiary[current].diet[time].totalCalories) +
+            Number(totalKcalRef.current.innerText)
+          : Number(totalKcalRef.current.innerText),
         [number]: {
           name: foodNameRef.current.innerText,
-          totalSize: totalSizeRef.current.innerText,
-          kcal: totalKcalRef.current.innerText,
+          totalSize: Number(totalSizeRef.current.innerText),
+          kcal: Number(totalKcalRef.current.innerText),
           id: Date.now(),
         },
       };
+      const totalKcal =
+        Number(user.userDiary[current].diet.totalCalories) +
+        Number(totalKcalRef.current.innerText);
       database.addTodayDiet(uid, current, time, newDiet);
+      database.updateTodayTotalCalories(uid, current, totalKcal);
       alert("식사가 추가되었습니다.");
-      history.push("/diet");
+      history.push("/main");
     }
   };
   return (
@@ -127,16 +142,24 @@ const DietSearch = ({
       <div className={styles.result}>
         <h1 className={styles.result_title}>검색 결과</h1>
         <div className={styles.result_item}>
-          {Object.keys(searchResult).map((key) => {
-            return (
-              <SearchResult
-                key={key}
-                result={searchResult[key]}
-                id={key}
-                onSelectFood={onSelectFood}
-              />
-            );
-          })}
+          {isLoading === false ? (
+            searchResult === false ? (
+              <h1>검색 결과가 없습니다.</h1>
+            ) : (
+              Object.keys(searchResult).map((key) => {
+                return (
+                  <SearchResult
+                    key={key}
+                    result={searchResult[key]}
+                    id={key}
+                    onSelectFood={onSelectFood}
+                  />
+                );
+              })
+            )
+          ) : (
+            <h1>Loading...</h1>
+          )}
         </div>
       </div>
       <div className={styles.select}>

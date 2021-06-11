@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import DietItem from "../../components/diet_item/diet_item";
 import Loading from "../../components/loading/loading";
 import styles from "./main.module.css";
 const Main = ({
@@ -130,7 +131,6 @@ const Main = ({
               </div>
               <div className={styles.text_text2}>
                 <span>
-                  {" "}
                   {user.userDiary[current].diet.totalCalories
                     ? user.userDiary[current].diet.totalCalories
                     : 0}{" "}
@@ -145,16 +145,36 @@ const Main = ({
                     <h1 className={styles.text_diet_title}>아침</h1>
                     <div className={styles.text_text2}>
                       <span>
-                        {user.userDiary[current].diet.breakfast
-                          ? user.userDiary[current].diet.breakfast
+                        {user.userDiary[current].diet.breakfast.totalCalories
+                          ? user.userDiary[current].diet.breakfast.totalCalories
                           : 0}
                       </span>
                       <span>Kcal</span>
                     </div>
                   </div>
                   <ul className={styles.text_diet_list}>
-                    <li>토마토(데친것) 1회분 (17kcal)</li>
-                    <li>닭가슴살 스테이크(오리지널) 1인분(팩) (199kcal)</li>
+                    {user.userDiary[current].diet.breakfast
+                      ? Object.keys(user.userDiary[current].diet.breakfast).map(
+                          (element) => {
+                            if (element !== "totalCalories") {
+                              return (
+                                <DietItem
+                                  key={
+                                    user.userDiary[current].diet.breakfast[
+                                      element
+                                    ].id
+                                  }
+                                  diet={
+                                    user.userDiary[current].diet.breakfast[
+                                      element
+                                    ]
+                                  }
+                                />
+                              );
+                            }
+                          }
+                        )
+                      : null}
                   </ul>
                 </div>
               </div>
@@ -164,16 +184,33 @@ const Main = ({
                     <h1 className={styles.text_diet_title}>점심</h1>
                     <div className={styles.text_text2}>
                       <span>
-                        {user.userDiary[current].diet.lunch
-                          ? user.userDiary[current].diet.lunch.calories
+                        {user.userDiary[current].diet.lunch.totalCalories
+                          ? user.userDiary[current].diet.lunch.totalCalories
                           : 0}
                       </span>
                       <span>Kcal</span>
                     </div>
                   </div>
                   <ul className={styles.text_diet_list}>
-                    <li>토마토(데친것) 1회분 (17kcal)</li>
-                    <li>닭가슴살 스테이크(오리지널) 1인분(팩) (199kcal)</li>
+                    {user.userDiary[current].diet.lunch
+                      ? Object.keys(user.userDiary[current].diet.lunch).map(
+                          (element) => {
+                            if (element !== "totalCalories") {
+                              return (
+                                <DietItem
+                                  key={
+                                    user.userDiary[current].diet.lunch[element]
+                                      .id
+                                  }
+                                  diet={
+                                    user.userDiary[current].diet.lunch[element]
+                                  }
+                                />
+                              );
+                            }
+                          }
+                        )
+                      : null}
                   </ul>
                 </div>
               </div>
@@ -183,16 +220,33 @@ const Main = ({
                     <h1 className={styles.text_diet_title}>저녁</h1>
                     <div className={styles.text_text2}>
                       <span>
-                        {user.userDiary[current].diet.dinner
-                          ? user.userDiary[current].diet.dinner.calories
+                        {user.userDiary[current].diet.dinner.totalCalories
+                          ? user.userDiary[current].diet.dinner.totalCalories
                           : 0}
                       </span>
                       <span>Kcal</span>
                     </div>
                   </div>
                   <ul className={styles.text_diet_list}>
-                    <li>토마토(데친것) 1회분 (17kcal)</li>
-                    <li>닭가슴살 스테이크(오리지널) 1인분(팩) (199kcal)</li>
+                    {user.userDiary[current].diet.dinner
+                      ? Object.keys(user.userDiary[current].diet.dinner).map(
+                          (element) => {
+                            if (element !== "totalCalories") {
+                              return (
+                                <DietItem
+                                  key={
+                                    user.userDiary[current].diet.dinner[element]
+                                      .id
+                                  }
+                                  diet={
+                                    user.userDiary[current].diet.dinner[element]
+                                  }
+                                />
+                              );
+                            }
+                          }
+                        )
+                      : null}
                   </ul>
                 </div>
               </div>
@@ -202,16 +256,36 @@ const Main = ({
                     <h1 className={styles.text_diet_title}>간식</h1>
                     <div className={styles.text_text2}>
                       <span>
-                        {user.userDiary[current].diet.dessert
-                          ? user.userDiary[current].diet.dessert.calories
+                        {user.userDiary[current].diet.dessert.totalCalories
+                          ? user.userDiary[current].diet.dessert.totalCalories
                           : 0}
                       </span>
                       <span>Kcal</span>
                     </div>
                   </div>
                   <ul className={styles.text_diet_list}>
-                    <li></li>
-                    <li></li>
+                    {user.userDiary[current].diet.dessert
+                      ? Object.keys(user.userDiary[current].diet.dessert).map(
+                          (element) => {
+                            if (element !== "totalCalories") {
+                              return (
+                                <DietItem
+                                  key={
+                                    user.userDiary[current].diet.dessert[
+                                      element
+                                    ].id
+                                  }
+                                  diet={
+                                    user.userDiary[current].diet.dessert[
+                                      element
+                                    ]
+                                  }
+                                />
+                              );
+                            }
+                          }
+                        )
+                      : null}
                   </ul>
                 </div>
               </div>

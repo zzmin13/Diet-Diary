@@ -94,10 +94,18 @@ class Database {
     firebaseDatabase.ref(`users/${uid}/userDiary/${currentDate}`).set({
       diary: "",
       diet: {
-        breakfast: "",
-        lunch: "",
-        dinner: "",
-        dessert: "",
+        breakfast: {
+          totalCalories: "",
+        },
+        lunch: {
+          totalCalories: "",
+        },
+        dinner: {
+          totalCalories: "",
+        },
+        dessert: {
+          totalCalories: "",
+        },
         totalCalories: "",
       },
       exercise: "",
@@ -121,6 +129,14 @@ class Database {
   addTodayDiet(uid, currentDate, time, content) {
     const updates = {};
     updates[`users/${uid}/userDiary/${currentDate}/diet/${time}`] = content;
+    return firebaseDatabase.ref().update(updates);
+  }
+
+  // 하루 총 칼로리 업데이트하기
+  updateTodayTotalCalories(uid, currentDate, totalCalories) {
+    const updates = {};
+    updates[`users/${uid}/userDiary/${currentDate}/diet/totalCalories`] =
+      totalCalories;
     return firebaseDatabase.ref().update(updates);
   }
 }

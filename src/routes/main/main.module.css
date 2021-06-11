@@ -146,3 +146,11 @@
 .bold {
   font-weight: 600;
 }
+.loading {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 85vh;
+  justify-content: center;
+  align-items: center;
+}

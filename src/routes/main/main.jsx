@@ -368,7 +368,9 @@ const Main = ({
           </div>
         </div>
       ) : (
-        <Loading />
+        <div className={styles.loading}>
+          <Loading />
+        </div>
       )}
     </div>
   );

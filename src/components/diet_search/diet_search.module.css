@@ -115,3 +115,16 @@
 .icon_down {
   cursor: pointer;
 }
+.noResult {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

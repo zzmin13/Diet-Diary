@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import styles from "./diet_search.module.css";
 import SearchResult from "../search_result/search_result";
 import { useHistory } from "react-router";
+import Loading from "../loading/loading";
 
 const DietSearch = ({
   database,
@@ -144,7 +145,9 @@ const DietSearch = ({
         <div className={styles.result_item}>
           {isLoading === false ? (
             searchResult === false ? (
-              <h1>검색 결과가 없습니다.</h1>
+              <div className={styles.noResult}>
+                <h1>검색 결과가 없습니다.😥</h1>
+              </div>
             ) : (
               Object.keys(searchResult).map((key) => {
                 return (
@@ -158,7 +161,9 @@ const DietSearch = ({
               })
             )
           ) : (
-            <h1>Loading...</h1>
+            <div className={styles.loading}>
+              <Loading />
+            </div>
           )}
         </div>
       </div>

@@ -16,6 +16,7 @@ const Diary = ({ database, history, uid, user }) => {
     //textareaRef.current.value
     database.createOrUpdateTodayDiary(uid, current, textareaRef.current.value);
     alert("일기가 작성되었습니다🎵");
+    history.push("/main");
   };
   return (
     <>

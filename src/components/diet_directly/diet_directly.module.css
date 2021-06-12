@@ -65,3 +65,12 @@
   transform: scale(0.99);
   cursor: pointer;
 }
+.time_select {
+  border-radius: 10px;
+  width: 70px;
+  border: 2px solid #f8bbd0;
+  height: 30px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: colorPink;
+}

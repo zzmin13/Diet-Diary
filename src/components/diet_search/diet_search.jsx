@@ -112,14 +112,14 @@ const DietSearch = ({
       } else if (timeRef.current.value === "간식") {
         time = "dessert";
       }
-      let number = Object.keys(user.userDiary[current].diet[time]).length - 1;
+
       const newDiet = {
         ...user.userDiary[current].diet[time],
         totalCalories: user.userDiary[current].diet[time].totalCalories
           ? Number(user.userDiary[current].diet[time].totalCalories) +
             Number(totalKcalRef.current.innerText)
           : Number(totalKcalRef.current.innerText),
-        [number]: {
+        [Date.now()]: {
           name: foodNameRef.current.innerText,
           totalSize: Number(totalSizeRef.current.innerText),
           kcal: Number(totalKcalRef.current.innerText),

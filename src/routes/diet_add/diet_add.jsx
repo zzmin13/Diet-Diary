@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import DietDirectly from "../../components/diet_directly/diet_directly";
 import DietSearch from "../../components/diet_search/diet_search";
 import styles from "./diet_add.module.css";
 const DietAdd = ({
@@ -28,9 +29,12 @@ const DietAdd = ({
           user={user}
         />
         <hr className={styles.line} />
-        <form className={styles.item}>
-          <h1>직접 추가하기</h1>
-        </form>
+        <DietDirectly
+          database={database}
+          loadUserInformation={loadUserInformation}
+          uid={uid}
+          user={user}
+        />
       </div>
     </div>
   );

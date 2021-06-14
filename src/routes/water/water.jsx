@@ -12,7 +12,9 @@ const Water = ({ authService, history, user }) => {
       ? `0${new Date().getDate()}`
       : `${new Date().getDate()}`;
   const current = currentYear + currentMonth + currentDate;
-
+  const goWaterAddPage = () => {
+    history.push("/water/add");
+  };
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (!USER) {
@@ -91,6 +93,9 @@ const Water = ({ authService, history, user }) => {
                 </div>
               </div>
             </div>
+            <button onClick={goWaterAddPage} className={styles.button}>
+              물 추가하기
+            </button>
           </div>
         </div>
       ) : null}

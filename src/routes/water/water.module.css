@@ -77,3 +77,21 @@
   font-weight: 600;
   margin: 10px 0px;
 }
+.button {
+  width: 250px;
+  font-weight: 600;
+  font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  color: white;
+  border: none;
+  background-color: colorPink;
+  margin: 20px 0px;
+  padding: 7px 0px;
+  border-radius: 5px;
+}
+.button:hover {
+  opacity: 0.9;
+  transform: scale(0.99);
+  cursor: pointer;
+}

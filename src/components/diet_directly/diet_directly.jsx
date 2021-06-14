@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useHistory } from "react-router";
 import styles from "./diet_directly.module.css";
-const DietDirectly = ({ database, loadUserInformation, uid, user }) => {
+const DietDirectly = ({ database, uid, user }) => {
   // 식사 직접 추가하는 컴포넌트
   const foodNameRef = useRef();
   const foodSizeRef = useRef();
@@ -54,6 +54,7 @@ const DietDirectly = ({ database, loadUserInformation, uid, user }) => {
       const totalKcal =
         Number(user.userDiary[current].diet.totalCalories) +
         Number(foodKcalRef.current.value);
+
       database.addTodayDiet(uid, current, time, newDiet);
       database.updateTodayTotalCalories(uid, current, totalKcal);
       alert("식사가 추가되었습니다.");

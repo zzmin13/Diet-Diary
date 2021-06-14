@@ -10,6 +10,22 @@ export const loadUserInformation = (response) => ({
   type: "LOAD_USER_INFORMATION",
   response,
 });
+export const deleteDiet = (
+  current,
+  time,
+  id,
+  calories,
+  timeTotalCalories,
+  todayTotalCalories
+) => ({
+  type: "DELETE_DIET",
+  current,
+  time,
+  id,
+  calories,
+  timeTotalCalories,
+  todayTotalCalories,
+});
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
@@ -37,6 +53,33 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: action.response,
       };
+    case "DELETE_DIET":
+      const changedDiet = {
+        ...state.user.userDiary[action.current].diet[action.time],
+      };
+      delete changedDiet[action.id];
+
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userDiary: {
+            ...state.user.userDiary,
+            [action.current]: {
+              ...state.user.userDiary[action.current],
+              diet: {
+                ...state.user.userDiary[action.current].diet,
+                totalCalories: action.todayTotalCalories - action.calories,
+                [action.time]: {
+                  ...changedDiet,
+                  totalCalories: action.timeTotalCalories - action.calories,
+                },
+              },
+            },
+          },
+        },
+      };
+
     default:
       return state;
   }

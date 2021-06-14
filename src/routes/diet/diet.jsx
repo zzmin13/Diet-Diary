@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styles from "./diet.module.css";
 import DietItem from "../../components/diet_item/diet_item";
 const Diet = (props) => {
-  const { history, authService, database, foodSearch, user, uid } = props;
+  const { history, authService, database, user, uid, deleteDiet } = props;
   const currentYear = `${new Date().getFullYear()}`;
   const currentMonth =
     new Date().getMonth() + 1 < 10
@@ -91,6 +91,7 @@ const Diet = (props) => {
                                     user.userDiary[current].diet.totalCalories
                                   )}
                                   database={database}
+                                  deleteDiet={deleteDiet}
                                 />
                               );
                             }
@@ -138,6 +139,7 @@ const Diet = (props) => {
                                       user.userDiary[current].diet.totalCalories
                                     )}
                                     database={database}
+                                    deleteDiet={deleteDiet}
                                   />
                                 );
                               }
@@ -186,6 +188,7 @@ const Diet = (props) => {
                                       user.userDiary[current].diet.totalCalories
                                     )}
                                     database={database}
+                                    deleteDiet={deleteDiet}
                                   />
                                 );
                               }
@@ -236,6 +239,7 @@ const Diet = (props) => {
                                       user.userDiary[current].diet.totalCalories
                                     )}
                                     database={database}
+                                    deleteDiet={deleteDiet}
                                   />
                                 );
                               }

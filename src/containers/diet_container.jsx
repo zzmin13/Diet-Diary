@@ -1,7 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import Diet from "../routes/diet/diet";
-import { loginUser, logoutUser, loadUserInformation } from "../modules/user";
+import {
+  loginUser,
+  logoutUser,
+  loadUserInformation,
+  deleteDiet,
+} from "../modules/user";
 
 const DietContainer = (props) => {
   return <Diet {...props} />;
@@ -20,6 +25,25 @@ const mapDispatchToProps = (dispatch) => ({
   },
   loadUserInformation: (response) => {
     dispatch(loadUserInformation(response));
+  },
+  deleteDiet: (
+    current,
+    time,
+    id,
+    calories,
+    timeTotalCalories,
+    todayTotalCalories
+  ) => {
+    dispatch(
+      deleteDiet(
+        current,
+        time,
+        id,
+        calories,
+        timeTotalCalories,
+        todayTotalCalories
+      )
+    );
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(DietContainer);

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import styles from "./diet.module.css";
 import DietItem from "../../components/diet_item/diet_item";
-const Diet = ({ authService, foodSearch, user, database, history }) => {
+const Diet = (props) => {
+  const { history, authService, database, foodSearch, user, uid } = props;
   const currentYear = `${new Date().getFullYear()}`;
   const currentMonth =
     new Date().getMonth() + 1 < 10
@@ -79,6 +80,17 @@ const Diet = ({ authService, foodSearch, user, database, history }) => {
                                       element
                                     ]
                                   }
+                                  current={current}
+                                  uid={uid}
+                                  time={"breakfast"}
+                                  timeTotalCalories={Number(
+                                    user.userDiary[current].diet.breakfast
+                                      .totalCalories
+                                  )}
+                                  todayTotalCalories={Number(
+                                    user.userDiary[current].diet.totalCalories
+                                  )}
+                                  database={database}
                                 />
                               );
                             }
@@ -117,6 +129,15 @@ const Diet = ({ authService, foodSearch, user, database, history }) => {
                                         element
                                       ]
                                     }
+                                    time={"lunch"}
+                                    timeTotalCalories={Number(
+                                      user.userDiary[current].diet.lunch
+                                        .totalCalories
+                                    )}
+                                    todayTotalCalories={Number(
+                                      user.userDiary[current].diet.totalCalories
+                                    )}
+                                    database={database}
                                   />
                                 );
                               }
@@ -156,6 +177,15 @@ const Diet = ({ authService, foodSearch, user, database, history }) => {
                                         element
                                       ]
                                     }
+                                    time={"dinner"}
+                                    timeTotalCalories={Number(
+                                      user.userDiary[current].diet.dinner
+                                        .totalCalories
+                                    )}
+                                    todayTotalCalories={Number(
+                                      user.userDiary[current].diet.totalCalories
+                                    )}
+                                    database={database}
                                   />
                                 );
                               }
@@ -195,6 +225,17 @@ const Diet = ({ authService, foodSearch, user, database, history }) => {
                                         element
                                       ]
                                     }
+                                    uid={uid}
+                                    current={current}
+                                    time={"dessert"}
+                                    timeTotalCalories={Number(
+                                      user.userDiary[current].diet.dessert
+                                        .totalCalories
+                                    )}
+                                    todayTotalCalories={Number(
+                                      user.userDiary[current].diet.totalCalories
+                                    )}
+                                    database={database}
                                   />
                                 );
                               }

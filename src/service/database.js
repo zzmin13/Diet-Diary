@@ -139,5 +139,29 @@ class Database {
       totalCalories;
     return firebaseDatabase.ref().update(updates);
   }
+
+  //식사 삭제하기
+  deleteDiet(
+    uid,
+    currentDate,
+    time,
+    id,
+    calories,
+    timeTotalCalories,
+    todayTotalCalories
+  ) {
+    //식사를 삭제하면 해당 타임의 음식 삭제 해야 함
+    // 식사를 삭제하면 해당 타임의 totalCalories도 바뀌어야 함
+    // 식사를 삭제하면 전체의 totalCalories도 바뀌어야 함
+    const updates = {};
+    updates[`users/${uid}/userDiary/${currentDate}/diet/${time}/${id}`] = null;
+    updates[
+      `users/${uid}/userDiary/${currentDate}/diet/${time}/totalCalories`
+    ] = timeTotalCalories - calories;
+    updates[`users/${uid}/userDiary/${currentDate}/diet/totalCalories`] =
+      todayTotalCalories - calories;
+
+    return firebaseDatabase.ref().update(updates);
+  }
 }
 export default Database;

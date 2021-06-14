@@ -3,9 +3,31 @@ import styles from "./diet_item.module.css";
 
 const DietItem = (props) => {
   const {
-    diet: { kcal, name, totalSize },
+    diet,
+    diet: { kcal, name, totalSize, id },
+    time,
+    timeTotalCalories,
+    todayTotalCalories,
+    database,
+    uid,
+    current,
   } = props;
-  const handleDietDelete = () => {};
+
+  const handleDietDelete = () => {
+    const answer = window.confirm("삭제하시겠습니까?");
+    if (answer) {
+      database.deleteDiet(
+        uid,
+        current,
+        time,
+        id,
+        kcal,
+        timeTotalCalories,
+        todayTotalCalories
+      );
+      alert("삭제되었습니다.");
+    }
+  };
   return (
     <div className={styles.container}>
       <li className={styles.diet}>

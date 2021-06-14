@@ -1,0 +1,26 @@
+@value colorMint from '../../common/color.css';
+@value colorPurple from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+@value colorBorderGrey from "../../common/color.css";
+
+.container {
+  display: flex;
+  align-items: center;
+}
+.diet {
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid colorBorderGrey;
+  width: fit-content;
+}
+.delete_button {
+  margin-left: 5px;
+  border-radius: 50px;
+  background-color: colorPink;
+  padding: 1px 5px;
+  height: fit-content;
+  border: none;
+  color: white;
+  opacity: 0.5;
+  cursor: pointer;
+}

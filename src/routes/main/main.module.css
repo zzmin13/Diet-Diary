@@ -125,6 +125,16 @@
   font-size: 1.5rem;
   margin-right: 5px;
 }
+.icon_edit {
+  font-size: 0.8rem;
+  margin-left: 5px;
+  color: grey;
+  opacity: 0.3;
+}
+.icon_edit:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
 .icon_cookie {
   color: #a6794d;
 }

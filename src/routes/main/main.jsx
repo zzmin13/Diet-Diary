@@ -23,6 +23,9 @@ const Main = ({
   const currentDay = week[new Date().getDay()];
   const [isLoading, setIsLoading] = useState(false);
 
+  const GoEditPage = (event) => {
+    history.push(`/${event.currentTarget.id}`);
+  };
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (USER) {
@@ -112,6 +115,17 @@ const Main = ({
                 className={`fas fa-book-open ${styles.icon} ${styles.icon_diary}`}
               ></i>
               <span className={styles.bold}>오늘의 일기</span>
+              <button
+                onClick={GoEditPage}
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  padding: 0,
+                }}
+                id="diary"
+              >
+                <i className={`fas fa-pen ${styles.icon_edit}`}></i>
+              </button>
             </div>
             <div className={styles.text_column_child}>
               <p className={styles.text_diary}>
@@ -128,6 +142,17 @@ const Main = ({
                   className={`fas fa-utensils ${styles.icon} ${styles.icon_diet}`}
                 ></i>
                 <span className={styles.bold}>오늘의 식사</span>
+                <button
+                  onClick={GoEditPage}
+                  style={{
+                    border: "none",
+                    backgroundColor: "transparent",
+                    padding: 0,
+                  }}
+                  id="diet"
+                >
+                  <i className={`fas fa-pen ${styles.icon_edit}`}></i>
+                </button>
               </div>
               <div className={styles.text_text2}>
                 <span>
@@ -298,6 +323,17 @@ const Main = ({
                   className={`fas fa-tint ${styles.icon} ${styles.icon_water}`}
                 ></i>
                 <span className={styles.bold}>오늘의 물</span>
+                <button
+                  onClick={GoEditPage}
+                  style={{
+                    border: "none",
+                    backgroundColor: "transparent",
+                    padding: 0,
+                  }}
+                  id="water"
+                >
+                  <i className={`fas fa-pen ${styles.icon_edit}`}></i>
+                </button>
               </div>
               <div className={styles.text_text2}>
                 <span>
@@ -356,6 +392,17 @@ const Main = ({
                 className={`fas fa-dumbbell ${styles.icon} ${styles.icon_exercise}`}
               ></i>
               <span className={styles.bold}>오늘의 운동</span>
+              <button
+                onClick={GoEditPage}
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  padding: 0,
+                }}
+                id="exercise"
+              >
+                <i className={`fas fa-pen ${styles.icon_edit}`}></i>
+              </button>
             </div>
             <div className={styles.text_text2}>
               <span>

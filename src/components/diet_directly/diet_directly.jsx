@@ -21,36 +21,44 @@ const DietDirectly = ({ database, loadUserInformation, uid, user }) => {
   const current = currentYear + currentMonth + currentDate;
 
   const handleOnAddDiet = () => {
-    let time;
-    if (timeRef.current.value === "아침") {
-      time = "breakfast";
-    } else if (timeRef.current.value === "점심") {
-      time = "lunch";
-    } else if (timeRef.current.value === "저녁") {
-      time = "dinner";
-    } else if (timeRef.current.value === "간식") {
-      time = "dessert";
+    if (
+      foodNameRef.current.value === "" ||
+      foodSizeRef.current.value === "" ||
+      foodKcalRef.current.value === ""
+    ) {
+      alert("항목을 채워주세요.");
+    } else {
+      let time;
+      if (timeRef.current.value === "아침") {
+        time = "breakfast";
+      } else if (timeRef.current.value === "점심") {
+        time = "lunch";
+      } else if (timeRef.current.value === "저녁") {
+        time = "dinner";
+      } else if (timeRef.current.value === "간식") {
+        time = "dessert";
+      }
+      const newDiet = {
+        ...user.userDiary[current].diet[time],
+        totalCalories: user.userDiary[current].diet[time].totalCalories
+          ? Number(user.userDiary[current].diet[time].totalCalories) +
+            Number(foodKcalRef.current.value)
+          : Number(foodKcalRef.current.value),
+        [Date.now()]: {
+          name: foodNameRef.current.value,
+          totalSize: Number(foodSizeRef.current.value),
+          kcal: Number(foodKcalRef.current.value),
+          id: Date.now(),
+        },
+      };
+      const totalKcal =
+        Number(user.userDiary[current].diet.totalCalories) +
+        Number(foodKcalRef.current.value);
+      database.addTodayDiet(uid, current, time, newDiet);
+      database.updateTodayTotalCalories(uid, current, totalKcal);
+      alert("식사가 추가되었습니다.");
+      history.push("/main");
     }
-    const newDiet = {
-      ...user.userDiary[current].diet[time],
-      totalCalories: user.userDiary[current].diet[time].totalCalories
-        ? Number(user.userDiary[current].diet[time].totalCalories) +
-          Number(foodKcalRef.current.value)
-        : Number(foodKcalRef.current.value),
-      [Date.now()]: {
-        name: foodNameRef.current.value,
-        totalSize: Number(foodSizeRef.current.value),
-        kcal: Number(foodKcalRef.current.value),
-        id: Date.now(),
-      },
-    };
-    const totalKcal =
-      Number(user.userDiary[current].diet.totalCalories) +
-      Number(foodKcalRef.current.value);
-    database.addTodayDiet(uid, current, time, newDiet);
-    database.updateTodayTotalCalories(uid, current, totalKcal);
-    alert("식사가 추가되었습니다.");
-    history.push("/main");
   };
   return (
     <div className={styles.container}>

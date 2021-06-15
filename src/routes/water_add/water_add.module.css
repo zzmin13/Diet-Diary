@@ -1,3 +1,8 @@
+@value colorMint from '../../common/color.css';
+@value colorPurple from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+@value colorBorderGrey from "../../common/color.css";
+
 .container {
   font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -8,7 +13,6 @@
   align-items: center;
   background-color: #ffebee;
 }
-
 .main {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   padding: 10px 20px;
@@ -26,4 +30,61 @@
   font-weight: 600;
   font-size: 1.3rem;
   margin: 20px;
+}
+.forms {
+  margin-top: 50px;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+.cup_box {
+  display: flex;
+  align-items: center;
+}
+.cup_text,
+.ml_text {
+  font-weight: 600;
+  padding: 5px 0px;
+  margin-left: 5px;
+  font-size: 1.1rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 5px;
+  justify-content: center;
+}
+.input {
+  width: 50px;
+  height: 30px;
+  border-radius: 10px;
+  border: 2px solid #f8bbd0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: colorPink;
+}
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.updown_button {
+  background-color: transparent;
+  border: none;
+}
+.icon {
+  color: colorPink;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.icon_up {
+  margin-bottom: 5px;
+}
+.icon_down {
+  margin-top: 5px;
+}
+.icon:hover {
+  opacity: 1;
 }

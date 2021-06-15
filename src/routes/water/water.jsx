@@ -15,6 +15,9 @@ const Water = ({ authService, history, user }) => {
   const goWaterAddPage = () => {
     history.push("/water/add");
   };
+  const goWaterEditPage = () => {
+    history.push("/water/edit");
+  };
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (!USER) {
@@ -31,7 +34,7 @@ const Water = ({ authService, history, user }) => {
               <i className={`fas fa-tint ${styles.icon}`}></i>
               <span>오늘의 물</span>
             </div>
-            <div className={`${styles.text} ${styles.text_column}`}>
+            <div className={styles.text_column}>
               <div className={styles.text_column_title}>
                 <div>
                   <span className={styles.bold}>물 합계</span>
@@ -93,7 +96,16 @@ const Water = ({ authService, history, user }) => {
                 </div>
               </div>
             </div>
-            <button onClick={goWaterAddPage} className={styles.button}>
+            <button
+              onClick={goWaterEditPage}
+              className={`${styles.button} ${styles.button_edit}`}
+            >
+              물 수정하기
+            </button>
+            <button
+              onClick={goWaterAddPage}
+              className={`${styles.button} ${styles.button_add}`}
+            >
               물 추가하기
             </button>
           </div>

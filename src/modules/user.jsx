@@ -54,6 +54,11 @@ export const addWater = (current, time, timeAmount, totalAmount) => ({
   timeAmount,
   totalAmount,
 });
+export const editWater = (current, waterObj) => ({
+  type: "EDIT_WATER",
+  current,
+  waterObj,
+});
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
@@ -160,6 +165,20 @@ const userReducer = (state = initialState, action) => {
                 [action.time]: action.timeAmount,
                 totalWater: action.totalAmount,
               },
+            },
+          },
+        },
+      };
+    case "EDIT_WATER":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userDiary: {
+            ...state.user.userDiary,
+            [action.current]: {
+              ...state.user.userDiary[action.current],
+              water: action.waterObj,
             },
           },
         },

@@ -11,6 +11,7 @@ import DietEditContainer from "./containers/diet_edit_container";
 import ExerciseContainer from "./containers/exercise_container";
 import WaterContainer from "./containers/water_container";
 import WaterAddContainer from "./containers/water_add_container";
+import WaterEditContainer from "./containers/water_edit_container";
 import HeaderContainer from "./containers/header_container";
 import NavbarContainer from "./containers/navbar_container";
 import { useEffect } from "react";
@@ -213,6 +214,21 @@ function App({
               return (
                 <>
                   <WaterAddContainer
+                    authService={authService}
+                    database={database}
+                    {...props}
+                  />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/water/edit"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <WaterEditContainer
                     authService={authService}
                     database={database}
                     {...props}

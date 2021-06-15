@@ -2,7 +2,6 @@
 @value colorPurple from "../../common/color.css";
 @value colorPink from "../../common/color.css";
 @value colorBorderGrey from "../../common/color.css";
-
 .container {
   font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -13,17 +12,18 @@
   align-items: center;
   background-color: #ffebee;
 }
-
 .main {
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
+  border: 1px solid #f8bbd0;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   width: 80%;
   height: 90vh;
   overflow-y: auto;
-  background-color: white;
 }
 .title {
   display: flex;
@@ -33,52 +33,44 @@
   margin: 20px;
 }
 .icon {
-  margin-right: 5px;
-  color: #9be7ff;
-  font-size: 1.5rem;
+  margin-left: 5px;
+  color: gray;
+  font-size: 0.9rem;
 }
-.text_column {
-  padding: 10px 0px;
+.form {
+  margin-top: 20px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
-  border-bottom: 1px solid colorBorderGrey;
+  align-items: center;
+  padding: 10px;
+}
+.items {
   margin-bottom: 20px;
 }
-.text_column_title {
+.item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.bold {
-  font-weight: 600;
-}
-.text_text2 {
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-}
-.text_column_child {
-  margin-top: 10px;
-}
-.text_water_meta {
   width: 100%;
+  margin-bottom: 20px;
 }
-.text_water {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.text_water_time {
-  display: flex;
-  justify-content: space-between;
-}
-.text_water_title {
+.item_name {
+  padding: 10px;
   font-weight: 600;
-  margin: 10px 0px;
+  color: colorPink;
 }
-.button {
+.item_input {
+  padding: 10px;
+  border: 3px solid #f8bbd0;
+  border-radius: 15px;
+  height: 40px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.item_behind {
+  margin-left: 5px;
+  font-weight: 600;
+}
+.addButton {
   width: 250px;
   font-weight: 600;
   font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -86,18 +78,13 @@
     "Helvetica Neue", sans-serif;
   color: white;
   border: none;
+  background-color: colorPink;
   margin: 20px 0px;
   padding: 7px 0px;
   border-radius: 5px;
 }
-.button:hover {
+.addButton:hover {
   opacity: 0.9;
   transform: scale(0.99);
   cursor: pointer;
-}
-.button_edit {
-  background-color: gray;
-}
-.button_add {
-  background-color: colorPink;
 }

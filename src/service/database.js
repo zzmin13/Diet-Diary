@@ -207,5 +207,12 @@ class Database {
 
     return firebaseDatabase.ref().update(updates);
   }
+
+  // 물 수정하기
+  editWater(uid, currentDate, waterObj) {
+    const updates = {};
+    updates[`users/${uid}/userDiary/${currentDate}/water`] = waterObj;
+    return firebaseDatabase.ref().update(updates);
+  }
 }
 export default Database;

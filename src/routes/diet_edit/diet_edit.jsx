@@ -52,6 +52,17 @@ const DietEdit = (props) => {
         ? 0
         : user.userDiary[current].diet[currTime].totalCalories;
     const todayTotalCalories = user.userDiary[current].diet.totalCalories;
+    database.editDiet(
+      uid,
+      current,
+      prevTime,
+      currTime,
+      beforeDiet,
+      afterDiet,
+      prevTimeTotalCalories,
+      currTimeTotalCalories,
+      todayTotalCalories
+    );
     editDiet(
       current,
       prevTime,
@@ -62,6 +73,7 @@ const DietEdit = (props) => {
       currTimeTotalCalories,
       todayTotalCalories
     );
+
     history.push("/diet");
   };
   return (

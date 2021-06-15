@@ -65,8 +65,9 @@ const WaterAdd = ({ authService, database, history, user, uid, addWater }) => {
       time = "dinner";
     }
     const amount = Number(mlRef.current.value);
-    const timeAmount = user.userDiary[current].water[time] + amount;
-    const totalAmount = user.userDiary[current].water.totalWater + amount;
+    const timeAmount = Number(user.userDiary[current].water[time]) + amount;
+    const totalAmount =
+      Number(user.userDiary[current].water.totalWater) + amount;
     database.addWater(uid, current, time, timeAmount, totalAmount);
     addWater(current, time, timeAmount, totalAmount);
     alert("물이 추가되었습니다.");

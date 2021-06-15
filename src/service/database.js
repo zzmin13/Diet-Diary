@@ -163,5 +163,15 @@ class Database {
 
     return firebaseDatabase.ref().update(updates);
   }
+
+  // 물 추가하기
+  addWater(uid, currentDate, time, amount, totalAmount) {
+    const updates = {};
+    updates[`users/${uid}/userDiary/${currentDate}/water/${time}`] = amount;
+    updates[`users/${uid}/userDiary/${currentDate}/water/totalWater`] =
+      totalAmount;
+
+    return firebaseDatabase.ref().update(updates);
+  }
 }
 export default Database;

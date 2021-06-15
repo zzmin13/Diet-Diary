@@ -2,7 +2,18 @@ import React from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import styles from "./water_add.module.css";
-const WaterAdd = ({ authService, history }) => {
+const WaterAdd = ({ authService, database, history, user, uid }) => {
+  const currentYear = `${new Date().getFullYear()}`;
+  const currentMonth =
+    new Date().getMonth() + 1 < 10
+      ? `0${new Date().getMonth() + 1}`
+      : `${new Date().getMonth() + 1}`;
+  const currentDate =
+    new Date().getDate() < 10
+      ? `0${new Date().getDate()}`
+      : `${new Date().getDate()}`;
+  const current = currentYear + currentMonth + currentDate;
+
   const mlRef = useRef();
   const cupRef = useRef();
   const timeRef = useRef();
@@ -42,6 +53,21 @@ const WaterAdd = ({ authService, history }) => {
     } else if (event.currentTarget.id === "cup") {
       mlRef.current.value = cupRef.current.value * 170;
     }
+  };
+
+  const onAddWater = () => {
+    let time;
+    if (timeRef.current.value === "아침") {
+      time = "breakfast";
+    } else if (timeRef.current.value === "점심") {
+      time = "lunch";
+    } else if (timeRef.current.value === "저녁") {
+      time = "dinner";
+    }
+    const amount = Number(mlRef.current.value);
+    const timeAmount = user.userDiary[current].water[time] + amount;
+    const totalAmount = user.userDiary[current].water.totalWater + amount;
+    database.addWater(uid, current, time, timeAmount, totalAmount);
   };
   return (
     <div className={styles.container}>
@@ -138,7 +164,9 @@ const WaterAdd = ({ authService, history }) => {
             </form>
           </div>
         </div>
-        <button className={styles.button}>추가하기</button>
+        <button onClick={onAddWater} className={styles.button}>
+          추가하기
+        </button>
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ const Water = ({ authService, history, user }) => {
                   <span>
                     {user.userDiary[current].water.totalWater
                       ? user.userDiary[current].water.totalWater
-                      : 0}{" "}
+                      : 0}
                   </span>
                   <span> ml</span>
                 </div>
@@ -52,8 +52,8 @@ const Water = ({ authService, history, user }) => {
                       <h1 className={styles.text_water_title}>아침</h1>
                       <div className={styles.text_text2}>
                         <span>
-                          {user.userDiary[current].water.breakfast.totalWater
-                            ? user.userDiary[current].water.breakfast.totalWater
+                          {user.userDiary[current].water.breakfast
+                            ? user.userDiary[current].water.breakfast
                             : 0}
                         </span>
                         <span>ml</span>
@@ -67,8 +67,8 @@ const Water = ({ authService, history, user }) => {
                       <h1 className={styles.text_water_title}>점심</h1>
                       <div className={styles.text_text2}>
                         <span>
-                          {user.userDiary[current].water.lunch.totalWater
-                            ? user.userDiary[current].water.lunch.totalWater
+                          {user.userDiary[current].water.lunch
+                            ? user.userDiary[current].water.lunch
                             : 0}
                         </span>
                         <span>ml</span>
@@ -82,8 +82,8 @@ const Water = ({ authService, history, user }) => {
                       <h1 className={styles.text_water_title}>저녁</h1>
                       <div className={styles.text_text2}>
                         <span>
-                          {user.userDiary[current].water.dinner.totalWater
-                            ? user.userDiary[current].water.dinner.totalWater
+                          {user.userDiary[current].water.dinner
+                            ? user.userDiary[current].water.dinner
                             : 0}
                         </span>
                         <span>ml</span>

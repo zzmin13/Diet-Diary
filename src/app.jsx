@@ -7,6 +7,7 @@ import RegisterContainer from "./containers/register_contatiner";
 import DiaryContainer from "./containers/diary_container";
 import DietContainer from "./containers/diet_container";
 import DietAddContainer from "./containers/diet_add_container";
+import DietEditContainer from "./containers/diet_edit_container";
 import ExerciseContainer from "./containers/exercise_container";
 import WaterContainer from "./containers/water_container";
 import WaterAddContainer from "./containers/water_add_container";
@@ -142,6 +143,20 @@ function App({
                     {...props}
                   />
                 </>
+              );
+            }}
+          />
+          <Route
+            path="/diet/edit/:id"
+            exact={true}
+            render={(props) => {
+              return (
+                <DietEditContainer
+                  authService={authService}
+                  database={database}
+                  foodSearch={foodSearch}
+                  {...props}
+                />
               );
             }}
           />

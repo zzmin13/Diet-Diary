@@ -38,7 +38,13 @@ const DietItem = (props) => {
     alert("삭제되었습니다.");
   };
   const goDietEditPage = () => {
-    history.push(`/diet/edit/${id}`);
+    history.push({
+      pathname: `/diet/edit/${id}`,
+      state: {
+        dietId: id,
+        time,
+      },
+    });
   };
   return (
     <>

@@ -2,7 +2,7 @@ import React from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import styles from "./water_add.module.css";
-const WaterAdd = ({ authService, database, history, user, uid }) => {
+const WaterAdd = ({ authService, database, history, user, uid, addWater }) => {
   const currentYear = `${new Date().getFullYear()}`;
   const currentMonth =
     new Date().getMonth() + 1 < 10
@@ -68,6 +68,9 @@ const WaterAdd = ({ authService, database, history, user, uid }) => {
     const timeAmount = user.userDiary[current].water[time] + amount;
     const totalAmount = user.userDiary[current].water.totalWater + amount;
     database.addWater(uid, current, time, timeAmount, totalAmount);
+    addWater(current, time, timeAmount, totalAmount);
+    alert("물이 추가되었습니다.");
+    history.push("/water");
   };
   return (
     <div className={styles.container}>

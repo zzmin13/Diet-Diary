@@ -6,12 +6,19 @@
 .container {
   display: flex;
   align-items: center;
+  margin: 3px 0px;
 }
 .diet {
   padding: 7px 10px;
   border-radius: 10px;
   border: 1px solid colorBorderGrey;
   width: fit-content;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 18px;
 }
 .delete_button {
   margin-left: 5px;
@@ -25,5 +32,25 @@
   cursor: pointer;
 }
 .delete_button:hover {
-  opacity: 0.9;
+  opacity: 1;
+}
+.edit_button {
+  margin-left: 5px;
+  border-radius: 50px;
+  background-color: white;
+  padding: 4px 4px;
+  height: fit-content;
+  border: none;
+  color: grey;
+  opacity: 0.5;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit_button:hover {
+  opacity: 1;
+}
+.edit_icon {
+  font-size: 0.7rem;
 }

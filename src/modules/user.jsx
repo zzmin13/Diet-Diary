@@ -26,6 +26,13 @@ export const deleteDiet = (
   timeTotalCalories,
   todayTotalCalories,
 });
+export const addWater = (current, time, timeAmount, totalAmount) => ({
+  type: "ADD_WATER",
+  current,
+  time,
+  timeAmount,
+  totalAmount,
+});
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
@@ -58,7 +65,6 @@ const userReducer = (state = initialState, action) => {
         ...state.user.userDiary[action.current].diet[action.time],
       };
       delete changedDiet[action.id];
-
       return {
         ...state,
         user: {
@@ -79,7 +85,24 @@ const userReducer = (state = initialState, action) => {
           },
         },
       };
-
+    case "ADD_WATER":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userDiary: {
+            ...state.user.userDiary,
+            [action.current]: {
+              ...state.user.userDiary[action.current],
+              water: {
+                ...state.user.userDiary[action.current].water,
+                [action.time]: action.timeAmount,
+                totalWater: action.totalAmount,
+              },
+            },
+          },
+        },
+      };
     default:
       return state;
   }

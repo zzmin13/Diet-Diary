@@ -101,6 +101,7 @@
   font-size: 0.9rem;
   font-weight: 500;
   color: colorPink;
+  cursor: pointer;
 }
 .helper {
   margin-top: 20px;

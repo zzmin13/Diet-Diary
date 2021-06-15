@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styles from "./diet_item.module.css";
 
 const DietItem = (props) => {
@@ -12,6 +13,7 @@ const DietItem = (props) => {
     current,
     deleteDiet,
   } = props;
+  const history = useHistory();
   const handleDietDelete = () => {
     const answer = window.confirm("삭제하시겠습니까?");
     if (answer) {
@@ -35,6 +37,9 @@ const DietItem = (props) => {
     }
     alert("삭제되었습니다.");
   };
+  const goDietEditPage = () => {
+    history.push(`/diet/edit/${id}`);
+  };
   return (
     <>
       {database ? (
@@ -42,9 +47,14 @@ const DietItem = (props) => {
           <li className={styles.diet}>
             <span>{`${name} (${totalSize}g, ${kcal}kcal)`}</span>
           </li>
-          <button onClick={handleDietDelete} className={styles.delete_button}>
-            ×
-          </button>
+          <div className={styles.buttons}>
+            <button onClick={goDietEditPage} className={styles.edit_button}>
+              <i className={`fas fa-pen ${styles.edit_icon}`}></i>
+            </button>
+            <button onClick={handleDietDelete} className={styles.delete_button}>
+              ×
+            </button>
+          </div>
         </div>
       ) : (
         <div className={styles.container}>

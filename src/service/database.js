@@ -165,9 +165,9 @@ class Database {
   }
 
   // 물 추가하기
-  addWater(uid, currentDate, time, amount, totalAmount) {
+  addWater(uid, currentDate, time, timeAmount, totalAmount) {
     const updates = {};
-    updates[`users/${uid}/userDiary/${currentDate}/water/${time}`] = amount;
+    updates[`users/${uid}/userDiary/${currentDate}/water/${time}`] = timeAmount;
     updates[`users/${uid}/userDiary/${currentDate}/water/totalWater`] =
       totalAmount;
 

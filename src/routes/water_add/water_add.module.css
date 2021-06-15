@@ -32,10 +32,11 @@
   margin: 20px;
 }
 .forms {
-  margin-top: 50px;
+  margin: 50px 0px;
   width: 80%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .cup_box {
   display: flex;
@@ -52,7 +53,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 5px;
+  justify-content: center;
+}
+.item {
+  width: 100%;
+  display: flex;
   justify-content: center;
 }
 .input {
@@ -87,4 +92,40 @@
 }
 .icon:hover {
   opacity: 1;
+}
+.time_select {
+  border-radius: 10px;
+  width: 70px;
+  border: 2px solid #f8bbd0;
+  height: 30px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: colorPink;
+}
+.helper {
+  margin-top: 20px;
+}
+.helper_text {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: grey;
+}
+
+.button {
+  width: 250px;
+  font-weight: 600;
+  font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  color: white;
+  border: none;
+  background-color: colorPink;
+  margin: 20px 0px;
+  padding: 7px 0px;
+  border-radius: 5px;
+}
+.button:hover {
+  opacity: 0.9;
+  transform: scale(0.99);
+  cursor: pointer;
 }

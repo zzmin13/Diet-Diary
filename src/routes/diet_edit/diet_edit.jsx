@@ -1,4 +1,5 @@
 import React from "react";
+import { useRef } from "react";
 import { useEffect } from "react";
 import styles from "./diet_edit.module.css";
 
@@ -13,22 +14,56 @@ const DietEdit = (props) => {
       ? `0${new Date().getDate()}`
       : `${new Date().getDate()}`;
   const current = currentYear + currentMonth + currentDate;
+  const foodNameRef = useRef();
+  const gramRef = useRef();
+  const kcalRef = useRef();
+  const timeRef = useRef();
 
   const {
     database,
     history,
-    location: {
-      state,
-      state: { dietId, time },
-    },
+    location: { state },
     uid,
     user,
+    editDiet,
   } = props;
+
   useEffect(() => {
     if (state === undefined) {
       history.push("/main");
     }
   }, []);
+
+  const handleOnEdit = (event) => {
+    event.preventDefault();
+    const prevTime = state.time;
+    const currTime = timeRef.current.value;
+    const beforeDiet = user.userDiary[current].diet[prevTime][state.dietId];
+    const afterDiet = {
+      id: state.dietId,
+      kcal: Number(kcalRef.current.value),
+      name: foodNameRef.current.value,
+      totalSize: Number(gramRef.current.value),
+    };
+    const prevTimeTotalCalories =
+      user.userDiary[current].diet[prevTime].totalCalories;
+    const currTimeTotalCalories =
+      user.userDiary[current].diet[currTime].totalCalories === ""
+        ? 0
+        : user.userDiary[current].diet[currTime].totalCalories;
+    const todayTotalCalories = user.userDiary[current].diet.totalCalories;
+    editDiet(
+      current,
+      prevTime,
+      currTime,
+      beforeDiet,
+      afterDiet,
+      prevTimeTotalCalories,
+      currTimeTotalCalories,
+      todayTotalCalories
+    );
+    history.push("/diet");
+  };
   return (
     <>
       {state && user && (
@@ -46,8 +81,10 @@ const DietEdit = (props) => {
                   </label>
                   <div className={styles.item_second}>
                     <input
+                      ref={foodNameRef}
                       defaultValue={
-                        user.userDiary[current].diet[time][dietId].name
+                        user.userDiary[current].diet[state.time][state.dietId]
+                          .name
                       }
                       className={styles.item_input}
                       type="text"
@@ -62,8 +99,10 @@ const DietEdit = (props) => {
                   </label>
                   <div className={styles.item_second}>
                     <input
+                      ref={gramRef}
                       defaultValue={
-                        user.userDiary[current].diet[time][dietId].totalSize
+                        user.userDiary[current].diet[state.time][state.dietId]
+                          .totalSize
                       }
                       className={styles.item_input}
                       type="text"
@@ -81,8 +120,10 @@ const DietEdit = (props) => {
                   </label>
                   <div className={styles.item_second}>
                     <input
+                      ref={kcalRef}
                       defaultValue={
-                        user.userDiary[current].diet[time][dietId].kcal
+                        user.userDiary[current].diet[state.time][state.dietId]
+                          .kcal
                       }
                       className={styles.item_input}
                       type="text"
@@ -102,7 +143,8 @@ const DietEdit = (props) => {
                     <select
                       id="time"
                       className={styles.time_select}
-                      defaultValue={time}
+                      defaultValue={state.time}
+                      ref={timeRef}
                     >
                       <option value="breakfast">아침</option>
                       <option value="lunch">점심</option>
@@ -112,7 +154,9 @@ const DietEdit = (props) => {
                   </div>
                 </div>
               </div>
-              <button className={styles.addButton}>수정하기</button>
+              <button onClick={handleOnEdit} className={styles.addButton}>
+                수정하기
+              </button>
             </form>
           </div>
         </div>

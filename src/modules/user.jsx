@@ -26,6 +26,27 @@ export const deleteDiet = (
   timeTotalCalories,
   todayTotalCalories,
 });
+export const editDiet = (
+  current,
+  prevTime,
+  currTime,
+  beforeDiet,
+  afterDiet,
+  prevTimeTotalCalories,
+  currTimeTotalCalories,
+  todayTotalCalories
+) => ({
+  type: "EDIT_DIET",
+  current,
+  prevTime,
+  currTime,
+  prevTimeTotalCalories,
+  currTimeTotalCalories,
+  beforeDiet, // (prevDiet 안에는 id, name, kcal, totalSize)
+  afterDiet,
+  todayTotalCalories,
+});
+
 export const addWater = (current, time, timeAmount, totalAmount) => ({
   type: "ADD_WATER",
   current,
@@ -80,6 +101,46 @@ const userReducer = (state = initialState, action) => {
                   ...changedDiet,
                   totalCalories: action.timeTotalCalories - action.calories,
                 },
+              },
+            },
+          },
+        },
+      };
+    case "EDIT_DIET":
+      const updatedDiet = {
+        ...state.user.userDiary[action.current].diet[action.prevTime],
+      };
+      delete updatedDiet[action.beforeDiet.id];
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userDiary: {
+            ...state.user.userDiary,
+            [action.current]: {
+              ...state.user.userDiary[action.current],
+              diet: {
+                ...state.user.userDiary[action.current].diet,
+                [action.prevTime]: {
+                  ...updatedDiet,
+                  totalCalories:
+                    action.prevTimeTotalCalories - action.beforeDiet.kcal,
+                },
+                [action.currTime]: {
+                  ...state.user.userDiary[action.current].diet[action.currTime],
+                  [action.afterDiet.id]: {
+                    id: action.afterDiet.id,
+                    kcal: action.afterDiet.kcal,
+                    name: action.afterDiet.name,
+                    totalSize: action.afterDiet.totalSize,
+                  },
+                  totalCalories:
+                    action.currTimeTotalCalories + action.afterDiet.kcal,
+                },
+                totalCalories:
+                  action.todayTotalCalories -
+                  action.beforeDiet.kcal +
+                  action.afterDiet.kcal,
               },
             },
           },

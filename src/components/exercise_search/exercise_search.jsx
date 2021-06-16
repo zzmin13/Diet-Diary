@@ -7,10 +7,14 @@ import { useState } from "react";
 const ExerciseSearch = ({
   database,
   exercise,
+  uid,
+  user,
+  current,
   selectedExercise,
   onSelectExercise,
 }) => {
   const [searchTerm, setsearchTerm] = useState("");
+  const nameRef = useRef();
   const timeRef = useRef();
   const kcalRef = useRef();
   const handleSelectExercise = (name) => {
@@ -41,6 +45,20 @@ const ExerciseSearch = ({
   };
   const onChangeInput = (event) => {
     setsearchTerm(event.currentTarget.value);
+  };
+  const onAddExercise = () => {
+    const exerciseObj = {
+      name: nameRef.current.innerText,
+      kcal: Number(kcalRef.current.innerText),
+      time: Number(timeRef.current.value),
+    };
+    const exerciseId = Date.now();
+    const totalCalories = Number(
+      user.userDiary[current].exercise.totalCalories
+    );
+    console.log(`현재 총 칼로리 :${totalCalories}`);
+    console.log(`추가할 운동 칼로리 ${exerciseObj.kcal}`);
+    database.addExercise(uid, current, exerciseId, exerciseObj, totalCalories);
   };
   return (
     <div className={styles.container}>
@@ -97,7 +115,7 @@ const ExerciseSearch = ({
         <h1 className={styles.select_title}>선택된 항목</h1>
         <div className={styles.select_box1}>
           <div className={styles.item}>
-            <span className={styles.exercise_name}>
+            <span ref={nameRef} className={styles.exercise_name}>
               {selectedExercise.name ? selectedExercise.name : ""}
             </span>
           </div>
@@ -105,10 +123,8 @@ const ExerciseSearch = ({
             <form className={styles.subform}>
               <button
                 onClick={onIncrease}
-                id="time"
                 type="button"
                 className={styles.updown_button}
-                i
               >
                 <i
                   className={`fas fa-chevron-up ${styles.icon_up} ${styles.icon}`}
@@ -128,7 +144,6 @@ const ExerciseSearch = ({
               </div>
               <button
                 onClick={onDecrease}
-                id="time"
                 type="button"
                 className={styles.updown_button}
               >
@@ -149,7 +164,9 @@ const ExerciseSearch = ({
             </form>
           </div>
         </div>
-        <button className={styles.addButton}>추가하기</button>
+        <button onClick={onAddExercise} className={styles.addButton}>
+          추가하기
+        </button>
       </div>
     </div>
   );

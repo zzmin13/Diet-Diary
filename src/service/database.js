@@ -17,18 +17,28 @@ class Database {
         [currentDate]: {
           diary: "",
           diet: {
-            breakfast: "",
-            lunch: "",
-            dinner: "",
-            dessert: "",
-            totalCalories: "",
+            breakfast: {
+              totalCalories: 0,
+            },
+            lunch: {
+              totalCalories: 0,
+            },
+            dinner: {
+              totalCalories: 0,
+            },
+            dessert: {
+              totalCalories: 0,
+            },
+            totalCalories: 0,
           },
-          exercise: "",
+          exercise: {
+            totalCalories: 0,
+          },
           water: {
-            breakfast: "",
-            lunch: "",
-            dinner: "",
-            totalWater: "",
+            breakfast: 0,
+            lunch: 0,
+            dinner: 0,
+            totalWater: 0,
           },
         },
       },
@@ -108,7 +118,9 @@ class Database {
         },
         totalCalories: 0,
       },
-      exercise: "",
+      exercise: {
+        totalCalories: 0,
+      },
       water: {
         breakfast: 0,
         lunch: 0,
@@ -227,6 +239,16 @@ class Database {
           return false;
         }
       });
+  }
+
+  //운동 추가하기
+  addExercise(uid, current, exerciseId, exerciseObj, totalCalories) {
+    const updates = {};
+    updates[`users/${uid}/userDiary/${current}/exercise/${exerciseId}`] =
+      exerciseObj;
+    updates[`users/${uid}/userDiary/${current}/exercise/totalCalories`] =
+      Number(totalCalories) + Number(exerciseObj.kcal);
+    return firebaseDatabase.ref().update(updates);
   }
 }
 export default Database;

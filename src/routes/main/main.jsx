@@ -407,7 +407,7 @@ const Main = ({
             <div className={styles.text_text2}>
               <span>
                 {user.userDiary[current].exercise
-                  ? user.userDiary[current].exercise
+                  ? user.userDiary[current].exercise.totalCalories
                   : 0}{" "}
               </span>
               <span> Kcal</span>

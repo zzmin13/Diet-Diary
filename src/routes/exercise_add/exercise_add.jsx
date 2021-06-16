@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import styles from "./exercise_add.module.css";
 import ExerciseSearch from "../../components/exercise_search/exercise_search";
+import ExerciseDirectly from "../../components/exercise_directly/exercise_directly";
+
 import Loading from "../../components/loading/loading";
 const ExerciseAdd = ({ database, uid, user, addExercise }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -53,6 +55,13 @@ const ExerciseAdd = ({ database, uid, user, addExercise }) => {
                 addExercise={addExercise}
               />
               <hr className={styles.line} />
+              <ExerciseDirectly
+                database={database}
+                uid={uid}
+                current={current}
+                user={user}
+                addExercise={addExercise}
+              />
             </div>
           </div>
         </>

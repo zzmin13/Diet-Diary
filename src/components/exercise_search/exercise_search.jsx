@@ -64,19 +64,19 @@ const ExerciseSearch = ({
     alert("운동이 추가되었습니다!");
     history.push("/exercise");
   };
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>운동 검색하기</h1>
-      <form className={styles.form}>
+      <form onSubmit={onSubmit} className={styles.form}>
         <input
           type="search"
           className={styles.input_search}
           onChange={onChangeInput}
           value={searchTerm}
         />
-        <button className={styles.search_button}>
-          <i className={`fas fa-search ${styles.search_icon}`}></i>
-        </button>
       </form>
       <div className={styles.result}>
         <div className={styles.result_item}>

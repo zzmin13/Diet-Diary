@@ -87,7 +87,7 @@ const DietDirectly = ({ database, uid, user }) => {
             <input
               ref={foodSizeRef}
               className={styles.item_input}
-              type="text"
+              type="number"
               id="size"
               required={true}
             />
@@ -104,7 +104,7 @@ const DietDirectly = ({ database, uid, user }) => {
             <input
               ref={foodKcalRef}
               className={styles.item_input}
-              type="text"
+              type="number"
               id="kcal"
               required={true}
             />

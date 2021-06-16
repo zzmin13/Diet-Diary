@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import styles from "./exercise_add.module.css";
 import ExerciseSearch from "../../components/exercise_search/exercise_search";
+import Loading from "../../components/loading/loading";
 const ExerciseAdd = ({ database }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [exercise, setExercise] = useState({});
@@ -25,7 +26,7 @@ const ExerciseAdd = ({ database }) => {
   return (
     <>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : (
         <>
           <div className={styles.container}>

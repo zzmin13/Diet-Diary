@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./exercise_search.module.css";
 import ExerciseItem from "../exercise_item/exercise_item";
 import { useRef } from "react";
+import { useState } from "react";
 
 const ExerciseSearch = ({
   database,
@@ -9,6 +10,7 @@ const ExerciseSearch = ({
   selectedExercise,
   onSelectExercise,
 }) => {
+  const [searchTerm, setsearchTerm] = useState("");
   const timeRef = useRef();
   const kcalRef = useRef();
   const handleSelectExercise = (name) => {
@@ -37,29 +39,58 @@ const ExerciseSearch = ({
       Number(timeRef.current.value)
     ).toFixed(1);
   };
+  const onChangeInput = (event) => {
+    setsearchTerm(event.currentTarget.value);
+  };
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>운동 검색하기</h1>
       <form className={styles.form}>
-        <input type="search" className={styles.input_search} />
+        <input
+          type="search"
+          className={styles.input_search}
+          onChange={onChangeInput}
+          value={searchTerm}
+        />
         <button className={styles.search_button}>
           <i className={`fas fa-search ${styles.search_icon}`}></i>
         </button>
       </form>
       <div className={styles.result}>
         <div className={styles.result_item}>
-          {Object.keys(exercise).map((key, index) => {
-            return (
-              <ExerciseItem
-                key={index}
-                database={database}
-                id={index}
-                name={key}
-                kcal={exercise[key]}
-                handleSelectExercise={handleSelectExercise}
-              />
-            );
-          })}
+          {searchTerm ? (
+            <>
+              {Object.keys(exercise)
+                .filter((name) => name.indexOf(searchTerm) !== -1)
+                .map((key, index) => {
+                  return (
+                    <ExerciseItem
+                      key={index}
+                      database={database}
+                      id={index}
+                      name={key}
+                      kcal={exercise[key]}
+                      handleSelectExercise={handleSelectExercise}
+                    />
+                  );
+                })}
+            </>
+          ) : (
+            <>
+              {Object.keys(exercise).map((key, index) => {
+                return (
+                  <ExerciseItem
+                    key={index}
+                    database={database}
+                    id={index}
+                    name={key}
+                    kcal={exercise[key]}
+                    handleSelectExercise={handleSelectExercise}
+                  />
+                );
+              })}
+            </>
+          )}
         </div>
       </div>
       <div className={styles.select}>
@@ -110,7 +141,9 @@ const ExerciseSearch = ({
           <div className={styles.item}>
             <form className={styles.subform}>
               <div className={styles.kcal_box}>
-                <span ref={kcalRef}>{selectedExercise.kcal}</span>
+                <span ref={kcalRef} className={styles.kcal}>
+                  {selectedExercise.kcal}
+                </span>
                 <span className={styles.kcal_text}>kcal</span>
               </div>
             </form>

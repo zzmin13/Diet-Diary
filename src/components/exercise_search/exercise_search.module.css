@@ -148,7 +148,11 @@
   margin-left: 5px;
   font-size: 1.1rem;
 }
-
+.kcal {
+  font-weight: 700;
+  color: colorPink;
+  font-size: 1.1rem;
+}
 .addButton {
   width: 250px;
   font-weight: 600;

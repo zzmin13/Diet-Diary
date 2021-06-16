@@ -91,6 +91,23 @@ export const deleteExercise = (
   totalCalories,
 });
 
+export const editExercise = (
+  current,
+  exerciseId,
+  exerciseObj,
+  beforeExerciseKcal,
+  afterExerciseKcal,
+  todayTotalCalories
+) => ({
+  type: "EDIT_EXERCISE",
+  current,
+  exerciseId,
+  exerciseObj,
+  beforeExerciseKcal,
+  afterExerciseKcal,
+  todayTotalCalories,
+});
+
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
@@ -252,6 +269,31 @@ const userReducer = (state = initialState, action) => {
                 ...changedExercise,
                 totalCalories:
                   Number(action.totalCalories) - Number(action.exerciseKcal),
+              },
+            },
+          },
+        },
+      };
+    case "EDIT_EXERCISE":
+      const updatedExercise = {
+        ...state.user.userDiary[action.current].exercise,
+      };
+      delete updatedExercise[action.exerciseId];
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userDiary: {
+            ...state.user.userDiary,
+            [action.current]: {
+              ...state.user.userDiary[action.current],
+              exercise: {
+                ...updatedExercise,
+                [action.exerciseId]: action.exerciseObj,
+                totalCalories:
+                  action.todayTotalCalories -
+                  Number(action.beforeExerciseKcal) +
+                  Number(action.afterExerciseKcal),
               },
             },
           },

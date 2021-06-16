@@ -10,7 +10,7 @@ const ExerciseEdit = (props) => {
     location: { state },
     uid,
     user,
-    // editExercise,
+    editExercise,
   } = props;
 
   const currentYear = `${new Date().getFullYear()}`;
@@ -60,7 +60,16 @@ const ExerciseEdit = (props) => {
       afterExerciseKcal,
       todayTotalCalories
     );
+    editExercise(
+      current,
+      state.exerciseId,
+      exerciseObj,
+      beforeExerciseKcal,
+      afterExerciseKcal,
+      todayTotalCalories
+    );
     alert("운동이 수정되었습니다.");
+    history.push("/exercise");
   };
   return (
     <>

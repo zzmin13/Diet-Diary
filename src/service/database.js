@@ -210,6 +210,7 @@ class Database {
       todayTotalCalories - beforeDiet.kcal + afterDiet.kcal;
     return firebaseDatabase.ref().update(updates);
   }
+
   // 물 추가하기
   addWater(uid, currentDate, time, timeAmount, totalAmount) {
     const updates = {};

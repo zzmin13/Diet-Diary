@@ -57,3 +57,11 @@
   border: 0.3px solid #f5f5f5;
   background-color: #f5f5f5;
 }
+.loading_container {
+  background-color: #ffebee;
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

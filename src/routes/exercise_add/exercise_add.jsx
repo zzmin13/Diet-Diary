@@ -39,7 +39,9 @@ const ExerciseAdd = ({ database, uid, user, addExercise }) => {
   return (
     <>
       {isLoading ? (
-        <Loading />
+        <div className={styles.loading_container}>
+          <Loading />
+        </div>
       ) : (
         <>
           <div className={styles.container}>

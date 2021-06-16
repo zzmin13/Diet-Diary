@@ -26,18 +26,22 @@ const ExerciseSearch = ({
   };
   const onIncrease = () => {
     timeRef.current.value = Number(timeRef.current.value) + 1;
-    kcalRef.current.innerText = (
-      (selectedExercise.kcal / 10) *
-      Number(timeRef.current.value)
-    ).toFixed(1);
-  };
-  const onDecrease = () => {
-    if (timeRef.current.value > 1) {
-      timeRef.current.value = Number(timeRef.current.value) - 1;
+    if (nameRef.current.value) {
       kcalRef.current.innerText = (
         (selectedExercise.kcal / 10) *
         Number(timeRef.current.value)
       ).toFixed(1);
+    }
+  };
+  const onDecrease = () => {
+    if (timeRef.current.value > 1) {
+      timeRef.current.value = Number(timeRef.current.value) - 1;
+      if (nameRef.current.value) {
+        kcalRef.current.innerText = (
+          (selectedExercise.kcal / 10) *
+          Number(timeRef.current.value)
+        ).toFixed(1);
+      }
     }
   };
   const onChangeNumber = () => {

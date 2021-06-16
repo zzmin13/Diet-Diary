@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./exercise.module.css";
 import ExerciseItem from "../../components/exercise_item/exercise_item";
-const Exercise = ({ database, history, uid, user }) => {
+const Exercise = ({ database, history, uid, user, deleteExercise }) => {
   const currentYear = `${new Date().getFullYear()}`;
   const currentMonth =
     new Date().getMonth() + 1 < 10
@@ -48,9 +48,14 @@ const Exercise = ({ database, history, uid, user }) => {
                           <ExerciseItem
                             database={database}
                             key={element}
+                            exerciseId={element}
+                            totalCalories={
+                              user.userDiary[current].exercise.totalCalories
+                            }
                             exercise={user.userDiary[current].exercise[element]}
                             uid={uid}
                             current={current}
+                            deleteExercise={deleteExercise}
                           />
                         );
                       }

@@ -3,9 +3,26 @@ import styles from "./exercise_item.module.css";
 const ExerciseItem = ({
   database,
   exercise: { name, kcal, time },
+  exerciseId,
+  totalCalories,
+  deleteExercise,
   uid,
   current,
 }) => {
+  const handleExerciseDelete = () => {
+    const answer = window.confirm("삭제하시겠습니까?");
+    if (answer) {
+      database.deleteExercise(
+        uid,
+        current,
+        exerciseId,
+        Number(kcal),
+        Number(totalCalories)
+      );
+      deleteExercise(current, exerciseId, Number(kcal), Number(totalCalories));
+      alert("삭제되었습니다.");
+    }
+  };
   return (
     <>
       {database ? (
@@ -17,7 +34,12 @@ const ExerciseItem = ({
             <button className={styles.edit_button}>
               <i className={`fas fa-pen ${styles.edit_icon}`}></i>
             </button>
-            <button className={styles.delete_button}>×</button>
+            <button
+              onClick={handleExerciseDelete}
+              className={styles.delete_button}
+            >
+              ×
+            </button>
           </div>
         </div>
       ) : (

@@ -34,8 +34,8 @@ const DietItem = (props) => {
         timeTotalCalories,
         todayTotalCalories
       );
+      alert("삭제되었습니다.");
     }
-    alert("삭제되었습니다.");
   };
   const goDietEditPage = () => {
     history.push({

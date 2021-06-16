@@ -3,13 +3,16 @@ export const loginUser = (currentUser) => ({
   type: "LOGIN_USER",
   currentUser,
 });
+
 export const logoutUser = () => ({
   type: "LOGOUT_USER",
 });
+
 export const loadUserInformation = (response) => ({
   type: "LOAD_USER_INFORMATION",
   response,
 });
+
 export const deleteDiet = (
   current,
   time,
@@ -26,6 +29,7 @@ export const deleteDiet = (
   timeTotalCalories,
   todayTotalCalories,
 });
+
 export const editDiet = (
   current,
   prevTime,
@@ -54,11 +58,13 @@ export const addWater = (current, time, timeAmount, totalAmount) => ({
   timeAmount,
   totalAmount,
 });
+
 export const editWater = (current, waterObj) => ({
   type: "EDIT_WATER",
   current,
   waterObj,
 });
+
 export const addExercise = (
   current,
   exerciseId,
@@ -71,6 +77,20 @@ export const addExercise = (
   exerciseObj,
   totalCalories,
 });
+
+export const deleteExercise = (
+  current,
+  exerciseId,
+  exerciseKcal,
+  totalCalories
+) => ({
+  type: "DELETE_EXERCISE",
+  current,
+  exerciseId,
+  exerciseKcal,
+  totalCalories,
+});
+
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
@@ -210,6 +230,28 @@ const userReducer = (state = initialState, action) => {
                 totalCalories:
                   Number(action.totalCalories) +
                   Number(action.exerciseObj.kcal),
+              },
+            },
+          },
+        },
+      };
+    case "DELETE_EXERCISE":
+      const changedExercise = {
+        ...state.user.userDiary[action.current].exercise,
+      };
+      delete changedExercise[action.exerciseId];
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userDiary: {
+            ...state.user.userDiary,
+            [action.current]: {
+              ...state.user.userDiary[action.current],
+              exercise: {
+                ...changedExercise,
+                totalCalories:
+                  Number(action.totalCalories) - Number(action.exerciseKcal),
               },
             },
           },

@@ -250,5 +250,14 @@ class Database {
       Number(totalCalories) + Number(exerciseObj.kcal);
     return firebaseDatabase.ref().update(updates);
   }
+
+  // 운동 삭제하기
+  deleteExercise(uid, current, exerciseId, exerciseKcal, totalCalories) {
+    const updates = {};
+    updates[`users/${uid}/userDiary/${current}/exercise/${exerciseId}`] = null;
+    updates[`users/${uid}/userDiary/${current}/exercise/totalCalories`] =
+      Number(totalCalories) - Number(exerciseKcal);
+    return firebaseDatabase.ref().update(updates);
+  }
 }
 export default Database;

@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./exercise_item.module.css";
 
-const ExerciseItem = ({ onSelectExercise, id, name, kcal }) => {
+const ExerciseItem = ({ handleSelectExercise, id, name, kcal }) => {
   const onSelect = (event) => {
     const name = event.currentTarget.value;
-    onSelectExercise(name);
+    handleSelectExercise(name);
   };
   return (
     <div className={styles.container}>

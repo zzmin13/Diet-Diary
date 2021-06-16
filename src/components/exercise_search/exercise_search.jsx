@@ -9,7 +9,34 @@ const ExerciseSearch = ({
   selectedExercise,
   onSelectExercise,
 }) => {
-  const exerciseNameRef = useRef();
+  const timeRef = useRef();
+  const kcalRef = useRef();
+  const handleSelectExercise = (name) => {
+    onSelectExercise(name);
+    timeRef.current.value = 10;
+  };
+  const onIncrease = (event) => {
+    timeRef.current.value = Number(timeRef.current.value) + 1;
+    kcalRef.current.innerText = (
+      (selectedExercise.kcal / 10) *
+      Number(timeRef.current.value)
+    ).toFixed(1);
+  };
+  const onDecrease = () => {
+    if (timeRef.current.value > 1) {
+      timeRef.current.value = Number(timeRef.current.value) - 1;
+      kcalRef.current.innerText = (
+        (selectedExercise.kcal / 10) *
+        Number(timeRef.current.value)
+      ).toFixed(1);
+    }
+  };
+  const onChangeNumber = () => {
+    kcalRef.current.innerText = kcalRef.current.innerText = (
+      (selectedExercise.kcal / 10) *
+      Number(timeRef.current.value)
+    ).toFixed(1);
+  };
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>운동 검색하기</h1>
@@ -29,7 +56,7 @@ const ExerciseSearch = ({
                 id={index}
                 name={key}
                 kcal={exercise[key]}
-                onSelectExercise={onSelectExercise}
+                handleSelectExercise={handleSelectExercise}
               />
             );
           })}
@@ -45,22 +72,35 @@ const ExerciseSearch = ({
           </div>
           <div className={styles.item}>
             <form className={styles.subform}>
-              <button type="button" className={styles.updown_button} id="time">
+              <button
+                onClick={onIncrease}
+                id="time"
+                type="button"
+                className={styles.updown_button}
+                i
+              >
                 <i
                   className={`fas fa-chevron-up ${styles.icon_up} ${styles.icon}`}
                 ></i>
               </button>
               <div className={styles.time_box}>
                 <input
+                  ref={timeRef}
                   id="time"
                   className={styles.input_number}
                   type="number"
                   defaultValue={10}
                   step={1.0}
+                  onChange={onChangeNumber}
                 />
                 <span className={styles.time_text}>분</span>
               </div>
-              <button type="button" className={styles.updown_button} id="time">
+              <button
+                onClick={onDecrease}
+                id="time"
+                type="button"
+                className={styles.updown_button}
+              >
                 <i
                   className={`fas fa-chevron-down ${styles.icon_down} ${styles.icon}`}
                 ></i>
@@ -69,26 +109,10 @@ const ExerciseSearch = ({
           </div>
           <div className={styles.item}>
             <form className={styles.subform}>
-              <button type="button" className={styles.updown_button} id="kcal">
-                <i
-                  className={`fas fa-chevron-up ${styles.icon_up} ${styles.icon}`}
-                ></i>
-              </button>
               <div className={styles.kcal_box}>
-                <input
-                  id="kcal"
-                  className={styles.input_number}
-                  type="number"
-                  defaultValue={selectedExercise.kcal}
-                  step={1.0}
-                />
+                <span ref={kcalRef}>{selectedExercise.kcal}</span>
                 <span className={styles.kcal_text}>kcal</span>
               </div>
-              <button type="button" className={styles.updown_button} id="kcal">
-                <i
-                  className={`fas fa-chevron-down ${styles.icon_down} ${styles.icon}`}
-                ></i>
-              </button>
             </form>
           </div>
         </div>

@@ -10,6 +10,7 @@ import DietAddContainer from "./containers/diet_add_container";
 import DietEditContainer from "./containers/diet_edit_container";
 import ExerciseContainer from "./containers/exercise_container";
 import ExerciseAddContainer from "./containers/exercise_add_container";
+import ExerciseEditContainer from "./containers/exercise_edit_container";
 import WaterContainer from "./containers/water_container";
 import WaterAddContainer from "./containers/water_add_container";
 import WaterEditContainer from "./containers/water_edit_container";
@@ -200,6 +201,21 @@ function App({
               return (
                 <>
                   <ExerciseAddContainer
+                    authService={authService}
+                    database={database}
+                    {...props}
+                  />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/exercise/edit/:id"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <ExerciseEditContainer
                     authService={authService}
                     database={database}
                     {...props}

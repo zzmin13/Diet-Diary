@@ -117,7 +117,7 @@ const DietEdit = (props) => {
                           .totalSize
                       }
                       className={styles.item_input}
-                      type="text"
+                      type="number"
                       id="size"
                       required={true}
                     />
@@ -138,7 +138,7 @@ const DietEdit = (props) => {
                           .kcal
                       }
                       className={styles.item_input}
-                      type="text"
+                      type="number"
                       id="kcal"
                       required={true}
                     />

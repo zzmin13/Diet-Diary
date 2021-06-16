@@ -16,6 +16,7 @@ const WaterEdit = (props) => {
       ? `0${new Date().getDate()}`
       : `${new Date().getDate()}`;
   const current = currentYear + currentMonth + currentDate;
+
   const onEditWater = (event) => {
     event.preventDefault();
     const breakfastWater = Number(breakfastRef.current.value);
@@ -58,7 +59,7 @@ const WaterEdit = (props) => {
                           : 0
                       }
                       className={styles.item_input}
-                      type="text"
+                      type="number"
                       id="breakfast_water"
                       required={true}
                     />
@@ -83,7 +84,7 @@ const WaterEdit = (props) => {
                           : 0
                       }
                       className={styles.item_input}
-                      type="text"
+                      type="number"
                       id="lunch_water"
                       required={true}
                     />
@@ -105,7 +106,7 @@ const WaterEdit = (props) => {
                           : 0
                       }
                       className={styles.item_input}
-                      type="text"
+                      type="number"
                       id="dinner_water"
                       required={true}
                     />

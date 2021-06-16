@@ -259,5 +259,25 @@ class Database {
       Number(totalCalories) - Number(exerciseKcal);
     return firebaseDatabase.ref().update(updates);
   }
+
+  // 운동 수정하기
+  editExercise(
+    uid,
+    current,
+    exerciseId,
+    exerciseObj,
+    beforeExerciseKcal,
+    afterExerciseKcal,
+    todayTotalCalories
+  ) {
+    const updates = {};
+    updates[`users/${uid}/userDiary/${current}/exercise/${exerciseId}`] =
+      exerciseObj;
+    updates[`users/${uid}/userDiary/${current}/exercise/totalCalories`] =
+      todayTotalCalories -
+      Number(beforeExerciseKcal) +
+      Number(afterExerciseKcal);
+    return firebaseDatabase.ref().update(updates);
+  }
 }
 export default Database;

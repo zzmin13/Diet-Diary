@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styles from "./exercise_item.module.css";
 const ExerciseItem = ({
   database,
@@ -9,6 +10,7 @@ const ExerciseItem = ({
   uid,
   current,
 }) => {
+  const history = useHistory();
   const handleExerciseDelete = () => {
     const answer = window.confirm("삭제하시겠습니까?");
     if (answer) {
@@ -23,6 +25,15 @@ const ExerciseItem = ({
       alert("삭제되었습니다.");
     }
   };
+  const goExerciseEditPage = () => {
+    history.push({
+      pathname: `/exercise/edit/${exerciseId}`,
+      state: {
+        exerciseId,
+        current,
+      },
+    });
+  };
   return (
     <>
       {database ? (
@@ -31,7 +42,7 @@ const ExerciseItem = ({
             <span>{`${name} (${time}분, ${kcal}kcal)`}</span>
           </li>
           <div className={styles.buttons}>
-            <button className={styles.edit_button}>
+            <button onClick={goExerciseEditPage} className={styles.edit_button}>
               <i className={`fas fa-pen ${styles.edit_icon}`}></i>
             </button>
             <button

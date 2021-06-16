@@ -214,5 +214,19 @@ class Database {
     updates[`users/${uid}/userDiary/${currentDate}/water`] = waterObj;
     return firebaseDatabase.ref().update(updates);
   }
+
+  //운동 샘플 목록 가져오기
+  getExerciseSampleList() {
+    return firebaseDatabase
+      .ref(`exercises`)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          return snapshot.val();
+        } else {
+          return false;
+        }
+      });
+  }
 }
 export default Database;

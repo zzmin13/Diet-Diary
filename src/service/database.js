@@ -95,25 +95,25 @@ class Database {
       diary: "",
       diet: {
         breakfast: {
-          totalCalories: "",
+          totalCalories: 0,
         },
         lunch: {
-          totalCalories: "",
+          totalCalories: 0,
         },
         dinner: {
-          totalCalories: "",
+          totalCalories: 0,
         },
         dessert: {
-          totalCalories: "",
+          totalCalories: 0,
         },
-        totalCalories: "",
+        totalCalories: 0,
       },
       exercise: "",
       water: {
-        breakfast: "",
-        lunch: "",
-        dinner: "",
-        totalWater: "",
+        breakfast: 0,
+        lunch: 0,
+        dinner: 0,
+        totalWater: 0,
       },
     });
   }

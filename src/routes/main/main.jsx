@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DietItem from "../../components/diet_item/diet_item";
+import ExerciseItem from "../../components/exercise_item/exercise_item";
 import Loading from "../../components/loading/loading";
 import styles from "./main.module.css";
 const Main = ({
@@ -386,32 +387,46 @@ const Main = ({
               </div>
             </div>
           </div>
-          <div className={`${styles.text_row} ${styles.text_last}`}>
-            <div className={styles.text_text1}>
-              <i
-                className={`fas fa-dumbbell ${styles.icon} ${styles.icon_exercise}`}
-              ></i>
-              <span className={styles.bold}>오늘의 운동</span>
-              <button
-                onClick={GoEditPage}
-                style={{
-                  border: "none",
-                  backgroundColor: "transparent",
-                  padding: 0,
-                }}
-                id="exercise"
-              >
-                <i className={`fas fa-pen ${styles.icon_edit}`}></i>
-              </button>
+          <div className={`${styles.text_column} ${styles.text_last}`}>
+            <div className={styles.text_exercise_meta}>
+              <div className={styles.text_text1}>
+                <i
+                  className={`fas fa-dumbbell ${styles.icon} ${styles.icon_exercise}`}
+                ></i>
+                <span className={styles.bold}>오늘의 운동</span>
+                <button
+                  onClick={GoEditPage}
+                  style={{
+                    border: "none",
+                    backgroundColor: "transparent",
+                    padding: 0,
+                  }}
+                  id="exercise"
+                >
+                  <i className={`fas fa-pen ${styles.icon_edit}`}></i>
+                </button>
+              </div>
+              <div className={styles.text_text2}>
+                <span>
+                  {user.userDiary[current].exercise
+                    ? user.userDiary[current].exercise.totalCalories
+                    : 0}{" "}
+                </span>
+                <span> Kcal</span>
+              </div>
             </div>
-            <div className={styles.text_text2}>
-              <span>
-                {user.userDiary[current].exercise
-                  ? user.userDiary[current].exercise.totalCalories
-                  : 0}{" "}
-              </span>
-              <span> Kcal</span>
-            </div>
+            <ul className={styles.exercise_list}>
+              {Object.keys(user.userDiary[current].exercise).map((element) => {
+                if (element !== "totalCalories") {
+                  return (
+                    <ExerciseItem
+                      key={element}
+                      exercise={user.userDiary[current].exercise[element]}
+                    />
+                  );
+                }
+              })}
+            </ul>
           </div>
         </div>
       ) : (

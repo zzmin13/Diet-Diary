@@ -59,6 +59,18 @@ export const editWater = (current, waterObj) => ({
   current,
   waterObj,
 });
+export const addExercise = (
+  current,
+  exerciseId,
+  exerciseObj,
+  totalCalories
+) => ({
+  type: "ADD_EXERCISE",
+  current,
+  exerciseId,
+  exerciseObj,
+  totalCalories,
+});
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
@@ -179,6 +191,26 @@ const userReducer = (state = initialState, action) => {
             [action.current]: {
               ...state.user.userDiary[action.current],
               water: action.waterObj,
+            },
+          },
+        },
+      };
+    case "ADD_EXERCISE":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userDiary: {
+            ...state.user.userDiary,
+            [action.current]: {
+              ...state.user.userDiary[action.current],
+              exercise: {
+                ...state.user.userDiary[action.current].exercise,
+                [action.exerciseId]: action.exerciseObj,
+                totalCalories:
+                  Number(action.totalCalories) +
+                  Number(action.exerciseObj.kcal),
+              },
             },
           },
         },

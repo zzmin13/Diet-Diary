@@ -3,17 +3,20 @@ import styles from "./exercise_search.module.css";
 import ExerciseElement from "../exercise_element/execise_element";
 import { useRef } from "react";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const ExerciseSearch = ({
   database,
   exercise,
   uid,
   user,
+  addExercise,
   current,
   selectedExercise,
   onSelectExercise,
 }) => {
   const [searchTerm, setsearchTerm] = useState("");
+  const history = useHistory();
   const nameRef = useRef();
   const timeRef = useRef();
   const kcalRef = useRef();
@@ -21,7 +24,7 @@ const ExerciseSearch = ({
     onSelectExercise(name);
     timeRef.current.value = 10;
   };
-  const onIncrease = (event) => {
+  const onIncrease = () => {
     timeRef.current.value = Number(timeRef.current.value) + 1;
     kcalRef.current.innerText = (
       (selectedExercise.kcal / 10) *
@@ -56,9 +59,10 @@ const ExerciseSearch = ({
     const totalCalories = Number(
       user.userDiary[current].exercise.totalCalories
     );
-    console.log(`현재 총 칼로리 :${totalCalories}`);
-    console.log(`추가할 운동 칼로리 ${exerciseObj.kcal}`);
     database.addExercise(uid, current, exerciseId, exerciseObj, totalCalories);
+    addExercise(current, exerciseId, exerciseObj, totalCalories);
+    alert("운동이 추가되었습니다!");
+    history.push("/exercise");
   };
   return (
     <div className={styles.container}>

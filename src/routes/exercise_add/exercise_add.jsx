@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from "./exercise_add.module.css";
 import ExerciseSearch from "../../components/exercise_search/exercise_search";
 import Loading from "../../components/loading/loading";
-const ExerciseAdd = ({ database, uid, user }) => {
+const ExerciseAdd = ({ database, uid, user, addExercise }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [exercise, setExercise] = useState({});
   const [selectedExercise, setSelectedExercise] = useState({});
@@ -50,6 +50,7 @@ const ExerciseAdd = ({ database, uid, user }) => {
                 selectedExercise={selectedExercise}
                 onSelectExercise={onSelectExercise}
                 user={user}
+                addExercise={addExercise}
               />
               <hr className={styles.line} />
             </div>

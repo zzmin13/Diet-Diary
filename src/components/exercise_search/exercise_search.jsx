@@ -26,7 +26,7 @@ const ExerciseSearch = ({
   };
   const onIncrease = () => {
     timeRef.current.value = Number(timeRef.current.value) + 1;
-    if (nameRef.current.value) {
+    if (nameRef.current.innerText !== "") {
       kcalRef.current.innerText = (
         (selectedExercise.kcal / 10) *
         Number(timeRef.current.value)
@@ -36,7 +36,7 @@ const ExerciseSearch = ({
   const onDecrease = () => {
     if (timeRef.current.value > 1) {
       timeRef.current.value = Number(timeRef.current.value) - 1;
-      if (nameRef.current.value) {
+      if (nameRef.current.innerText !== "") {
         kcalRef.current.innerText = (
           (selectedExercise.kcal / 10) *
           Number(timeRef.current.value)

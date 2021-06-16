@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./exercise.module.css";
-const Exercise = ({ database, history, user }) => {
+import ExerciseItem from "../../components/exercise_item/exercise_item";
+const Exercise = ({ database, history, uid, user }) => {
   const currentYear = `${new Date().getFullYear()}`;
   const currentMonth =
     new Date().getMonth() + 1 < 10
@@ -38,7 +39,25 @@ const Exercise = ({ database, history, user }) => {
                   <span> Kcal</span>
                 </div>
               </div>
-              <div className={styles.text_column_child}></div>
+              <div className={styles.text_column_child}>
+                <ul>
+                  {Object.keys(user.userDiary[current].exercise).map(
+                    (element) => {
+                      if (element !== "totalCalories") {
+                        return (
+                          <ExerciseItem
+                            database={database}
+                            key={element}
+                            exercise={user.userDiary[current].exercise[element]}
+                            uid={uid}
+                            current={current}
+                          />
+                        );
+                      }
+                    }
+                  )}
+                </ul>
+              </div>
             </div>
             <button onClick={goExerciseAddPage} className={styles.button}>
               운동 추가하기

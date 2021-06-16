@@ -1,25 +1,22 @@
 import React from "react";
 import styles from "./exercise_item.module.css";
-
-const ExerciseItem = ({ handleSelectExercise, id, name, kcal }) => {
-  const onSelect = (event) => {
-    const name = event.currentTarget.value;
-    handleSelectExercise(name);
-  };
+const ExerciseItem = ({
+  database,
+  exercise: { name, kcal, time },
+  uid,
+  current,
+}) => {
   return (
     <div className={styles.container}>
-      <input
-        type="radio"
-        name="result"
-        id={name}
-        value={name}
-        style={{ display: "none" }}
-        className={styles.radio}
-        onClick={onSelect}
-      />
-      <label htmlFor={name} className={styles.label}>
-        {name}
-      </label>
+      <li className={styles.exercise}>
+        <span>{`${name} (${time}분, ${kcal}kcal)`}</span>
+      </li>
+      <div className={styles.buttons}>
+        <button className={styles.edit_button}>
+          <i className={`fas fa-pen ${styles.edit_icon}`}></i>
+        </button>
+        <button className={styles.delete_button}>×</button>
+      </div>
     </div>
   );
 };

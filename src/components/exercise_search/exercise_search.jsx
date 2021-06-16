@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./exercise_search.module.css";
-import ExerciseItem from "../exercise_item/exercise_item";
+import ExerciseElement from "../exercise_element/execise_element";
 import { useRef } from "react";
 import { useState } from "react";
 
@@ -82,7 +82,7 @@ const ExerciseSearch = ({
                 .filter((name) => name.indexOf(searchTerm) !== -1)
                 .map((key, index) => {
                   return (
-                    <ExerciseItem
+                    <ExerciseElement
                       key={index}
                       database={database}
                       id={index}
@@ -97,7 +97,7 @@ const ExerciseSearch = ({
             <>
               {Object.keys(exercise).map((key, index) => {
                 return (
-                  <ExerciseItem
+                  <ExerciseElement
                     key={index}
                     database={database}
                     id={index}

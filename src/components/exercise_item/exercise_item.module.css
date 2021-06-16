@@ -1,16 +1,56 @@
+@value colorMint from '../../common/color.css';
+@value colorPurple from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+@value colorBorderGrey from "../../common/color.css";
+
 .container {
   display: flex;
+  align-items: center;
+  margin: 3px 0px;
 }
-.radio:checked + .label {
-  background-color: #ffcdd2;
+.exercise {
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid colorBorderGrey;
+  width: fit-content;
 }
-.label {
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 18px;
+}
+.delete_button {
+  margin-left: 5px;
+  border-radius: 50px;
+  background-color: colorPink;
+  padding: 1px 5px;
+  height: fit-content;
+  border: none;
+  color: white;
+  opacity: 0.5;
   cursor: pointer;
-  font-weight: 600;
-  margin: 5px;
-  padding: 10px 10px;
-  border-radius: 5px;
 }
-.label:hover {
-  background-color: #eceeef;
+.delete_button:hover {
+  opacity: 1;
+}
+.edit_button {
+  margin-left: 5px;
+  border-radius: 50px;
+  background-color: white;
+  padding: 4px 4px;
+  height: fit-content;
+  border: none;
+  color: grey;
+  opacity: 0.5;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit_button:hover {
+  opacity: 1;
+}
+.edit_icon {
+  font-size: 0.7rem;
 }

@@ -48,32 +48,44 @@
   height: 35px;
   border-radius: 50px;
 }
+.profile {
+  width: 100%;
+  display: flex;
+  padding: 20px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  background-color: colorPink;
+}
 .userBox {
   position: absolute;
   background-color: white;
-  padding: 10px 20px;
   top: 50px;
   right: 50px;
-  border: 1px solid colorBorderGrey;
-  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 7px;
   display: flex;
   flex-direction: column;
 }
+.email {
+  margin: 10px 20px;
+  color: white;
+}
 .userBox_item {
-  padding: 10px;
-  margin: 5px;
-  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 .userBox_item_text {
-  font-weight: 600;
+  font-weight: 500;
 }
 .icon_logout,
 .icon_mypage {
   color: grey;
-  margin-right: 5px;
+  margin-right: 20px;
+  font-size: 1.1rem;
 }
 .userBox_item:hover {
   background-color: #eceeef;

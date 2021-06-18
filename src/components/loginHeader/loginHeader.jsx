@@ -40,16 +40,32 @@ const LoginHeader = memo((props) => {
             />
           </li>
         </ul>
-        <ul className={`${styles.userBox} ${display}`}>
-          <li onClick={handleLogout} className={styles.userBox_item}>
-            <i className={`fas fa-sign-out-alt ${styles.icon_logout}`}></i>
-            <span className={styles.userBox_item_text}>Logout</span>
-          </li>
-          <li className={styles.userBox_item}>
-            <i className={`fas fa-user ${styles.icon_mypage}`}></i>
-            <span className={styles.userBox_item_text}>My Page</span>
-          </li>
-        </ul>
+        {user.information ? (
+          <div className={`${styles.userBox} ${display}`}>
+            <div className={styles.profile}>
+              <img
+                className={`${styles.avatar} ${styles.avatar_userBox}`}
+                src={
+                  user.information.basic.avatar
+                    ? user.information.basic.avatar
+                    : `https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg`
+                }
+                alt="avatar"
+              />
+              <h1 className={styles.email}>{user.information.basic.email}</h1>
+            </div>
+            <ul>
+              <li onClick={handleLogout} className={styles.userBox_item}>
+                <i className={`fas fa-sign-out-alt ${styles.icon_logout}`}></i>
+                <span className={styles.userBox_item_text}>로그아웃</span>
+              </li>
+              <li className={styles.userBox_item}>
+                <i className={`fas fa-user ${styles.icon_mypage}`}></i>
+                <span className={styles.userBox_item_text}>마이 페이지</span>
+              </li>
+            </ul>
+          </div>
+        ) : null}
       </header>
     </>
   );

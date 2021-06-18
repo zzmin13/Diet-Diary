@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import Calendar from "../routes/calendar/calendar";
 
-const CalendarContainer = (props) => {};
+const CalendarContainer = (props) => {
+  return <Calendar {...props} />;
+};
 const mapStateToProps = (state) => ({
   isUser: state.userReducer.isUser,
   uid: state.userReducer.uid,

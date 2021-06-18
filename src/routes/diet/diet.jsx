@@ -2,18 +2,15 @@ import React, { useEffect } from "react";
 import styles from "./diet.module.css";
 import DietItem from "../../components/diet_item/diet_item";
 const Diet = (props) => {
-  const { history, authService, database, user, uid, deleteDiet } = props;
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
-
+  const {
+    history,
+    authService,
+    database,
+    user,
+    uid,
+    dateObject: { date },
+    deleteDiet,
+  } = props;
   const goDietAddPage = () => {
     history.push("/diet/add");
   };
@@ -31,7 +28,9 @@ const Diet = (props) => {
           <div className={styles.main}>
             <div className={styles.title}>
               <i className={`fas fa-utensils ${styles.icon}`}></i>
-              <span>오늘의 식사</span>
+              <span>
+                {date.substring(4, 6)}월 {date.substring(6, 8)}일의 식사
+              </span>
             </div>
             <div className={`${styles.text} ${styles.text_column}`}>
               <div className={styles.text_column_title}>
@@ -40,8 +39,8 @@ const Diet = (props) => {
                 </div>
                 <div className={styles.text_text2}>
                   <span>
-                    {user.userDiary[current].diet.totalCalories
-                      ? user.userDiary[current].diet.totalCalories
+                    {user.userDiary[date].diet.totalCalories
+                      ? user.userDiary[date].diet.totalCalories
                       : 0}{" "}
                   </span>
                   <span> Kcal</span>
@@ -54,48 +53,47 @@ const Diet = (props) => {
                       <h1 className={styles.text_diet_title}>아침</h1>
                       <div className={styles.text_text2}>
                         <span>
-                          {user.userDiary[current].diet.breakfast.totalCalories
-                            ? user.userDiary[current].diet.breakfast
-                                .totalCalories
+                          {user.userDiary[date].diet.breakfast.totalCalories
+                            ? user.userDiary[date].diet.breakfast.totalCalories
                             : 0}
                         </span>
                         <span>Kcal</span>
                       </div>
                     </div>
                     <ul className={styles.text_diet_list}>
-                      {user.userDiary[current].diet.breakfast
-                        ? Object.keys(
-                            user.userDiary[current].diet.breakfast
-                          ).map((element) => {
-                            if (element !== "totalCalories") {
-                              return (
-                                <DietItem
-                                  key={
-                                    user.userDiary[current].diet.breakfast[
-                                      element
-                                    ].id
-                                  }
-                                  diet={
-                                    user.userDiary[current].diet.breakfast[
-                                      element
-                                    ]
-                                  }
-                                  current={current}
-                                  uid={uid}
-                                  time={"breakfast"}
-                                  timeTotalCalories={Number(
-                                    user.userDiary[current].diet.breakfast
-                                      .totalCalories
-                                  )}
-                                  todayTotalCalories={Number(
-                                    user.userDiary[current].diet.totalCalories
-                                  )}
-                                  database={database}
-                                  deleteDiet={deleteDiet}
-                                />
-                              );
+                      {user.userDiary[date].diet.breakfast
+                        ? Object.keys(user.userDiary[date].diet.breakfast).map(
+                            (element) => {
+                              if (element !== "totalCalories") {
+                                return (
+                                  <DietItem
+                                    key={
+                                      user.userDiary[date].diet.breakfast[
+                                        element
+                                      ].id
+                                    }
+                                    diet={
+                                      user.userDiary[date].diet.breakfast[
+                                        element
+                                      ]
+                                    }
+                                    current={date}
+                                    uid={uid}
+                                    time={"breakfast"}
+                                    timeTotalCalories={Number(
+                                      user.userDiary[date].diet.breakfast
+                                        .totalCalories
+                                    )}
+                                    todayTotalCalories={Number(
+                                      user.userDiary[date].diet.totalCalories
+                                    )}
+                                    database={database}
+                                    deleteDiet={deleteDiet}
+                                  />
+                                );
+                              }
                             }
-                          })
+                          )
                         : null}
                     </ul>
                   </div>
@@ -106,37 +104,34 @@ const Diet = (props) => {
                       <h1 className={styles.text_diet_title}>점심</h1>
                       <div className={styles.text_text2}>
                         <span>
-                          {user.userDiary[current].diet.lunch.totalCalories
-                            ? user.userDiary[current].diet.lunch.totalCalories
+                          {user.userDiary[date].diet.lunch.totalCalories
+                            ? user.userDiary[date].diet.lunch.totalCalories
                             : 0}
                         </span>
                         <span>Kcal</span>
                       </div>
                     </div>
                     <ul className={styles.text_diet_list}>
-                      {user.userDiary[current].diet.lunch
-                        ? Object.keys(user.userDiary[current].diet.lunch).map(
+                      {user.userDiary[date].diet.lunch
+                        ? Object.keys(user.userDiary[date].diet.lunch).map(
                             (element) => {
                               if (element !== "totalCalories") {
                                 return (
                                   <DietItem
                                     key={
-                                      user.userDiary[current].diet.lunch[
-                                        element
-                                      ].id
+                                      user.userDiary[date].diet.lunch[element]
+                                        .id
                                     }
                                     diet={
-                                      user.userDiary[current].diet.lunch[
-                                        element
-                                      ]
+                                      user.userDiary[date].diet.lunch[element]
                                     }
                                     time={"lunch"}
                                     timeTotalCalories={Number(
-                                      user.userDiary[current].diet.lunch
+                                      user.userDiary[date].diet.lunch
                                         .totalCalories
                                     )}
                                     todayTotalCalories={Number(
-                                      user.userDiary[current].diet.totalCalories
+                                      user.userDiary[date].diet.totalCalories
                                     )}
                                     database={database}
                                     deleteDiet={deleteDiet}
@@ -155,37 +150,34 @@ const Diet = (props) => {
                       <h1 className={styles.text_diet_title}>저녁</h1>
                       <div className={styles.text_text2}>
                         <span>
-                          {user.userDiary[current].diet.dinner.totalCalories
-                            ? user.userDiary[current].diet.dinner.totalCalories
+                          {user.userDiary[date].diet.dinner.totalCalories
+                            ? user.userDiary[date].diet.dinner.totalCalories
                             : 0}
                         </span>
                         <span>Kcal</span>
                       </div>
                     </div>
                     <ul className={styles.text_diet_list}>
-                      {user.userDiary[current].diet.dinner
-                        ? Object.keys(user.userDiary[current].diet.dinner).map(
+                      {user.userDiary[date].diet.dinner
+                        ? Object.keys(user.userDiary[date].diet.dinner).map(
                             (element) => {
                               if (element !== "totalCalories") {
                                 return (
                                   <DietItem
                                     key={
-                                      user.userDiary[current].diet.dinner[
-                                        element
-                                      ].id
+                                      user.userDiary[date].diet.dinner[element]
+                                        .id
                                     }
                                     diet={
-                                      user.userDiary[current].diet.dinner[
-                                        element
-                                      ]
+                                      user.userDiary[date].diet.dinner[element]
                                     }
                                     time={"dinner"}
                                     timeTotalCalories={Number(
-                                      user.userDiary[current].diet.dinner
+                                      user.userDiary[date].diet.dinner
                                         .totalCalories
                                     )}
                                     todayTotalCalories={Number(
-                                      user.userDiary[current].diet.totalCalories
+                                      user.userDiary[date].diet.totalCalories
                                     )}
                                     database={database}
                                     deleteDiet={deleteDiet}
@@ -204,39 +196,36 @@ const Diet = (props) => {
                       <h1 className={styles.text_diet_title}>간식</h1>
                       <div className={styles.text_text2}>
                         <span>
-                          {user.userDiary[current].diet.dessert.totalCalories
-                            ? user.userDiary[current].diet.dessert.totalCalories
+                          {user.userDiary[date].diet.dessert.totalCalories
+                            ? user.userDiary[date].diet.dessert.totalCalories
                             : 0}
                         </span>
                         <span>Kcal</span>
                       </div>
                     </div>
                     <ul className={styles.text_diet_list}>
-                      {user.userDiary[current].diet.dessert
-                        ? Object.keys(user.userDiary[current].diet.dessert).map(
+                      {user.userDiary[date].diet.dessert
+                        ? Object.keys(user.userDiary[date].diet.dessert).map(
                             (element) => {
                               if (element !== "totalCalories") {
                                 return (
                                   <DietItem
                                     key={
-                                      user.userDiary[current].diet.dessert[
-                                        element
-                                      ].id
+                                      user.userDiary[date].diet.dessert[element]
+                                        .id
                                     }
                                     diet={
-                                      user.userDiary[current].diet.dessert[
-                                        element
-                                      ]
+                                      user.userDiary[date].diet.dessert[element]
                                     }
                                     uid={uid}
-                                    current={current}
+                                    current={date}
                                     time={"dessert"}
                                     timeTotalCalories={Number(
-                                      user.userDiary[current].diet.dessert
+                                      user.userDiary[date].diet.dessert
                                         .totalCalories
                                     )}
                                     todayTotalCalories={Number(
-                                      user.userDiary[current].diet.totalCalories
+                                      user.userDiary[date].diet.totalCalories
                                     )}
                                     database={database}
                                     deleteDiet={deleteDiet}

@@ -13,17 +13,18 @@
   align-items: center;
   background-color: #ffebee;
 }
-
 .main {
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
+  border: 1px solid #f8bbd0;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   width: 80%;
   height: 90vh;
   overflow-y: auto;
-  background-color: white;
 }
 .title {
   display: flex;

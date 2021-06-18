@@ -1,17 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import styles from "./water.module.css";
-const Water = ({ authService, history, user }) => {
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
+const Water = ({ authService, history, user, dateObject: { date } }) => {
   const goWaterAddPage = () => {
     history.push("/water/add");
   };
@@ -32,7 +22,9 @@ const Water = ({ authService, history, user }) => {
           <div className={styles.main}>
             <div className={styles.title}>
               <i className={`fas fa-tint ${styles.icon}`}></i>
-              <span>오늘의 물</span>
+              <span>
+                {date.substring(4, 6)}월 {date.substring(6, 8)}일의 물
+              </span>
             </div>
             <div className={styles.text_column}>
               <div className={styles.text_column_title}>
@@ -41,8 +33,8 @@ const Water = ({ authService, history, user }) => {
                 </div>
                 <div className={styles.text_text2}>
                   <span>
-                    {user.userDiary[current].water.totalWater
-                      ? user.userDiary[current].water.totalWater
+                    {user.userDiary[date].water.totalWater
+                      ? user.userDiary[date].water.totalWater
                       : 0}
                   </span>
                   <span> ml</span>
@@ -55,8 +47,8 @@ const Water = ({ authService, history, user }) => {
                       <h1 className={styles.text_water_title}>아침</h1>
                       <div className={styles.text_text2}>
                         <span>
-                          {user.userDiary[current].water.breakfast
-                            ? user.userDiary[current].water.breakfast
+                          {user.userDiary[date].water.breakfast
+                            ? user.userDiary[date].water.breakfast
                             : 0}
                         </span>
                         <span>ml</span>
@@ -70,8 +62,8 @@ const Water = ({ authService, history, user }) => {
                       <h1 className={styles.text_water_title}>점심</h1>
                       <div className={styles.text_text2}>
                         <span>
-                          {user.userDiary[current].water.lunch
-                            ? user.userDiary[current].water.lunch
+                          {user.userDiary[date].water.lunch
+                            ? user.userDiary[date].water.lunch
                             : 0}
                         </span>
                         <span>ml</span>
@@ -85,8 +77,8 @@ const Water = ({ authService, history, user }) => {
                       <h1 className={styles.text_water_title}>저녁</h1>
                       <div className={styles.text_text2}>
                         <span>
-                          {user.userDiary[current].water.dinner
-                            ? user.userDiary[current].water.dinner
+                          {user.userDiary[date].water.dinner
+                            ? user.userDiary[date].water.dinner
                             : 0}
                         </span>
                         <span>ml</span>

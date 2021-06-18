@@ -27,6 +27,19 @@ const DietDirectly = ({ database, uid, user }) => {
       foodKcalRef.current.value === ""
     ) {
       alert("항목을 채워주세요.");
+    } else if (
+      foodSizeRef.current.value <= 0 &&
+      foodKcalRef.current.value < 0
+    ) {
+      alert("음식량과 칼로리를 다시 입력해주세요.");
+      foodSizeRef.current.value = "";
+      foodKcalRef.current.value = "";
+    } else if (foodSizeRef.current.value <= 0) {
+      alert("음식량을 다시 입력해주세요.");
+      foodSizeRef.current.value = "";
+    } else if (foodKcalRef.current.value < 0) {
+      alert("칼로리를 다시 입력해주세요.");
+      foodKcalRef.current.value = "";
     } else {
       let time;
       if (timeRef.current.value === "아침") {

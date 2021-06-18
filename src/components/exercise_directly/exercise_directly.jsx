@@ -8,12 +8,24 @@ const ExerciseDirectly = ({ database, uid, addExercise, current, user }) => {
   const exerciseTimeRef = useRef();
   const exerciseKcalRef = useRef();
   const history = useHistory();
-  const handleOnAddExercise = () => {
+
+  const handleOnAddExercise = (e) => {
+    e.preventDefault();
     const name = exerciseNameRef.current.value;
-    const time = exerciseTimeRef.current.value;
-    const kcal = exerciseKcalRef.current.value;
+    const time = Number(exerciseTimeRef.current.value);
+    const kcal = Number(exerciseKcalRef.current.value);
     if (name === "" || time === "" || kcal === "") {
       alert("항목을 채워주세요.");
+    } else if (time <= 0 && kcal <= 0) {
+      alert("운동시간과 칼로리는 양수만 입력할 수 있습니다.");
+      exerciseTimeRef.current.value = "";
+      exerciseKcalRef.current.value = "";
+    } else if (time <= 0) {
+      alert("운동시간은 양수만 입력할 수 있습니다.");
+      exerciseTimeRef.current.value = "";
+    } else if (kcal <= 0) {
+      alert("운동 칼로리는 양수만 입력할 수 있습니다.");
+      exerciseKcalRef.current.value = "";
     } else {
       const exerciseObj = {
         name,

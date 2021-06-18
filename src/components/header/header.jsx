@@ -9,7 +9,11 @@ const Header = (props) => {
       {isUser ? (
         <LoginHeaderContainer authService={authService} />
       ) : (
-        <LogoutHeader authService={authService} database={database} />
+        <LogoutHeader
+          authService={authService}
+          database={database}
+          user={user}
+        />
       )}
     </>
   );

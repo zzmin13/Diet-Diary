@@ -1,0 +1,14 @@
+.week_1,
+.week_2,
+.week_3,
+.week_4,
+.week_5,
+.week_6 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.date {
+  margin: 10px;
+  width: 14.2857143%;
+}

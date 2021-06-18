@@ -53,10 +53,31 @@
 .main::-webkit-scrollbar-button {
   display: none;
 }
+.titlebox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 .title {
+  width: 90%;
   font-size: 1.3rem;
   font-weight: 600;
   margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+.button_calendar {
+  background-color: transparent;
+  border: none;
+}
+.button_calendar:hover {
+  opacity: 0.9;
+  transform: scale(0.99);
+  cursor: pointer;
+}
+.icon_calendar {
+  font-size: 1.2rem;
+  color: colorPink;
 }
 .text_row {
   padding: 10px 0px;

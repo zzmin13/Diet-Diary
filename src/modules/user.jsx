@@ -1,3 +1,6 @@
+import moment from "moment";
+const today = moment().format("YYYYMMDD");
+
 // 액션 생성 함수 만들기
 export const loginUser = (currentUser) => ({
   type: "LOGIN_USER",
@@ -113,6 +116,10 @@ const initialState = {
   isUser: false,
   uid: "",
   user: "",
+  dateObject: {
+    date: today,
+    day: moment(today).day(),
+  },
 };
 
 const userReducer = (state = initialState, action) => {

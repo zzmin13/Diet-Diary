@@ -269,6 +269,13 @@ function App({
               );
             }}
           />
+          <Route
+            path="/calendar"
+            exact={true}
+            render={(props) => {
+              return <></>;
+            }}
+          />
         </div>
       </BrowserRouter>
     </>

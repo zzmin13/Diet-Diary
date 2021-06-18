@@ -9,6 +9,8 @@ const MainContainer = (props) => {
 const mapStateToProps = (state) => ({
   isUser: state.userReducer.isUser,
   user: state.userReducer.user,
+  uid: state.userReducer.uid,
+  dateObject: state.userReducer.dateObject,
 });
 const mapDispatchToProps = (dispatch) => ({
   loginUser: (currentUser) => {

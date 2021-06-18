@@ -26,18 +26,18 @@ const LoginHeader = memo((props) => {
         </Link>
         <ul className={styles.navbar}>
           <li className={styles.navbar_item}>
-            <img
-              className={styles.avatar}
-              src={
-                user.information
-                  ? user.information.basic.avatar
+            {user.information ? (
+              <img
+                className={styles.avatar}
+                src={
+                  user.information.basic.avatar
                     ? user.information.basic.avatar
                     : `https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg`
-                  : "https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg"
-              }
-              alt="avatar"
-              onClick={showUserBox}
-            />
+                }
+                alt="avatar"
+                onClick={showUserBox}
+              />
+            ) : null}
           </li>
         </ul>
         {user.information ? (

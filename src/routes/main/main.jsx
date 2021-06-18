@@ -3,30 +3,18 @@ import DietItem from "../../components/diet_item/diet_item";
 import ExerciseItem from "../../components/exercise_item/exercise_item";
 import Loading from "../../components/loading/loading";
 import styles from "./main.module.css";
+
 const Main = ({
   authService,
   database,
   history,
   user,
+  dateObject: { date, day },
   loadUserInformation,
 }) => {
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
   const week = ["일", "월", "화", "수", "목", "금", "토"];
-  const currentDay = week[new Date().getDay()];
+  const dayText = week[day];
   const [isLoading, setIsLoading] = useState(false);
-
-  const GoEditPage = (event) => {
-    history.push(`/${event.currentTarget.id}`);
-  };
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (USER) {
@@ -39,13 +27,13 @@ const Main = ({
                 // 필수 정보가 없으면 /register로 이동
                 history.push("/register");
               }
-              if (response.userDiary[current] === undefined) {
-                database.setTodayDiaryTemplate(USER.uid, current);
+              if (response.userDiary[date] === undefined) {
+                database.setTodayDiaryTemplate(USER.uid, date);
                 const data = {
                   ...response,
                   userDiary: {
                     ...response.userDiary,
-                    [current]: {
+                    [date]: {
                       diary: "",
                       diet: {
                         breakfast: "",
@@ -79,13 +67,25 @@ const Main = ({
       }
     });
   }, []);
+
+  const GoEditPage = (event) => {
+    history.push(`/${event.currentTarget.id}`);
+  };
+  const goCalendarPage = () => {
+    history.push("/calendar");
+  };
   return (
     <div className={styles.container}>
       {isLoading && user ? (
         <div className={styles.main}>
-          <p className={styles.title}>
-            {currentMonth}월 {currentDate}일 {currentDay}요일🎵
-          </p>
+          <div className={styles.titlebox}>
+            <p className={styles.title}>
+              {date.substring(4, 6)}월 {date.substring(6, 8)}일 {dayText}요일🎵
+            </p>
+            <button onClick={goCalendarPage} className={styles.button_calendar}>
+              <i className={`fas fa-calendar-alt ${styles.icon_calendar}`}></i>
+            </button>
+          </div>
           <div className={`${styles.text_row} ${styles.text_first}`}>
             <div className={styles.text_text1}>
               <i
@@ -130,8 +130,8 @@ const Main = ({
             </div>
             <div className={styles.text_column_child}>
               <p className={styles.text_diary}>
-                {user.userDiary[current].diary
-                  ? user.userDiary[current].diary
+                {user.userDiary[date].diary
+                  ? user.userDiary[date].diary
                   : "일기가 아직 없습니다."}
               </p>
             </div>
@@ -157,8 +157,8 @@ const Main = ({
               </div>
               <div className={styles.text_text2}>
                 <span>
-                  {user.userDiary[current].diet.totalCalories
-                    ? user.userDiary[current].diet.totalCalories
+                  {user.userDiary[date].diet.totalCalories
+                    ? user.userDiary[date].diet.totalCalories
                     : 0}{" "}
                 </span>
                 <span> Kcal</span>
@@ -171,29 +171,26 @@ const Main = ({
                     <h1 className={styles.text_diet_title}>아침</h1>
                     <div className={styles.text_text2}>
                       <span>
-                        {user.userDiary[current].diet.breakfast.totalCalories
-                          ? user.userDiary[current].diet.breakfast.totalCalories
+                        {user.userDiary[date].diet.breakfast.totalCalories
+                          ? user.userDiary[date].diet.breakfast.totalCalories
                           : 0}
                       </span>
                       <span>Kcal</span>
                     </div>
                   </div>
                   <ul className={styles.text_diet_list}>
-                    {user.userDiary[current].diet.breakfast
-                      ? Object.keys(user.userDiary[current].diet.breakfast).map(
+                    {user.userDiary[date].diet.breakfast
+                      ? Object.keys(user.userDiary[date].diet.breakfast).map(
                           (element) => {
                             if (element !== "totalCalories") {
                               return (
                                 <DietItem
                                   key={
-                                    user.userDiary[current].diet.breakfast[
-                                      element
-                                    ].id
+                                    user.userDiary[date].diet.breakfast[element]
+                                      .id
                                   }
                                   diet={
-                                    user.userDiary[current].diet.breakfast[
-                                      element
-                                    ]
+                                    user.userDiary[date].diet.breakfast[element]
                                   }
                                 />
                               );
@@ -210,26 +207,25 @@ const Main = ({
                     <h1 className={styles.text_diet_title}>점심</h1>
                     <div className={styles.text_text2}>
                       <span>
-                        {user.userDiary[current].diet.lunch.totalCalories
-                          ? user.userDiary[current].diet.lunch.totalCalories
+                        {user.userDiary[date].diet.lunch.totalCalories
+                          ? user.userDiary[date].diet.lunch.totalCalories
                           : 0}
                       </span>
                       <span>Kcal</span>
                     </div>
                   </div>
                   <ul className={styles.text_diet_list}>
-                    {user.userDiary[current].diet.lunch
-                      ? Object.keys(user.userDiary[current].diet.lunch).map(
+                    {user.userDiary[date].diet.lunch
+                      ? Object.keys(user.userDiary[date].diet.lunch).map(
                           (element) => {
                             if (element !== "totalCalories") {
                               return (
                                 <DietItem
                                   key={
-                                    user.userDiary[current].diet.lunch[element]
-                                      .id
+                                    user.userDiary[date].diet.lunch[element].id
                                   }
                                   diet={
-                                    user.userDiary[current].diet.lunch[element]
+                                    user.userDiary[date].diet.lunch[element]
                                   }
                                 />
                               );
@@ -246,26 +242,25 @@ const Main = ({
                     <h1 className={styles.text_diet_title}>저녁</h1>
                     <div className={styles.text_text2}>
                       <span>
-                        {user.userDiary[current].diet.dinner.totalCalories
-                          ? user.userDiary[current].diet.dinner.totalCalories
+                        {user.userDiary[date].diet.dinner.totalCalories
+                          ? user.userDiary[date].diet.dinner.totalCalories
                           : 0}
                       </span>
                       <span>Kcal</span>
                     </div>
                   </div>
                   <ul className={styles.text_diet_list}>
-                    {user.userDiary[current].diet.dinner
-                      ? Object.keys(user.userDiary[current].diet.dinner).map(
+                    {user.userDiary[date].diet.dinner
+                      ? Object.keys(user.userDiary[date].diet.dinner).map(
                           (element) => {
                             if (element !== "totalCalories") {
                               return (
                                 <DietItem
                                   key={
-                                    user.userDiary[current].diet.dinner[element]
-                                      .id
+                                    user.userDiary[date].diet.dinner[element].id
                                   }
                                   diet={
-                                    user.userDiary[current].diet.dinner[element]
+                                    user.userDiary[date].diet.dinner[element]
                                   }
                                 />
                               );
@@ -282,29 +277,26 @@ const Main = ({
                     <h1 className={styles.text_diet_title}>간식</h1>
                     <div className={styles.text_text2}>
                       <span>
-                        {user.userDiary[current].diet.dessert.totalCalories
-                          ? user.userDiary[current].diet.dessert.totalCalories
+                        {user.userDiary[date].diet.dessert.totalCalories
+                          ? user.userDiary[date].diet.dessert.totalCalories
                           : 0}
                       </span>
                       <span>Kcal</span>
                     </div>
                   </div>
                   <ul className={styles.text_diet_list}>
-                    {user.userDiary[current].diet.dessert
-                      ? Object.keys(user.userDiary[current].diet.dessert).map(
+                    {user.userDiary[date].diet.dessert
+                      ? Object.keys(user.userDiary[date].diet.dessert).map(
                           (element) => {
                             if (element !== "totalCalories") {
                               return (
                                 <DietItem
                                   key={
-                                    user.userDiary[current].diet.dessert[
-                                      element
-                                    ].id
+                                    user.userDiary[date].diet.dessert[element]
+                                      .id
                                   }
                                   diet={
-                                    user.userDiary[current].diet.dessert[
-                                      element
-                                    ]
+                                    user.userDiary[date].diet.dessert[element]
                                   }
                                 />
                               );
@@ -338,8 +330,8 @@ const Main = ({
               </div>
               <div className={styles.text_text2}>
                 <span>
-                  {user.userDiary[current].water.totalWater
-                    ? user.userDiary[current].water.totalWater
+                  {user.userDiary[date].water.totalWater
+                    ? user.userDiary[date].water.totalWater
                     : 0}{" "}
                 </span>
                 <span> ml</span>
@@ -352,8 +344,8 @@ const Main = ({
                 </div>
                 <div className={styles.text_text2}>
                   <span>
-                    {user.userDiary[current].water.breakfast
-                      ? user.userDiary[current].water.breakfast
+                    {user.userDiary[date].water.breakfast
+                      ? user.userDiary[date].water.breakfast
                       : 0}{" "}
                   </span>
                   <span> ml</span>
@@ -365,8 +357,8 @@ const Main = ({
                 </div>
                 <div className={styles.text_text2}>
                   <span>
-                    {user.userDiary[current].water.lunch
-                      ? user.userDiary[current].water.lunch
+                    {user.userDiary[date].water.lunch
+                      ? user.userDiary[date].water.lunch
                       : 0}{" "}
                   </span>
                   <span> ml</span>
@@ -378,8 +370,8 @@ const Main = ({
                 </div>
                 <div className={styles.text_text2}>
                   <span>
-                    {user.userDiary[current].water.dinner
-                      ? user.userDiary[current].water.dinner
+                    {user.userDiary[date].water.dinner
+                      ? user.userDiary[date].water.dinner
                       : 0}{" "}
                   </span>
                   <span> ml</span>
@@ -408,20 +400,20 @@ const Main = ({
               </div>
               <div className={styles.text_text2}>
                 <span>
-                  {user.userDiary[current].exercise
-                    ? user.userDiary[current].exercise.totalCalories
+                  {user.userDiary[date].exercise
+                    ? user.userDiary[date].exercise.totalCalories
                     : 0}{" "}
                 </span>
                 <span> Kcal</span>
               </div>
             </div>
             <ul className={styles.exercise_list}>
-              {Object.keys(user.userDiary[current].exercise).map((element) => {
+              {Object.keys(user.userDiary[date].exercise).map((element) => {
                 if (element !== "totalCalories") {
                   return (
                     <ExerciseItem
                       key={element}
-                      exercise={user.userDiary[current].exercise[element]}
+                      exercise={user.userDiary[date].exercise[element]}
                     />
                   );
                 }

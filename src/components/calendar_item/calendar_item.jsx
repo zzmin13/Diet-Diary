@@ -1,7 +1,13 @@
 import React from "react";
 import CalendarHead from "../calendar_head/calendar_head";
 import CalendarBody from "../calendar_body/calendar_body";
-const CalendarItem = ({ calendarDate, increaseMonth, decreaseMonth }) => {
+const CalendarItem = ({
+  calendarDate,
+  increaseMonth,
+  decreaseMonth,
+  dateObject,
+  user,
+}) => {
   return (
     <div>
       <CalendarHead
@@ -9,7 +15,11 @@ const CalendarItem = ({ calendarDate, increaseMonth, decreaseMonth }) => {
         increaseMonth={increaseMonth}
         decreaseMonth={decreaseMonth}
       />
-      <CalendarBody calendarDate={calendarDate} />
+      <CalendarBody
+        calendarDate={calendarDate}
+        dateObject={dateObject}
+        user={user}
+      />
     </div>
   );
 };

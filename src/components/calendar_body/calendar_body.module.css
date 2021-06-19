@@ -15,4 +15,11 @@
   width: 14.2857143%;
   display: flex;
   justify-content: center;
+  font-weight: 600;
+}
+.date_bold {
+  color: black;
+}
+.date_gray {
+  color: lightgray;
 }

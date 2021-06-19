@@ -3,7 +3,7 @@ import styles from "./calendar.module.css";
 import CalendarItem from "../../components/calendar_item/calendar_item";
 import { useState } from "react";
 import moment from "moment";
-const Calendar = ({ dateObject }) => {
+const Calendar = ({ dateObject, user }) => {
   const [calendarDate, setCalendarDate] = useState(moment());
   const increaseMonth = () => {
     const clone = calendarDate.clone();
@@ -21,6 +21,8 @@ const Calendar = ({ dateObject }) => {
             calendarDate={calendarDate}
             increaseMonth={increaseMonth}
             decreaseMonth={decreaseMonth}
+            dateObject={dateObject}
+            user={user}
           />
         </div>
       </div>

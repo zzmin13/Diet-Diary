@@ -1,3 +1,8 @@
+@value colorMint from '../../common/color.css';
+@value colorPurple from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+@value colorBorderGrey from "../../common/color.css";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -10,16 +15,35 @@
   justify-content: space-between;
   height: 100%;
 }
-.date {
+.date_box {
   margin: 0px 10px;
   width: 14.2857143%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   font-weight: 600;
+  padding: 10px;
 }
 .date_bold {
   color: black;
+  cursor: pointer;
 }
 .date_gray {
   color: lightgray;
+}
+.selected {
+  background-color: #fce4ec;
+}
+.diary_none {
+  background-color: transparent;
+  height: 5px;
+  width: 80%;
+  margin-top: 5px;
+}
+.diary_exist {
+  background-color: colorPink;
+  height: 5px;
+  width: 80%;
+  margin-top: 5px;
 }

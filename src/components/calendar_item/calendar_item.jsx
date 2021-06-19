@@ -7,6 +7,8 @@ const CalendarItem = ({
   decreaseMonth,
   dateObject,
   user,
+  changeDiaryDate,
+  diaryDate,
 }) => {
   return (
     <div>
@@ -19,6 +21,8 @@ const CalendarItem = ({
         calendarDate={calendarDate}
         dateObject={dateObject}
         user={user}
+        changeDiaryDate={changeDiaryDate}
+        diaryDate={diaryDate}
       />
     </div>
   );

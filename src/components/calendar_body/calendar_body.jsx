@@ -18,62 +18,62 @@ const CalendarBody = ({ calendarDate }) => {
     }
   }
   return (
-    <>
-      <div className={styles.week_1}>
-        {week[0].map((element) => (
-          <span className={styles.date}>
+    <div className={styles.container}>
+      <div className={styles.week}>
+        {week[0].map((element, index) => (
+          <span key={index} className={styles.date}>
             {element.substring(6, 8)[0] === "0"
               ? element.substring(7, 8)
               : element.substring(6, 8)}
           </span>
         ))}
       </div>
-      <div className={styles.week_2}>
-        {week[1].map((element) => (
-          <span className={styles.date}>
+      <div className={styles.week}>
+        {week[1].map((element, index) => (
+          <span key={index} className={styles.date}>
             {element.substring(6, 8)[0] === "0"
               ? element.substring(7, 8)
               : element.substring(6, 8)}
           </span>
         ))}
       </div>
-      <div className={styles.week_3}>
-        {week[2].map((element) => (
-          <span className={styles.date}>
+      <div className={styles.week}>
+        {week[2].map((element, index) => (
+          <span key={index} className={styles.date}>
             {element.substring(6, 8)[0] === "0"
               ? element.substring(7, 8)
               : element.substring(6, 8)}
           </span>
         ))}
       </div>
-      <div className={styles.week_4}>
-        {week[3].map((element) => (
-          <span className={styles.date}>
+      <div className={styles.week}>
+        {week[3].map((element, index) => (
+          <span key={index} className={styles.date}>
             {element.substring(6, 8)[0] === "0"
               ? element.substring(7, 8)
               : element.substring(6, 8)}
           </span>
         ))}
       </div>
-      <div className={styles.week_5}>
-        {week[4].map((element) => (
-          <span className={styles.date}>
+      <div className={styles.week}>
+        {week[4].map((element, index) => (
+          <span key={index} className={styles.date}>
             {element.substring(6, 8)[0] === "0"
               ? element.substring(7, 8)
               : element.substring(6, 8)}
           </span>
         ))}
       </div>
-      <div className={styles.week_6}>
-        {week[5].map((element) => (
-          <span className={styles.date}>
+      <div className={styles.week}>
+        {week[5].map((element, index) => (
+          <span key={index} className={styles.date}>
             {element.substring(6, 8)[0] === "0"
               ? element.substring(7, 8)
               : element.substring(6, 8)}
           </span>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,14 +1,18 @@
-.week_1,
-.week_2,
-.week_3,
-.week_4,
-.week_5,
-.week_6 {
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+}
+.week {
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  height: 100%;
 }
 .date {
-  margin: 10px;
+  margin: 0px 10px;
   width: 14.2857143%;
+  display: flex;
+  justify-content: center;
 }

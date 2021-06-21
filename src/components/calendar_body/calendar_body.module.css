@@ -33,7 +33,8 @@
   color: lightgray;
 }
 .selected {
-  background-color: #fce4ec;
+  background-color: #ffebee;
+  border-radius: 5px;
 }
 .diary_none {
   background-color: transparent;

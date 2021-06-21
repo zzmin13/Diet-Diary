@@ -16,7 +16,6 @@ import WaterAddContainer from "./containers/water_add_container";
 import WaterEditContainer from "./containers/water_edit_container";
 import HeaderContainer from "./containers/header_container";
 import NavbarContainer from "./containers/navbar_container";
-import CalendarContainer from "./containers/calendar_container";
 import { useEffect } from "react";
 import styles from "./app.module.css";
 
@@ -262,21 +261,6 @@ function App({
               return (
                 <>
                   <WaterEditContainer
-                    authService={authService}
-                    database={database}
-                    {...props}
-                  />
-                </>
-              );
-            }}
-          />
-          <Route
-            path="/calendar"
-            exact={true}
-            render={(props) => {
-              return (
-                <>
-                  <CalendarContainer
                     authService={authService}
                     database={database}
                     {...props}

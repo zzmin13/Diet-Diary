@@ -33,7 +33,7 @@ const Diet = (props) => {
               <i
                 className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}
               ></i>
-              <span>back</span>
+              <span>MAIN</span>
             </button>
             <div className={styles.content}>
               <div className={styles.title}>

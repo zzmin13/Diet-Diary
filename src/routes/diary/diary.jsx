@@ -35,7 +35,7 @@ const Diary = ({
               <i
                 className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}
               ></i>
-              <span>back</span>
+              <span>MAIN</span>
             </button>
             <div className={styles.content}>
               <h1 className={styles.title}>일기 쓰기 📝</h1>

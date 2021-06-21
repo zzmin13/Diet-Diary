@@ -12,6 +12,7 @@ const ExerciseAdd = ({
   user,
   addExercise,
   dateObject: { date },
+  history,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [exercise, setExercise] = useState({});
@@ -32,6 +33,9 @@ const ExerciseAdd = ({
       kcal: selectedExerciseKcal,
     });
   });
+  const goBackPage = () => {
+    history.push("/exercise");
+  };
   return (
     <>
       {isLoading ? (
@@ -42,24 +46,32 @@ const ExerciseAdd = ({
         <>
           <div className={styles.container}>
             <div className={styles.main}>
-              <ExerciseSearch
-                database={database}
-                exercise={exercise}
-                uid={uid}
-                date={date}
-                selectedExercise={selectedExercise}
-                onSelectExercise={onSelectExercise}
-                user={user}
-                addExercise={addExercise}
-              />
-              <hr className={styles.line} />
-              <ExerciseDirectly
-                database={database}
-                uid={uid}
-                date={date}
-                user={user}
-                addExercise={addExercise}
-              />
+              <button onClick={goBackPage} className={styles.button_back}>
+                <i
+                  className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}
+                ></i>
+                <span>BACK</span>
+              </button>
+              <div className={styles.content}>
+                <ExerciseSearch
+                  database={database}
+                  exercise={exercise}
+                  uid={uid}
+                  date={date}
+                  selectedExercise={selectedExercise}
+                  onSelectExercise={onSelectExercise}
+                  user={user}
+                  addExercise={addExercise}
+                />
+                <hr className={styles.line} />
+                <ExerciseDirectly
+                  database={database}
+                  uid={uid}
+                  date={date}
+                  user={user}
+                  addExercise={addExercise}
+                />
+              </div>
             </div>
           </div>
         </>

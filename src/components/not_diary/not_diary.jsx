@@ -21,7 +21,9 @@ const NotDiary = ({ loadUserInformation, database, uid, date, user }) => {
             dessert: "",
             totalCalories: "",
           },
-          exercise: "",
+          exercise: {
+            totalCalories: 0,
+          },
           water: {
             breakfast: 0,
             lunch: 0,

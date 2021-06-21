@@ -1,13 +1,7 @@
 import React from "react";
 import styles from "./calendar_body.module.css";
 
-const CalendarBody = ({
-  calendarDate,
-  dateObject,
-  user,
-  changeDiaryDate,
-  diaryDate,
-}) => {
+const CalendarBody = ({ calendarDate, dateObject, user, changeDate, date }) => {
   const week = Array.from(new Array(6), () => new Array());
   const diaryDateArray = Object.keys(user.userDiary);
   const firstDateOfMonth = calendarDate
@@ -25,7 +19,7 @@ const CalendarBody = ({
     }
   }
   const onClickDate = (event) => {
-    changeDiaryDate(event.currentTarget.id);
+    changeDate(event.currentTarget.id);
   };
   return (
     <div className={styles.container}>
@@ -33,7 +27,7 @@ const CalendarBody = ({
         <div key={index} className={styles.week}>
           {element.map((element) =>
             element.substring(4, 6) === calendarDate.format("MM") ? (
-              element === diaryDate ? (
+              element === date ? (
                 <div className={`${styles.date_box} ${styles.selected}`}>
                   <span
                     key={element}

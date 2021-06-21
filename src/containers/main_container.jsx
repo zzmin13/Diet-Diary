@@ -1,7 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import Main from "../routes/main/main";
-import { loginUser, logoutUser, loadUserInformation } from "../modules/user";
+import {
+  loginUser,
+  logoutUser,
+  loadUserInformation,
+  changeDate,
+} from "../modules/user";
 const MainContainer = (props) => {
   return <Main {...props} />;
 };
@@ -21,6 +26,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   loadUserInformation: (response) => {
     dispatch(loadUserInformation(response));
+  },
+  changeDate: (dateString) => {
+    dispatch(changeDate(dateString));
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

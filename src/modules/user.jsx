@@ -111,6 +111,11 @@ export const editExercise = (
   todayTotalCalories,
 });
 
+export const changeDate = (dateString) => ({
+  type: "CHANGE_DATE",
+  dateString,
+});
+
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
@@ -304,6 +309,14 @@ const userReducer = (state = initialState, action) => {
               },
             },
           },
+        },
+      };
+    case "CHANGE_DATE":
+      return {
+        ...state,
+        dateObject: {
+          date: action.dateString,
+          day: moment(action.dateString).day(),
         },
       };
     default:

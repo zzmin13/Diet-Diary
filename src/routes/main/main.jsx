@@ -14,15 +14,12 @@ const Main = ({
   uid,
   dateObject,
   dateObject: { date, day },
+  changeDate,
   loadUserInformation,
 }) => {
   const week = ["일", "월", "화", "수", "목", "금", "토"];
-  const daytext = week[day];
   const [isLoading, setIsLoading] = useState(false);
-  const [diaryDate, setDiaryDate] = useState(moment().format("YYYYMMDD"));
-  const changeDiaryDate = (string) => {
-    setDiaryDate(string);
-  };
+  // const [diaryDate, setDiaryDate] = useState(moment().format("YYYYMMDD"));
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (USER) {
@@ -60,15 +57,15 @@ const Main = ({
               database={database}
               dateObject={dateObject}
               user={user}
-              changeDiaryDate={changeDiaryDate}
-              diaryDate={diaryDate}
+              date={date}
+              changeDate={changeDate}
             />
           </div>
           <div className={styles.diary}>
-            {user.userDiary[diaryDate] ? (
+            {user.userDiary[date] ? (
               <MainDiary
-                diaryDate={diaryDate}
-                daytext={daytext}
+                date={date}
+                daytext={week[day]}
                 user={user}
                 goeditpage={goeditpage}
               />
@@ -76,7 +73,7 @@ const Main = ({
               <NotDiary
                 database={database}
                 uid={uid}
-                diaryDate={diaryDate}
+                date={date}
                 user={user}
                 loadUserInformation={loadUserInformation}
               />

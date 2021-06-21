@@ -5,23 +5,14 @@ import { useHistory } from "react-router";
 import Loading from "../loading/loading";
 
 const DietSearch = ({
+  addDiet,
   database,
   foodSearch,
-  loadUserInformation,
   uid,
   user,
+  dateObject: { date, day },
 }) => {
   const history = useHistory();
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
 
   const [searchResult, setSearchResult] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -92,7 +83,7 @@ const DietSearch = ({
       totalKcalRef.current.innerText = 0;
     }
   };
-  const addDiet = () => {
+  const handleAddDiet = () => {
     if (
       foodNameRef.current.innerText === "" ||
       totalSizeRef.current.innerText === "" ||
@@ -114,9 +105,9 @@ const DietSearch = ({
       }
 
       const newDiet = {
-        ...user.userDiary[current].diet[time],
-        totalCalories: user.userDiary[current].diet[time].totalCalories
-          ? Number(user.userDiary[current].diet[time].totalCalories) +
+        ...user.userDiary[date].diet[time],
+        totalCalories: user.userDiary[date].diet[time].totalCalories
+          ? Number(user.userDiary[date].diet[time].totalCalories) +
             Number(totalKcalRef.current.innerText)
           : Number(totalKcalRef.current.innerText),
         [Date.now()]: {
@@ -127,12 +118,12 @@ const DietSearch = ({
         },
       };
       const totalKcal =
-        Number(user.userDiary[current].diet.totalCalories) +
+        Number(user.userDiary[date].diet.totalCalories) +
         Number(totalKcalRef.current.innerText);
-      database.addTodayDiet(uid, current, time, newDiet);
-      database.updateTodayTotalCalories(uid, current, totalKcal);
+      database.addTodayDiet(uid, date, time, newDiet, totalKcal);
+      addDiet(date, time, newDiet, totalKcal);
       alert("식사가 추가되었습니다.");
-      history.push("/main");
+      history.push("/diet");
     }
   };
   return (
@@ -217,7 +208,7 @@ const DietSearch = ({
           </div>
         </div>
 
-        <button className={styles.addButton} onClick={addDiet}>
+        <button className={styles.addButton} onClick={handleAddDiet}>
           추가하기
         </button>
       </div>

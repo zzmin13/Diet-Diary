@@ -2,6 +2,7 @@
 @value colorPurple from "../../common/color.css";
 @value colorPink from "../../common/color.css";
 @value colorBorderGrey from "../../common/color.css";
+
 .container {
   font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -13,10 +14,8 @@
   background-color: #ffebee;
 }
 .main {
-  padding: 10px 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 10px 20px;
   border-radius: 10px;
   border: 1px solid #f8bbd0;
   background-color: white;
@@ -24,6 +23,26 @@
   width: 80%;
   height: 90vh;
   overflow-y: auto;
+}
+.button_back {
+  margin-top: 20px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: colorPink;
+}
+.icon_back {
+  font-size: 2rem;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 .title {
   font-weight: 600;

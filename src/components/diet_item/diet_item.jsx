@@ -10,30 +10,30 @@ const DietItem = (props) => {
     todayTotalCalories,
     database,
     uid,
-    current,
+    date,
     deleteDiet,
   } = props;
   const history = useHistory();
   const handleDietDelete = () => {
     const answer = window.confirm("삭제하시겠습니까?");
     if (answer) {
+      console.log(`uid: ${uid}`);
+      console.log(`date: ${date}`);
+      console.log(`time: ${time}`);
+      console.log(`id: ${id}`);
+      console.log(`kcal : ${kcal}`);
+      console.log(`timeTotalCalories: ${timeTotalCalories}`);
+      console.log(`todayTotalCalories: ${todayTotalCalories}`);
       database.deleteDiet(
         uid,
-        current,
+        date,
         time,
         id,
         kcal,
         timeTotalCalories,
         todayTotalCalories
       );
-      deleteDiet(
-        current,
-        time,
-        id,
-        kcal,
-        timeTotalCalories,
-        todayTotalCalories
-      );
+      deleteDiet(date, time, id, kcal, timeTotalCalories, todayTotalCalories);
       alert("삭제되었습니다.");
     }
   };

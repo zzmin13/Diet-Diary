@@ -1,26 +1,20 @@
 import React, { useRef } from "react";
 import { useHistory } from "react-router";
 import styles from "./diet_directly.module.css";
-const DietDirectly = ({ database, uid, user }) => {
-  // 식사 직접 추가하는 컴포넌트
+const DietDirectly = ({
+  database,
+  uid,
+  user,
+  dateObject: { date },
+  addDiet,
+}) => {
   const foodNameRef = useRef();
   const foodSizeRef = useRef();
   const foodKcalRef = useRef();
   const timeRef = useRef();
-
   const history = useHistory();
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
 
-  const handleOnAddDiet = () => {
+  const handleAddDiet = () => {
     if (
       foodNameRef.current.value === "" ||
       foodSizeRef.current.value === "" ||
@@ -52,9 +46,9 @@ const DietDirectly = ({ database, uid, user }) => {
         time = "dessert";
       }
       const newDiet = {
-        ...user.userDiary[current].diet[time],
-        totalCalories: user.userDiary[current].diet[time].totalCalories
-          ? Number(user.userDiary[current].diet[time].totalCalories) +
+        ...user.userDiary[date].diet[time],
+        totalCalories: user.userDiary[date].diet[time].totalCalories
+          ? Number(user.userDiary[date].diet[time].totalCalories) +
             Number(foodKcalRef.current.value)
           : Number(foodKcalRef.current.value),
         [Date.now()]: {
@@ -65,13 +59,13 @@ const DietDirectly = ({ database, uid, user }) => {
         },
       };
       const totalKcal =
-        Number(user.userDiary[current].diet.totalCalories) +
+        Number(user.userDiary[date].diet.totalCalories) +
         Number(foodKcalRef.current.value);
 
-      database.addTodayDiet(uid, current, time, newDiet);
-      database.updateTodayTotalCalories(uid, current, totalKcal);
+      database.addTodayDiet(uid, date, time, newDiet, totalKcal);
+      addDiet(date, time, newDiet, totalKcal);
       alert("식사가 추가되었습니다.");
-      history.push("/main");
+      history.push("/diet");
     }
   };
   return (
@@ -139,7 +133,7 @@ const DietDirectly = ({ database, uid, user }) => {
             </select>
           </div>
         </div>
-        <button onClick={handleOnAddDiet} className={styles.addButton}>
+        <button onClick={handleAddDiet} className={styles.addButton}>
           추가하기
         </button>
       </form>

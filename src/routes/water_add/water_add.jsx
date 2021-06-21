@@ -2,18 +2,15 @@ import React from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import styles from "./water_add.module.css";
-const WaterAdd = ({ authService, database, history, user, uid, addWater }) => {
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
-
+const WaterAdd = ({
+  authService,
+  database,
+  history,
+  user,
+  uid,
+  addWater,
+  dateObject: { date },
+}) => {
   const mlRef = useRef();
   const cupRef = useRef();
   const timeRef = useRef();
@@ -65,11 +62,10 @@ const WaterAdd = ({ authService, database, history, user, uid, addWater }) => {
       time = "dinner";
     }
     const amount = Number(mlRef.current.value);
-    const timeAmount = Number(user.userDiary[current].water[time]) + amount;
-    const totalAmount =
-      Number(user.userDiary[current].water.totalWater) + amount;
-    database.addWater(uid, current, time, timeAmount, totalAmount);
-    addWater(current, time, timeAmount, totalAmount);
+    const timeAmount = Number(user.userDiary[date].water[time]) + amount;
+    const totalAmount = Number(user.userDiary[date].water.totalWater) + amount;
+    database.addWater(uid, date, time, timeAmount, totalAmount);
+    addWater(date, time, timeAmount, totalAmount);
     alert("물이 추가되었습니다.");
     history.push("/water");
   };

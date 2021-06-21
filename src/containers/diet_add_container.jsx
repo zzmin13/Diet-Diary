@@ -1,7 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import DietAdd from "../routes/diet_add/diet_add";
-import { loginUser, logoutUser, loadUserInformation } from "../modules/user";
+import {
+  loginUser,
+  logoutUser,
+  loadUserInformation,
+  addDiet,
+} from "../modules/user";
 
 const DietAddContainer = (props) => {
   return <DietAdd {...props} />;
@@ -21,6 +26,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   loadUserInformation: (response) => {
     dispatch(loadUserInformation(response));
+  },
+  addDiet: (current, time, content, totalCalories) => {
+    dispatch(addDiet(current, time, content, totalCalories));
   },
 });
 

@@ -3,16 +3,16 @@ import { useState } from "react";
 import Loading from "../../components/loading/loading";
 import styles from "./not_diary.module.css";
 
-const NotDiary = ({ loadUserInformation, database, uid, diaryDate, user }) => {
+const NotDiary = ({ loadUserInformation, database, uid, date, user }) => {
   const [isLoading, setIsLoading] = useState(false);
   const setDiaryTemplate = () => {
     setIsLoading(true);
-    database.setTodayDiaryTemplate(uid, diaryDate);
+    database.setTodayDiaryTemplate(uid, date);
     const data = {
       ...user,
       userDiary: {
         ...user.userDiary,
-        [diaryDate]: {
+        [date]: {
           diary: "",
           diet: {
             breakfast: "",

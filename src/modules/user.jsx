@@ -16,6 +16,13 @@ export const loadUserInformation = (response) => ({
   response,
 });
 
+export const addDiet = (current, time, content, totalCalories) => ({
+  type: "ADD_DIET",
+  current,
+  time,
+  content,
+  totalCalories,
+});
 export const deleteDiet = (
   current,
   time,
@@ -146,6 +153,24 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.response,
+      };
+    case "ADD_DIET":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userDiary: {
+            ...state.user.userDiary,
+            [action.current]: {
+              ...state.user.userDiary[action.current],
+              diet: {
+                ...state.user.userDiary[action.current].diet,
+                totalCalories: action.totalCalories,
+                [action.time]: action.content,
+              },
+            },
+          },
+        },
       };
     case "DELETE_DIET":
       const changedDiet = {

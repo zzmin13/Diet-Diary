@@ -10,6 +10,8 @@ const DietAdd = ({
   loadUserInformation,
   uid,
   user,
+  dateObject,
+  addDiet,
 }) => {
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
@@ -27,6 +29,8 @@ const DietAdd = ({
           loadUserInformation={loadUserInformation}
           uid={uid}
           user={user}
+          dateObject={dateObject}
+          addDiet={addDiet}
         />
         <hr className={styles.line} />
         <DietDirectly
@@ -34,6 +38,8 @@ const DietAdd = ({
           loadUserInformation={loadUserInformation}
           uid={uid}
           user={user}
+          dateObject={dateObject}
+          addDiet={addDiet}
         />
       </div>
     </div>

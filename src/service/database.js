@@ -138,21 +138,14 @@ class Database {
   }
 
   // 식단 추가하기
-  addTodayDiet(uid, currentDate, time, content) {
+  addTodayDiet(uid, currentDate, time, content, totalCalories) {
     const updates = {};
     updates[`users/${uid}/userDiary/${currentDate}/diet/${time}`] = content;
-    return firebaseDatabase.ref().update(updates);
-  }
-
-  // 하루 총 칼로리 업데이트하기
-  updateTodayTotalCalories(uid, currentDate, totalCalories) {
-    const updates = {};
     updates[`users/${uid}/userDiary/${currentDate}/diet/totalCalories`] =
       totalCalories;
     return firebaseDatabase.ref().update(updates);
   }
-
-  //식사 삭제하기
+  //식단 삭제하기
   deleteDiet(
     uid,
     currentDate,
@@ -176,7 +169,7 @@ class Database {
     return firebaseDatabase.ref().update(updates);
   }
 
-  //식사 수정하기
+  //식단 수정하기
   editDiet(
     uid,
     current,

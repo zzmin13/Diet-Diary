@@ -30,10 +30,21 @@ const MainDiary = ({ date, daytext, user, goeditpage }) => {
               <i
                 className={`fas fa-weight ${styles.icon} ${styles.icon_weight}`}
               ></i>
-              <span className={styles.bold}>현재 몸무게</span>
+              <span className={styles.bold}>오늘의 몸무게</span>
+              <button
+                onClick={goeditpage}
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  padding: 0,
+                }}
+                id="weight"
+              >
+                <i className={`fas fa-pen ${styles.icon_edit}`}></i>
+              </button>
             </div>
             <div className={styles.text_text2}>
-              <span>{user.information.required.weight} </span>
+              <span>{user.userDiary[date].weight} </span>
               <span> Kg</span>
             </div>
           </div>

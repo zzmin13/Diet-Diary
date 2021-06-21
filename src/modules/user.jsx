@@ -123,6 +123,11 @@ export const changeDate = (dateString) => ({
   dateString,
 });
 
+export const editTodayWeight = (date, weight) => ({
+  type: "EDIT_TODAY_WEIGHT",
+  date,
+  weight,
+});
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
@@ -342,6 +347,20 @@ const userReducer = (state = initialState, action) => {
         dateObject: {
           date: action.dateString,
           day: moment(action.dateString).day(),
+        },
+      };
+    case "EDIT_TODAY_WEIGHT":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userDiary: {
+            ...state.user.userDiary,
+            [action.date]: {
+              ...state.user.userDiary[action.date],
+              weight: action.weight,
+            },
+          },
         },
       };
     default:

@@ -30,6 +30,7 @@ const NotDiary = ({ loadUserInformation, database, uid, date, user }) => {
             dinner: 0,
             totalWater: 0,
           },
+          weight: 0.0,
         },
       },
     };

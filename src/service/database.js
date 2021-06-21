@@ -13,35 +13,6 @@ class Database {
             "https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg",
         },
       },
-      userDiary: {
-        [currentDate]: {
-          diary: "",
-          diet: {
-            breakfast: {
-              totalCalories: 0,
-            },
-            lunch: {
-              totalCalories: 0,
-            },
-            dinner: {
-              totalCalories: 0,
-            },
-            dessert: {
-              totalCalories: 0,
-            },
-            totalCalories: 0,
-          },
-          exercise: {
-            totalCalories: 0,
-          },
-          water: {
-            breakfast: 0,
-            lunch: 0,
-            dinner: 0,
-            totalWater: 0,
-          },
-        },
-      },
     });
   }
 
@@ -127,6 +98,7 @@ class Database {
         dinner: 0,
         totalWater: 0,
       },
+      weight: 0.0,
     });
   }
 
@@ -271,6 +243,13 @@ class Database {
       todayTotalCalories -
       Number(beforeExerciseKcal) +
       Number(afterExerciseKcal);
+    return firebaseDatabase.ref().update(updates);
+  }
+
+  // 오늘 몸무게 수정하기
+  editTodayWeight(uid, date, weight) {
+    const updates = {};
+    updates[`users/${uid}/userDiary/${date}/weight`] = weight;
     return firebaseDatabase.ref().update(updates);
   }
 }

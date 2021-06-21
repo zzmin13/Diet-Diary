@@ -1,0 +1,107 @@
+@value colorMint from '../../common/color.css';
+@value colorPurple from "../../common/color.css";
+@value colorPink from "../../common/color.css";
+@value colorBorderGrey from "../../common/color.css";
+.container {
+  font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  min-height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffebee;
+}
+.main {
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #f8bbd0;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 80%;
+  height: 90vh;
+}
+.button_back {
+  margin-top: 20px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: colorPink;
+}
+.icon_back {
+  font-size: 2rem;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+}
+.title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin: 20px;
+}
+.icon {
+  margin-right: 5px;
+  color: gray;
+}
+.form {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 100%;
+}
+.item {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0px;
+}
+.item_name {
+  padding: 10px;
+  font-weight: 600;
+  color: colorPink;
+}
+.item_input {
+  padding: 10px;
+  border: 3px solid #f8bbd0;
+  border-radius: 15px;
+  height: 40px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.item_behind {
+  margin-left: 5px;
+  font-weight: 600;
+}
+.addButton {
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+  font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  color: white;
+  border: none;
+  background-color: colorPink;
+  margin: 20px 0px;
+  padding: 7px 0px;
+  border-radius: 5px;
+}
+.addButton:hover {
+  opacity: 0.9;
+  transform: scale(0.99);
+  cursor: pointer;
+}

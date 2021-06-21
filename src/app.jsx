@@ -16,6 +16,7 @@ import WaterAddContainer from "./containers/water_add_container";
 import WaterEditContainer from "./containers/water_edit_container";
 import HeaderContainer from "./containers/header_container";
 import NavbarContainer from "./containers/navbar_container";
+import WeightContainer from "./containers/weight_container";
 import { useEffect } from "react";
 import styles from "./app.module.css";
 
@@ -265,6 +266,17 @@ function App({
                     database={database}
                     {...props}
                   />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/weight"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <WeightContainer database={database} {...props} />
                 </>
               );
             }}

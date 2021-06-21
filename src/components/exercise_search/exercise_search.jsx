@@ -11,7 +11,7 @@ const ExerciseSearch = ({
   uid,
   user,
   addExercise,
-  current,
+  date,
   selectedExercise,
   onSelectExercise,
 }) => {
@@ -60,11 +60,9 @@ const ExerciseSearch = ({
       time: Number(timeRef.current.value),
     };
     const exerciseId = Date.now();
-    const totalCalories = Number(
-      user.userDiary[current].exercise.totalCalories
-    );
-    database.addExercise(uid, current, exerciseId, exerciseObj, totalCalories);
-    addExercise(current, exerciseId, exerciseObj, totalCalories);
+    const totalCalories = Number(user.userDiary[date].exercise.totalCalories);
+    database.addExercise(uid, date, exerciseId, exerciseObj, totalCalories);
+    addExercise(date, exerciseId, exerciseObj, totalCalories);
     alert("운동이 추가되었습니다!");
     history.push("/exercise");
   };

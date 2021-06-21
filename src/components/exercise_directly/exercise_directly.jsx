@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useHistory } from "react-router";
 import styles from "./exercise_directly.module.css";
 
-const ExerciseDirectly = ({ database, uid, addExercise, current, user }) => {
+const ExerciseDirectly = ({ database, uid, addExercise, date, user }) => {
   const exerciseNameRef = useRef();
   const exerciseTimeRef = useRef();
   const exerciseKcalRef = useRef();
@@ -33,17 +33,9 @@ const ExerciseDirectly = ({ database, uid, addExercise, current, user }) => {
         time,
       };
       const exerciseId = Date.now();
-      const totalCalories = Number(
-        user.userDiary[current].exercise.totalCalories
-      );
-      database.addExercise(
-        uid,
-        current,
-        exerciseId,
-        exerciseObj,
-        totalCalories
-      );
-      addExercise(current, exerciseId, exerciseObj, totalCalories);
+      const totalCalories = Number(user.userDiary[date].exercise.totalCalories);
+      database.addExercise(uid, date, exerciseId, exerciseObj, totalCalories);
+      addExercise(date, exerciseId, exerciseObj, totalCalories);
       alert("운동이 추가되었습니다!");
       history.push("/exercise");
     }

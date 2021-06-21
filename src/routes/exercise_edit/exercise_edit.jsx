@@ -11,18 +11,8 @@ const ExerciseEdit = (props) => {
     uid,
     user,
     editExercise,
+    dateObject: { date },
   } = props;
-
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
   const exerciseNameRef = useRef();
   const exerciseTimeRef = useRef();
   const exerciseKcalRef = useRef();
@@ -45,15 +35,15 @@ const ExerciseEdit = (props) => {
       time,
     };
     const beforeExerciseKcal = Number(
-      user.userDiary[current].exercise[state.exerciseId].kcal
+      user.userDiary[date].exercise[state.exerciseId].kcal
     );
     const afterExerciseKcal = Number(kcal);
     const todayTotalCalories = Number(
-      user.userDiary[current].exercise.totalCalories
+      user.userDiary[date].exercise.totalCalories
     );
     database.editExercise(
       uid,
-      current,
+      date,
       state.exerciseId,
       exerciseObj,
       beforeExerciseKcal,
@@ -61,7 +51,7 @@ const ExerciseEdit = (props) => {
       todayTotalCalories
     );
     editExercise(
-      current,
+      date,
       state.exerciseId,
       exerciseObj,
       beforeExerciseKcal,
@@ -90,7 +80,7 @@ const ExerciseEdit = (props) => {
                     <input
                       ref={exerciseNameRef}
                       defaultValue={
-                        user.userDiary[current].exercise[state.exerciseId].name
+                        user.userDiary[date].exercise[state.exerciseId].name
                       }
                       className={styles.item_input}
                       type="text"
@@ -107,7 +97,7 @@ const ExerciseEdit = (props) => {
                     <input
                       ref={exerciseTimeRef}
                       defaultValue={
-                        user.userDiary[current].exercise[state.exerciseId].time
+                        user.userDiary[date].exercise[state.exerciseId].time
                       }
                       className={styles.item_input}
                       type="number"
@@ -127,7 +117,7 @@ const ExerciseEdit = (props) => {
                     <input
                       ref={exerciseKcalRef}
                       defaultValue={
-                        user.userDiary[current].exercise[state.exerciseId].kcal
+                        user.userDiary[date].exercise[state.exerciseId].kcal
                       }
                       className={styles.item_input}
                       type="number"

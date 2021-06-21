@@ -6,20 +6,16 @@ import ExerciseSearch from "../../components/exercise_search/exercise_search";
 import ExerciseDirectly from "../../components/exercise_directly/exercise_directly";
 
 import Loading from "../../components/loading/loading";
-const ExerciseAdd = ({ database, uid, user, addExercise }) => {
+const ExerciseAdd = ({
+  database,
+  uid,
+  user,
+  addExercise,
+  dateObject: { date },
+}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [exercise, setExercise] = useState({});
   const [selectedExercise, setSelectedExercise] = useState({});
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
 
   useEffect(() => {
     database.getExerciseSampleList().then((response) => {
@@ -50,7 +46,7 @@ const ExerciseAdd = ({ database, uid, user, addExercise }) => {
                 database={database}
                 exercise={exercise}
                 uid={uid}
-                current={current}
+                date={date}
                 selectedExercise={selectedExercise}
                 onSelectExercise={onSelectExercise}
                 user={user}
@@ -60,7 +56,7 @@ const ExerciseAdd = ({ database, uid, user, addExercise }) => {
               <ExerciseDirectly
                 database={database}
                 uid={uid}
-                current={current}
+                date={date}
                 user={user}
                 addExercise={addExercise}
               />

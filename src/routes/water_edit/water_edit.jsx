@@ -2,20 +2,17 @@ import React from "react";
 import { useRef } from "react";
 import styles from "./water_edit.module.css";
 const WaterEdit = (props) => {
-  const { database, history, uid, user, editWater } = props;
+  const {
+    database,
+    history,
+    uid,
+    user,
+    editWater,
+    dateObject: { date },
+  } = props;
   const breakfastRef = useRef();
   const lunchRef = useRef();
   const dinnerRef = useRef();
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
 
   const onEditWater = (event) => {
     event.preventDefault();
@@ -30,8 +27,8 @@ const WaterEdit = (props) => {
       dinner: dinnerWater,
       totalWater: todayTotalWater,
     };
-    database.editWater(uid, current, waterObj);
-    editWater(current, waterObj);
+    database.editWater(uid, date, waterObj);
+    editWater(date, waterObj);
     alert("물이 수정되었습니다.");
     history.push("/water");
   };
@@ -54,8 +51,8 @@ const WaterEdit = (props) => {
                     <input
                       ref={breakfastRef}
                       defaultValue={
-                        user.userDiary[current].water.breakfast
-                          ? user.userDiary[current].water.breakfast
+                        user.userDiary[date].water.breakfast
+                          ? user.userDiary[date].water.breakfast
                           : 0
                       }
                       className={styles.item_input}
@@ -79,8 +76,8 @@ const WaterEdit = (props) => {
                     <input
                       ref={lunchRef}
                       defaultValue={
-                        user.userDiary[current].water.lunch
-                          ? user.userDiary[current].water.lunch
+                        user.userDiary[date].water.lunch
+                          ? user.userDiary[date].water.lunch
                           : 0
                       }
                       className={styles.item_input}
@@ -101,8 +98,8 @@ const WaterEdit = (props) => {
                     <input
                       ref={dinnerRef}
                       defaultValue={
-                        user.userDiary[current].water.dinner
-                          ? user.userDiary[current].water.dinner
+                        user.userDiary[date].water.dinner
+                          ? user.userDiary[date].water.dinner
                           : 0
                       }
                       className={styles.item_input}

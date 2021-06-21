@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import NotDiary from "../../components/not_diary/not_diary";
 import styles from "./diary.module.css";
 const Diary = ({
   authService,
@@ -7,6 +8,7 @@ const Diary = ({
   uid,
   user,
   dateObject: { date, day },
+  loadUserInformation,
 }) => {
   const week = ["일", "월", "화", "수", "목", "금", "토"];
   const dayText = week[day];
@@ -45,14 +47,28 @@ const Diary = ({
                   요일
                 </span>
               </div>
-              <textarea
-                ref={textareaRef}
-                defaultValue={user.userDiary[date].diary}
-                className={styles.textarea}
-              ></textarea>
-              <button onClick={writeDiary} className={styles.button}>
-                작성 완료
-              </button>
+              {user.userDiary[date] ? (
+                <>
+                  <textarea
+                    ref={textareaRef}
+                    defaultValue={user.userDiary[date].diary}
+                    className={styles.textarea}
+                  ></textarea>
+                  <button onClick={writeDiary} className={styles.button}>
+                    작성 완료
+                  </button>
+                </>
+              ) : (
+                <>
+                  <NotDiary
+                    loadUserInformation={loadUserInformation}
+                    database={database}
+                    uid={uid}
+                    date={date}
+                    user={user}
+                  />
+                </>
+              )}
             </div>
           </div>
         </div>

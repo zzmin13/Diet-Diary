@@ -128,6 +128,10 @@ export const editTodayWeight = (date, weight) => ({
   date,
   weight,
 });
+export const deleteDiary = (date) => ({
+  type: "DELETE_DIARY",
+  date,
+});
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
@@ -361,6 +365,18 @@ const userReducer = (state = initialState, action) => {
               weight: action.weight,
             },
           },
+        },
+      };
+    case "DELETE_DIARY":
+      const changedDiary = {
+        ...state.user.userDiary,
+      };
+      delete changedDiary[action.date];
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          userDiary: changedDiary,
         },
       };
     default:

@@ -6,6 +6,7 @@ import {
   logoutUser,
   loadUserInformation,
   changeDate,
+  deleteDiary,
 } from "../modules/user";
 const MainContainer = (props) => {
   return <Main {...props} />;
@@ -29,6 +30,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeDate: (dateString) => {
     dispatch(changeDate(dateString));
+  },
+  deleteDiary: (date) => {
+    dispatch(deleteDiary(date));
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

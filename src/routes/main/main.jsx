@@ -15,6 +15,7 @@ const Main = ({
   dateObject: { date, day },
   changeDate,
   loadUserInformation,
+  deleteDiary,
 }) => {
   const week = ["일", "월", "화", "수", "목", "금", "토"];
   const [isLoading, setIsLoading] = useState(false);
@@ -49,6 +50,7 @@ const Main = ({
   const handleDiaryDelete = (answer) => {
     if (answer === true) {
       database.deleteDiary(uid, date);
+      deleteDiary(date);
       alert("일기가 삭제되었습니다!");
     } else {
       alert("취소되었습니다.");

@@ -1,16 +1,24 @@
 import React, { memo } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styles from "./loginHeader.module.css";
 const LoginHeader = memo((props) => {
   const { authService, logoutUser, user } = props;
   const [display, setDisplay] = useState(styles.invisible);
-
+  const history = useHistory();
   const handleLogout = () => {
     authService.logout();
     logoutUser();
   };
   const showUserBox = () => {
+    if (display === styles.visible) {
+      setDisplay(styles.invisible);
+    } else {
+      setDisplay(styles.visible);
+    }
+  };
+  const goMyPage = () => {
+    history.push("/mypage");
     if (display === styles.visible) {
       setDisplay(styles.invisible);
     } else {
@@ -59,7 +67,7 @@ const LoginHeader = memo((props) => {
                 <i className={`fas fa-sign-out-alt ${styles.icon_logout}`}></i>
                 <span className={styles.userBox_item_text}>로그아웃</span>
               </li>
-              <li className={styles.userBox_item}>
+              <li onClick={goMyPage} className={styles.userBox_item}>
                 <i className={`fas fa-user ${styles.icon_mypage}`}></i>
                 <span className={styles.userBox_item_text}>마이 페이지</span>
               </li>

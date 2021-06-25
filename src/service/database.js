@@ -252,5 +252,12 @@ class Database {
     updates[`users/${uid}/userDiary/${date}/weight`] = weight;
     return firebaseDatabase.ref().update(updates);
   }
+
+  // 해당 날짜 일기 삭제하기
+  deleteDiary(uid, date) {
+    const updates = {};
+    updates[`users/${uid}/userDiary/${date}`] = null;
+    return firebaseDatabase.ref().update(updates);
+  }
 }
 export default Database;

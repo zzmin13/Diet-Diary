@@ -40,13 +40,10 @@ const Diary = ({
               <span>MAIN</span>
             </button>
             <div className={styles.content}>
-              <h1 className={styles.title}>일기 쓰기 📝</h1>
-              <div className={styles.date}>
-                <span>
-                  {date.substring(4, 6)}월 {date.substring(6, 8)}일 {dayText}
-                  요일
-                </span>
-              </div>
+              <h1 className={styles.title}>
+                📝 {date.substring(4, 6)}월 {date.substring(6, 8)}일의 일기
+              </h1>
+
               {user.userDiary[date] ? (
                 <>
                   <textarea

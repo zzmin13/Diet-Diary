@@ -2,7 +2,11 @@ import React from "react";
 import styles from "./main_diary.module.css";
 import DietItem from "../diet_item/diet_item";
 import ExerciseItem from "../exercise_item/exercise_item";
-const MainDiary = ({ date, daytext, user, goeditpage }) => {
+const MainDiary = ({ date, daytext, user, goeditpage, handleDiaryDelete }) => {
+  const deleteDiary = () => {
+    const answer = window.confirm("일기를 삭제하시겠습니까?");
+    handleDiaryDelete(answer);
+  };
   return (
     <>
       {user && (
@@ -357,6 +361,9 @@ const MainDiary = ({ date, daytext, user, goeditpage }) => {
                 }
               })}
             </ul>
+            <button onClick={deleteDiary} className={styles.button_delete}>
+              일기 삭제하기
+            </button>
           </div>
         </>
       )}

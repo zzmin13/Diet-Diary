@@ -1,4 +1,3 @@
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Loading from "../../components/loading/loading";
 import Calendar from "../../routes/calendar/calendar";
@@ -19,7 +18,7 @@ const Main = ({
 }) => {
   const week = ["일", "월", "화", "수", "목", "금", "토"];
   const [isLoading, setIsLoading] = useState(false);
-  // const [diaryDate, setDiaryDate] = useState(moment().format("YYYYMMDD"));
+
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (USER) {
@@ -47,6 +46,14 @@ const Main = ({
   const goeditpage = (event) => {
     history.push(`/${event.currentTarget.id}`);
   };
+  const handleDiaryDelete = (answer) => {
+    if (answer === true) {
+      database.deleteDiary(uid, date);
+      alert("일기가 삭제되었습니다!");
+    } else {
+      alert("취소되었습니다.");
+    }
+  };
   return (
     <div className={styles.container}>
       {isLoading && user ? (
@@ -68,6 +75,7 @@ const Main = ({
                 daytext={week[day]}
                 user={user}
                 goeditpage={goeditpage}
+                handleDiaryDelete={handleDiaryDelete}
               />
             ) : (
               <NotDiary

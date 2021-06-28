@@ -49,11 +49,13 @@ const MypageAccount = ({
   };
   return (
     <div className={styles.container}>
-      <button onClick={goBackPage} className={styles.button_back}>
-        <i className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}></i>
-      </button>
       <form className={styles.form1} onSubmit={onSubmitForm}>
-        <h1 className={styles.title}>마이페이지</h1>
+        <div className={styles.title_box}>
+          <button onClick={goBackPage} className={styles.button_back}>
+            <i className={`fas fa-arrow-circle-left ${styles.icon_back}`}></i>
+          </button>
+          <h1 className={styles.title}>계정 설정</h1>
+        </div>
         <h1 className={styles.form1_title}>나의 계정</h1>
         <div className={styles.profile_box}>
           <img

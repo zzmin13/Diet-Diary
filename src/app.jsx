@@ -19,6 +19,7 @@ import NavbarContainer from "./containers/navbar_container";
 import WeightContainer from "./containers/weight_container";
 import MypageAccountContainer from "./containers/mypage_account_container";
 import MypageContainer from "./containers/mypage_container";
+import MypageHealthContainer from "./containers/mypage_health_container";
 import { useEffect } from "react";
 import styles from "./app.module.css";
 
@@ -311,6 +312,17 @@ function App({
                     imageUploader={imageUploader}
                     {...props}
                   />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/mypage/health"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <MypageHealthContainer database={database} {...props} />
                 </>
               );
             }}

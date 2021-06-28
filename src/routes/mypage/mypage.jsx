@@ -4,6 +4,9 @@ const Mypage = ({ isUser, user, history }) => {
   const goAccountPage = () => {
     history.push("/mypage/account");
   };
+  const goHealthPage = () => {
+    history.push("/mypage/health");
+  };
   return (
     <div className={styles.container}>
       <div className={styles.main}>
@@ -37,7 +40,7 @@ const Mypage = ({ isUser, user, history }) => {
             </div>
             <p className={styles.button_text}>비밀번호 변경</p>
           </button>
-          <button className={styles.button}>
+          <button onClick={goHealthPage} className={styles.button}>
             <div className={styles.icon_box}>
               <i
                 className={`fas fa-running ${styles.icon} ${styles.icon_health}`}

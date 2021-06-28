@@ -223,41 +223,78 @@ const userReducer = (state = initialState, action) => {
         ...state.user.userDiary[action.current].diet[action.prevTime],
       };
       delete updatedDiet[action.beforeDiet.id];
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          userDiary: {
-            ...state.user.userDiary,
-            [action.current]: {
-              ...state.user.userDiary[action.current],
-              diet: {
-                ...state.user.userDiary[action.current].diet,
-                [action.prevTime]: {
-                  ...updatedDiet,
-                  totalCalories:
-                    action.prevTimeTotalCalories - action.beforeDiet.kcal,
-                },
-                [action.currTime]: {
-                  ...state.user.userDiary[action.current].diet[action.currTime],
-                  [action.afterDiet.id]: {
-                    id: action.afterDiet.id,
-                    kcal: action.afterDiet.kcal,
-                    name: action.afterDiet.name,
-                    totalSize: action.afterDiet.totalSize,
+      if (action.prevTime === action.currTime) {
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            userDiary: {
+              ...state.user.userDiary,
+              [action.current]: {
+                ...state.user.userDiary[action.current],
+                diet: {
+                  ...state.user.userDiary[action.current].diet,
+                  [action.prevTime]: {
+                    ...updatedDiet,
+                    [action.afterDiet.id]: {
+                      id: action.afterDiet.id,
+                      kcal: action.afterDiet.kcal,
+                      name: action.afterDiet.name,
+                      totalSize: action.afterDiet.totalSize,
+                    },
+                    totalCalories:
+                      action.prevTimeTotalCalories -
+                      action.beforeDiet.kcal +
+                      action.afterDiet.kcal,
                   },
                   totalCalories:
-                    action.currTimeTotalCalories + action.afterDiet.kcal,
+                    action.todayTotalCalories -
+                    action.beforeDiet.kcal +
+                    action.afterDiet.kcal,
                 },
-                totalCalories:
-                  action.todayTotalCalories -
-                  action.beforeDiet.kcal +
-                  action.afterDiet.kcal,
               },
             },
           },
-        },
-      };
+        };
+      } else {
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            userDiary: {
+              ...state.user.userDiary,
+              [action.current]: {
+                ...state.user.userDiary[action.current],
+                diet: {
+                  ...state.user.userDiary[action.current].diet,
+                  [action.prevTime]: {
+                    ...updatedDiet,
+                    totalCalories:
+                      action.prevTimeTotalCalories - action.beforeDiet.kcal,
+                  },
+                  [action.currTime]: {
+                    ...state.user.userDiary[action.current].diet[
+                      action.currTime
+                    ],
+                    [action.afterDiet.id]: {
+                      id: action.afterDiet.id,
+                      kcal: action.afterDiet.kcal,
+                      name: action.afterDiet.name,
+                      totalSize: action.afterDiet.totalSize,
+                    },
+                    totalCalories:
+                      action.currTimeTotalCalories + action.afterDiet.kcal,
+                  },
+                  totalCalories:
+                    action.todayTotalCalories -
+                    action.beforeDiet.kcal +
+                    action.afterDiet.kcal,
+                },
+              },
+            },
+          },
+        };
+      }
     case "ADD_WATER":
       return {
         ...state,

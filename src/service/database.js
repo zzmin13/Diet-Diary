@@ -154,25 +154,40 @@ class Database {
     todayTotalCalories
   ) {
     const updates = {};
-    // 과거의 식사를 이전 타임에서 삭제해야함
-    updates[
-      `users/${uid}/userDiary/${current}/diet/${prevTime}/${beforeDiet.id}`
-    ] = null;
-    // 이전 타임에서 totalCalories 변경
-    updates[
-      `users/${uid}/userDiary/${current}/diet/${prevTime}/totalCalories`
-    ] = prevTimeTotalCalories - beforeDiet.kcal;
-    // 새로운 식사를 새로운 타임에 추가해야 함
-    updates[
-      `users/${uid}/userDiary/${current}/diet/${currTime}/${afterDiet.id}`
-    ] = afterDiet;
-    // 새로운 타임에서 totalCalories 변경
-    updates[
-      `users/${uid}/userDiary/${current}/diet/${currTime}/totalCalories`
-    ] = currTimeTotalCalories + afterDiet.kcal;
-    // 총 칼로리 변경
-    updates[`users/${uid}/userDiary/${current}/diet/totalCalories`] =
-      todayTotalCalories - beforeDiet.kcal + afterDiet.kcal;
+    if (prevTime === currTime) {
+      updates[
+        `users/${uid}/userDiary/${current}/diet/${prevTime}/${beforeDiet.id}`
+      ] = null;
+      updates[
+        `users/${uid}/userDiary/${current}/diet/${prevTime}/${afterDiet.id}`
+      ] = afterDiet;
+      updates[
+        `users/${uid}/userDiary/${current}/diet/${prevTime}/totalCalories`
+      ] = prevTimeTotalCalories - beforeDiet.kcal + afterDiet.kcal;
+      updates[`users/${uid}/userDiary/${current}/diet/totalCalories`] =
+        todayTotalCalories - beforeDiet.kcal + afterDiet.kcal;
+    } else {
+      // 과거의 식사를 이전 타임에서 삭제해야함
+      updates[
+        `users/${uid}/userDiary/${current}/diet/${prevTime}/${beforeDiet.id}`
+      ] = null;
+      // 이전 타임에서 totalCalories 변경
+      updates[
+        `users/${uid}/userDiary/${current}/diet/${prevTime}/totalCalories`
+      ] = prevTimeTotalCalories - beforeDiet.kcal;
+      // 새로운 식사를 새로운 타임에 추가해야 함
+      updates[
+        `users/${uid}/userDiary/${current}/diet/${currTime}/${afterDiet.id}`
+      ] = afterDiet;
+      // 새로운 타임에서 totalCalories 변경
+      updates[
+        `users/${uid}/userDiary/${current}/diet/${currTime}/totalCalories`
+      ] = currTimeTotalCalories + afterDiet.kcal;
+      // 총 칼로리 변경
+      updates[`users/${uid}/userDiary/${current}/diet/totalCalories`] =
+        todayTotalCalories - beforeDiet.kcal + afterDiet.kcal;
+    }
+
     return firebaseDatabase.ref().update(updates);
   }
 

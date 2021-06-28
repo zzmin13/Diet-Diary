@@ -46,6 +46,7 @@ const DietEdit = (props) => {
         ? 0
         : user.userDiary[date].diet[currTime].totalCalories;
     const todayTotalCalories = user.userDiary[date].diet.totalCalories;
+
     database.editDiet(
       uid,
       date,

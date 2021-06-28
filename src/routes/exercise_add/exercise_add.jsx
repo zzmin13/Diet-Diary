@@ -10,6 +10,7 @@ const ExerciseAdd = ({
   database,
   uid,
   user,
+  isUser,
   addExercise,
   dateObject: { date },
   history,
@@ -26,6 +27,11 @@ const ExerciseAdd = ({
       }
     });
   }, []);
+  useEffect(() => {
+    if (!isUser) {
+      history.push("/main");
+    }
+  });
   const onSelectExercise = useCallback((name) => {
     const selectedExerciseKcal = exercise[name];
     setSelectedExercise({

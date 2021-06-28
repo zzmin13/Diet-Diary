@@ -1,6 +1,5 @@
 import React from "react";
 import { useRef } from "react";
-import { useState } from "react";
 import styles from "./mypage_health.module.css";
 import Loading from "../../components/loading/loading";
 const MypageHealth = ({
@@ -10,8 +9,6 @@ const MypageHealth = ({
   uid,
   updateHealthInformation,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
   const heightRef = useRef();
   const weightRef = useRef();
   const ageRef = useRef();
@@ -186,7 +183,7 @@ const MypageHealth = ({
               <option value="small">조금 활동적</option>
             </select>
             <button onClick={onSubmitForm} className={styles.button_save}>
-              {isLoading ? "Loading..." : "변경사항 저장"}
+              변경사항 저장
             </button>
           </form>
         </div>

@@ -9,6 +9,7 @@ const WaterEditContainer = (props) => {
 const mapStateToProps = (state) => ({
   uid: state.userReducer.uid,
   user: state.userReducer.user,
+  isUser: state.userReducer.isUser,
   dateObject: state.userReducer.dateObject,
 });
 const mapDispatchToProps = (dispatch) => ({

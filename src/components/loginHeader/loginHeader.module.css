@@ -12,9 +12,10 @@
   justify-content: center;
   align-items: center;
   font-weight: 600;
+  position: relative;
 }
 .logo {
-  margin-left: 20px;
+  margin-left: 1.25rem;
   display: flex;
   align-items: center;
   width: 50%;
@@ -27,9 +28,9 @@
   color: colorPink;
 }
 .icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
+  width: 1.875rem;
+  height: 1.875rem;
+  margin-right: 0.625rem;
   color: colorPink;
 }
 .navbar {
@@ -37,43 +38,44 @@
   display: flex;
   justify-content: flex-end;
   width: 50%;
-  margin-right: 20px;
+  margin-right: 1.25rem;
 }
 .navbar_item {
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 1.25rem;
 }
 .avatar {
-  width: 35px;
-  height: 35px;
-  border-radius: 50px;
+  max-width: 2.188rem;
+  max-height: 2.188rem;
+  border-radius: 3.125rem;
 }
 .profile {
   width: 100%;
   display: flex;
-  padding: 20px;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
+  padding: 1.25rem;
+  border-top-left-radius: 0.438rem;
+  border-top-right-radius: 0.438rem;
   background-color: colorPink;
 }
 .userBox {
   position: absolute;
   background-color: white;
-  top: 50px;
-  right: 50px;
+  top: 3.125rem;
+  right: 3.125rem;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  border-radius: 7px;
+  border-radius: 0.438rem;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 .email {
-  margin: 10px 20px;
+  margin: 0.625rem 1.25rem;
   color: white;
 }
 .userBox_item {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  padding-left: 1.25rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -84,7 +86,7 @@
 .icon_logout,
 .icon_mypage {
   color: grey;
-  margin-right: 20px;
+  margin-right: 1.25rem;
   font-size: 1.1rem;
 }
 .userBox_item:hover {

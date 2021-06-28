@@ -5,7 +5,7 @@
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   background-color: #f7f9fa;
-  width: 70px;
+  width: 4.375rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,10 +37,10 @@
   background-color: #eceeef;
 }
 .item_icon {
-  font-size: 1.1rem;
+  font-size: 17px;
   color: colorPink;
 }
 .item_text {
   margin-top: 10px;
-  font-size: 0.8rem;
+  font-size: 12px;
 }

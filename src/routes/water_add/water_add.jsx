@@ -6,6 +6,7 @@ const WaterAdd = ({
   authService,
   database,
   history,
+  isUser,
   user,
   uid,
   addWater,
@@ -14,13 +15,10 @@ const WaterAdd = ({
   const mlRef = useRef();
   const cupRef = useRef();
   const timeRef = useRef();
-
   useEffect(() => {
-    authService.onAuthStateChanged((USER) => {
-      if (!USER) {
-        history.push("/");
-      }
-    });
+    if (!isUser) {
+      history.push("/main");
+    }
   });
   const onIncrease = (event) => {
     if (event.currentTarget.id === "cup") {
@@ -45,9 +43,9 @@ const WaterAdd = ({
     }
   };
   const onChange = (event) => {
-    if (event.currentTarget.id === "ml") {
+    if (event.currentTarget.id === "ml_input") {
       cupRef.current.value = mlRef.current.value / 170;
-    } else if (event.currentTarget.id === "cup") {
+    } else if (event.currentTarget.id === "cup_input") {
       mlRef.current.value = cupRef.current.value * 170;
     }
   };
@@ -113,7 +111,7 @@ const WaterAdd = ({
                 </button>
                 <div className={styles.cup_box}>
                   <input
-                    id="ml"
+                    id="ml_input"
                     onChange={onChange}
                     ref={mlRef}
                     className={styles.input}
@@ -149,7 +147,7 @@ const WaterAdd = ({
                 </button>
                 <div className={styles.cup_box}>
                   <input
-                    id="cup"
+                    id="cup_input"
                     onChange={onChange}
                     ref={cupRef}
                     className={styles.input}

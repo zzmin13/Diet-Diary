@@ -15,7 +15,7 @@
   font-weight: 600;
 }
 .logo {
-  margin-left: 20px;
+  margin-left: 1.25rem;
   display: flex;
   align-items: center;
   width: 50%;
@@ -28,9 +28,9 @@
   color: colorPink;
 }
 .icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
+  width: 1.875rem;
+  height: 1.875rem;
+  margin-right: 0.625rem;
   color: colorPink;
 }
 .navbar {
@@ -38,11 +38,11 @@
   display: flex;
   justify-content: flex-end;
   width: 50%;
-  margin-right: 20px;
+  margin-right: 1.25rem;
 }
 .navbar_item {
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 1.25rem;
   /* color: white; */
   color: colorPink;
 }
@@ -67,7 +67,7 @@
   position: relative;
   background-color: #fefefe;
   margin: 0 auto;
-  padding: 10px;
+  padding: 0.625rem;
   border: 1px solid colorBorderGrey;
   width: 40%; /* Could be more or less, depending on screen size */
   height: 100%;
@@ -75,9 +75,9 @@
 .close {
   color: #aaa;
   position: absolute;
-  right: 5px;
+  right: 0.313rem;
   top: 0;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: bold;
 }
 .close:hover,

@@ -13,11 +13,9 @@
   background-color: #ffebee;
 }
 .main {
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   border: 1px solid #f8bbd0;
   background-color: white;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -25,53 +23,73 @@
   height: 90vh;
   overflow-y: auto;
 }
+.button_back {
+  margin-top: 20px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: colorPink;
+}
+.icon_back {
+  font-size: 2rem;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 .title {
   display: flex;
   align-items: center;
   font-weight: 600;
   font-size: 1.3rem;
-  margin: 20px;
+  margin: 1.25rem;
 }
 .icon {
-  margin-left: 5px;
+  margin-left: 0.313rem;
   color: gray;
   font-size: 0.9rem;
 }
 .form {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 0.625rem;
 }
 .items {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 .item {
   display: flex;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 .item_name {
-  padding: 10px;
+  padding: 0.625rem;
   font-weight: 600;
   color: colorPink;
 }
 .item_input {
-  padding: 10px;
+  padding: 0.625rem;
   border: 3px solid #f8bbd0;
   border-radius: 15px;
-  height: 40px;
+  height: 2.5rem;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 .item_behind {
-  margin-left: 5px;
+  margin-left: 0.313rem;
   font-weight: 600;
 }
 .addButton {
-  width: 250px;
+  width: 15.625rem;
   font-weight: 600;
   font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -79,9 +97,9 @@
   color: white;
   border: none;
   background-color: colorPink;
-  margin: 20px 0px;
-  padding: 7px 0px;
-  border-radius: 5px;
+  margin: 1.25rem 0px;
+  padding: 0.438rem 0px;
+  border-radius: 0.313rem;
 }
 .addButton:hover {
   opacity: 0.9;
@@ -89,10 +107,10 @@
   cursor: pointer;
 }
 .time_select {
-  border-radius: 10px;
-  width: 70px;
+  border-radius: 0.625rem;
+  width: 4.375rem;
   border: 2px solid #f8bbd0;
-  height: 30px;
+  height: 1.875rem;
   font-size: 0.9rem;
   font-weight: 500;
   color: colorPink;

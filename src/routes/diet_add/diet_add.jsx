@@ -10,15 +10,14 @@ const DietAdd = ({
   loadUserInformation,
   uid,
   user,
+  isUser,
   dateObject,
   addDiet,
 }) => {
   useEffect(() => {
-    authService.onAuthStateChanged((USER) => {
-      if (!USER) {
-        history.push("/");
-      }
-    });
+    if (!isUser) {
+      history.push("/main");
+    }
   });
   const goBackPage = () => {
     history.push("/diet");

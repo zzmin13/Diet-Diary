@@ -6,8 +6,9 @@ const Diary = ({
   database,
   history,
   uid,
+  isUser,
   user,
-  dateObject: { date, day },
+  dateObject: { date },
   loadUserInformation,
 }) => {
   const textareaRef = useRef();
@@ -20,12 +21,10 @@ const Diary = ({
     history.push("/main");
   };
   useEffect(() => {
-    authService.onAuthStateChanged((USER) => {
-      if (!USER) {
-        history.push("/");
-      }
-    });
-  }, [authService, history]);
+    if (!isUser) {
+      history.push("/main");
+    }
+  });
   return (
     <>
       {user.userDiary ? (

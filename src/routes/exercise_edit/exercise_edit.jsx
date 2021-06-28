@@ -10,6 +10,7 @@ const ExerciseEdit = (props) => {
     location: { state },
     uid,
     user,
+    isUser,
     editExercise,
     dateObject: { date },
   } = props;
@@ -21,8 +22,10 @@ const ExerciseEdit = (props) => {
     if (state === undefined) {
       history.push("/main");
     }
+    if (!isUser) {
+      history.push("/main");
+    }
   }, []);
-
   const onEditExercise = (event) => {
     event.preventDefault();
     const name = exerciseNameRef.current.value;

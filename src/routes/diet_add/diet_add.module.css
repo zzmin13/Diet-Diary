@@ -15,8 +15,8 @@
 }
 .main {
   display: flex;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.625rem;
   border: 1px solid #f8bbd0;
   background-color: white;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -25,7 +25,7 @@
   overflow-y: auto;
 }
 .button_back {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -45,13 +45,13 @@
 }
 .content::-webkit-scrollbar {
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   width: 16px;
 }
 
 .content::-webkit-scrollbar-track {
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }
 .content::-webkit-scrollbar-track:hover {
   background-color: #f4f4f4;

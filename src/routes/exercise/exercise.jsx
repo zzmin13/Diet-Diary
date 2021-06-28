@@ -2,11 +2,13 @@ import React from "react";
 import styles from "./exercise.module.css";
 import ExerciseItem from "../../components/exercise_item/exercise_item";
 import NotDiary from "../../components/not_diary/not_diary";
+import { useEffect } from "react";
 const Exercise = ({
   database,
   history,
   uid,
   user,
+  isUser,
   dateObject: { date },
   deleteExercise,
   loadUserInformation,
@@ -17,6 +19,12 @@ const Exercise = ({
   const goBackPage = () => {
     history.push("/main");
   };
+
+  useEffect(() => {
+    if (!isUser) {
+      history.push("/main");
+    }
+  });
   return (
     <>
       {user.userDiary ? (

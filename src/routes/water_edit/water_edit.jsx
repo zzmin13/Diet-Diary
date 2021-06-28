@@ -1,10 +1,12 @@
 import React from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
 import styles from "./water_edit.module.css";
 const WaterEdit = (props) => {
   const {
     database,
     history,
+    isUser,
     uid,
     user,
     editWater,
@@ -34,6 +36,12 @@ const WaterEdit = (props) => {
   const goBackPage = () => {
     history.push("/water");
   };
+
+  useEffect(() => {
+    if (!isUser) {
+      history.push("/main");
+    }
+  }, []);
   return (
     <>
       {user.userDiary && (

@@ -16,14 +16,13 @@
   height: 100%;
 }
 .date_box {
-  margin: 0px 10px;
   width: 14.2857143%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-weight: 600;
-  padding: 10px;
+  padding: 0.625rem;
 }
 .date_bold {
   color: black;
@@ -34,17 +33,17 @@
 }
 .selected {
   background-color: #ffebee;
-  border-radius: 5px;
+  border-radius: 0.313rem;
 }
 .diary_none {
   background-color: transparent;
-  height: 5px;
+  height: 0.313rem;
   width: 80%;
-  margin-top: 5px;
+  margin-top: 0.313rem;
 }
 .diary_exist {
   background-color: colorPink;
-  height: 5px;
+  height: 0.313rem;
   width: 80%;
-  margin-top: 5px;
+  margin-top: 0.313rem;
 }

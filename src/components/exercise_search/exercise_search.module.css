@@ -4,7 +4,7 @@
 @value colorBorderGrey from "../../common/color.css";
 
 .container {
-  padding: 0px 20px;
+  padding: 0px 1.25rem;
   width: 50%;
   height: 100%;
   display: flex;
@@ -12,7 +12,7 @@
   align-items: center;
 }
 .title {
-  margin: 20px;
+  margin: 1.25rem;
   font-size: 1.2rem;
 }
 .form {
@@ -23,9 +23,10 @@
 }
 .input_search {
   width: 80%;
-  height: 30px;
-  border: 3px solid colorPink;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  height: 1.875rem;
+  border: 0.188rem solid colorPink;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+    0 1px 0.188rem rgba(0, 0, 0, 0.08);
 }
 .search_button {
   border: none;
@@ -42,18 +43,19 @@
   align-items: center;
 }
 .result_item {
-  margin-top: 30px;
+  margin-top: 1.875rem;
   width: 90%;
   height: 35vh;
   overflow-y: scroll;
   border: 1px solid #f8bbd0;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+    0 1px 0.188rem rgba(0, 0, 0, 0.08);
+  border-radius: 0.313rem;
 }
 .result_item::-webkit-scrollbar {
   background-color: #fff;
   border-radius: 10px;
-  width: 16px;
+  width: 1rem;
 }
 .result_item::-webkit-scrollbar-track {
   background-color: #fff;
@@ -65,7 +67,7 @@
 .result_item::-webkit-scrollbar-thumb {
   background-color: #babac0;
   border-radius: 16px;
-  border: 5px solid #fff;
+  border: 0.313rem solid #fff;
 }
 .result_item::-webkit-scrollbar-thumb:hover {
   background-color: #a0a0a5;
@@ -81,7 +83,7 @@
   align-items: center;
 }
 .select_title {
-  margin: 15px;
+  margin: 0.938rem;
 }
 .select_box1 {
   display: flex;
@@ -104,8 +106,8 @@
   justify-content: center;
 }
 .input_number {
-  width: 50px;
-  height: 30px;
+  width: 3.125rem;
+  height: 1.875rem;
   border-radius: 10px;
   border: 2px solid #f8bbd0;
   text-align: center;
@@ -128,10 +130,10 @@
   cursor: pointer;
 }
 .icon_up {
-  margin-bottom: 5px;
+  margin-bottom: 0.313rem;
 }
 .icon_down {
-  margin-top: 5px;
+  margin-top: 0.313rem;
 }
 .icon:hover {
   opacity: 1;
@@ -144,8 +146,8 @@
 .time_text,
 .kcal_text {
   font-weight: 600;
-  padding: 5px 0px;
-  margin-left: 5px;
+  padding: 0.313rem 0px;
+  margin-left: 0.313rem;
   font-size: 1.1rem;
 }
 .kcal {
@@ -154,18 +156,19 @@
   font-size: 1.1rem;
 }
 .addButton {
-  width: 250px;
+  width: 15.625rem;
   font-weight: 600;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+    0 1px 0.188rem rgba(0, 0, 0, 0.08);
   font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   color: white;
   border: none;
   background-color: colorPink;
-  margin: 20px 0px;
-  padding: 7px 0px;
-  border-radius: 5px;
+  margin: 1.25rem 0px;
+  padding: 0.438rem 0px;
+  border-radius: 0.313rem;
 }
 .addButton:hover {
   opacity: 0.9;

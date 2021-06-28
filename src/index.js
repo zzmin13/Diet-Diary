@@ -12,10 +12,12 @@ import { createStore } from "redux";
 import rootReducer from "./modules/index";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import ImageUploader from "./service/imageUploader";
 
 const authService = new AuthService();
 const database = new Database();
 const foodSearch = new FoodSearch(process.env.REACT_APP_SERVICE_KEY);
+const imageUploader = new ImageUploader();
 const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
@@ -25,6 +27,7 @@ ReactDOM.render(
         authService={authService}
         database={database}
         foodSearch={foodSearch}
+        imageUploader={imageUploader}
       />
     </Provider>
   </React.StrictMode>,

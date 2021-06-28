@@ -259,5 +259,13 @@ class Database {
     updates[`users/${uid}/userDiary/${date}`] = null;
     return firebaseDatabase.ref().update(updates);
   }
+
+  //계정 정보 변경
+  updateAccountInformation(uid, avatarURL, nickname) {
+    const updates = {};
+    updates[`users/${uid}/information/basic/avatar`] = avatarURL;
+    updates[`users/${uid}/information/basic/userName`] = nickname;
+    return firebaseDatabase.ref().update(updates);
+  }
 }
 export default Database;

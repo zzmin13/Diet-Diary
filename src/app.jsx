@@ -26,6 +26,7 @@ function App({
   authService,
   database,
   foodSearch,
+  imageUploader,
   loginUser,
   loadUserInformation,
 }) {
@@ -307,6 +308,7 @@ function App({
                   <MypageAccountContainer
                     authService={authService}
                     database={database}
+                    imageUploader={imageUploader}
                     {...props}
                   />
                 </>

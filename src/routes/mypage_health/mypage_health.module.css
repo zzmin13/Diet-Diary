@@ -126,3 +126,10 @@
   opacity: 0.9;
   transform: scale(0.99);
 }
+.loading_container {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

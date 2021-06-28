@@ -139,6 +139,11 @@ export const updateProfile = (avatarURL, nickname) => ({
   avatarURL,
   nickname,
 });
+
+export const updateHealthInformation = (content) => ({
+  type: "UPDATE_HEALTH_INFORMATION",
+  content,
+});
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
   isUser: false,
@@ -397,6 +402,19 @@ const userReducer = (state = initialState, action) => {
               ...state.user.information.basic,
               avatar: action.avatarURL,
               userName: action.nickname,
+            },
+          },
+        },
+      };
+    case "UPDATE_HEALTH_INFORMATION":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          information: {
+            ...state.user.information,
+            required: {
+              ...action.content,
             },
           },
         },

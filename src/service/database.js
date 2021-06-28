@@ -260,11 +260,18 @@ class Database {
     return firebaseDatabase.ref().update(updates);
   }
 
-  //계정 정보 변경
+  //계정 정보 변경 (프로필 사진, 닉네임 변경)
   updateAccountInformation(uid, avatarURL, nickname) {
     const updates = {};
     updates[`users/${uid}/information/basic/avatar`] = avatarURL;
     updates[`users/${uid}/information/basic/userName`] = nickname;
+    return firebaseDatabase.ref().update(updates);
+  }
+
+  // 건강 정보 변경 (활동, 활동지수, 나이, 키, 권장칼로리, 성별, 몸무게)
+  updateHealthInformation(uid, content) {
+    const updates = {};
+    updates[`users/${uid}/information/required`] = content;
     return firebaseDatabase.ref().update(updates);
   }
 }

@@ -30,7 +30,7 @@
   margin-bottom: 10px;
 }
 .item_name {
-  width: 20%;
+  flex-basis: 30%;
   padding: 10px;
   font-weight: 600;
   color: colorPink;
@@ -46,7 +46,7 @@
   font-weight: 600;
 }
 .item_second {
-  width: 50%;
+  flex-basis: 60%;
 }
 .addButton {
   width: 250px;

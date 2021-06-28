@@ -20,6 +20,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 10px;
 }
 .item {
@@ -30,9 +31,13 @@
   margin-bottom: 10px;
 }
 .item_name {
-  padding: 10px;
+  flex-basis: 20%;
+  margin: 10px;
   font-weight: 600;
   color: colorPink;
+}
+.item_second {
+  flex-basis: 60%;
 }
 .item_input {
   border: 3px solid #f8bbd0;
@@ -43,9 +48,6 @@
 .item_behind {
   margin-left: 5px;
   font-weight: 600;
-}
-.item_second {
-  width: 50%;
 }
 .addButton {
   width: 250px;

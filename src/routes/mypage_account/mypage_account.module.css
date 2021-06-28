@@ -13,6 +13,22 @@
   align-items: center;
   background-color: white;
   padding-top: 10px;
+  position: relative;
+}
+.button_back {
+  top: 20px;
+  left: 10px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: colorPink;
+}
+.icon_back {
+  font-size: 2rem;
 }
 .title {
   font-size: 1.3rem;

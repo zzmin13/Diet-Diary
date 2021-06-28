@@ -44,8 +44,14 @@ const MypageAccount = ({
         alert("변경사항이 저장되었습니다.");
       });
   };
+  const goBackPage = () => {
+    history.push("/mypage");
+  };
   return (
     <div className={styles.container}>
+      <button onClick={goBackPage} className={styles.button_back}>
+        <i className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}></i>
+      </button>
       <form className={styles.form1} onSubmit={onSubmitForm}>
         <h1 className={styles.title}>마이페이지</h1>
         <h1 className={styles.form1_title}>나의 계정</h1>

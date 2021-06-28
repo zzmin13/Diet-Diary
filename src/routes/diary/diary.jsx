@@ -10,8 +10,6 @@ const Diary = ({
   dateObject: { date, day },
   loadUserInformation,
 }) => {
-  const week = ["일", "월", "화", "수", "목", "금", "토"];
-  const dayText = week[day];
   const textareaRef = useRef();
   const writeDiary = () => {
     database.createOrUpdateTodayDiary(uid, date, textareaRef.current.value);

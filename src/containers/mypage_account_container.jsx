@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import MypageAccount from "../routes/mypage_account/mypage_account";
-
+import { updateProfile } from "../modules/user";
 const MypageAccountContainer = (props) => {
   return <MypageAccount {...props} />;
 };
@@ -11,7 +11,11 @@ const mapStateToProps = (state) => ({
   uid: state.userReducer.uid,
   user: state.userReducer.user,
 });
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  updateProfile: (avatarURL, nickname) => {
+    dispatch(updateProfile(avatarURL, nickname));
+  },
+});
 
 export default connect(
   mapStateToProps,

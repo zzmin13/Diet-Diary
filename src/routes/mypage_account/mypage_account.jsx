@@ -10,6 +10,7 @@ const MypageAccount = ({
   isUser,
   uid,
   user,
+  updateProfile,
 }) => {
   const imgRef = useRef();
   const fileRef = useRef();
@@ -36,6 +37,7 @@ const MypageAccount = ({
       .uploadImage(fileRef.current.files[0]) //
       .then((fileURL) => {
         database.updateAccountInformation(uid, fileURL, nickName);
+        updateProfile(fileURL, nickName);
       })
       .then(() => {
         setIsLoading(false);

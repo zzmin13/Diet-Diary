@@ -128,9 +128,16 @@ export const editTodayWeight = (date, weight) => ({
   date,
   weight,
 });
+
 export const deleteDiary = (date) => ({
   type: "DELETE_DIARY",
   date,
+});
+
+export const updateProfile = (avatarURL, nickname) => ({
+  type: "UPDATE_PROFILE",
+  avatarURL,
+  nickname,
 });
 // 초기 상태 및 리듀서 함수 만들기
 const initialState = {
@@ -377,6 +384,21 @@ const userReducer = (state = initialState, action) => {
         user: {
           ...state.user,
           userDiary: changedDiary,
+        },
+      };
+    case "UPDATE_PROFILE":
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          information: {
+            ...state.user.information,
+            basic: {
+              ...state.user.information.basic,
+              avatar: action.avatarURL,
+              userName: action.nickname,
+            },
+          },
         },
       };
     default:

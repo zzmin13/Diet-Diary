@@ -149,6 +149,7 @@ const initialState = {
   isUser: false,
   uid: "",
   user: "",
+  profile: "",
   dateObject: {
     date: today,
     day: moment(today).day(),
@@ -161,12 +162,14 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isUser: true,
+        profile: action.currentUser,
         uid: action.currentUser.uid,
       };
     case "LOGOUT_USER":
       return {
         ...state,
         isUser: false,
+        profile: "",
         uid: "",
         user: "",
       };

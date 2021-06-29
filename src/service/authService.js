@@ -22,6 +22,7 @@ class AuthService {
   onAuthStateChanged(callback) {
     firebaseAuth.onAuthStateChanged((user) => {
       callback(user);
+      console.log(user);
     });
   }
   logout() {
@@ -62,6 +63,20 @@ class AuthService {
         } else {
           alert(errorMessage);
         }
+      });
+  }
+  updateProfile(fileURL, nickName) {
+    const user = firebaseAuth.currentUser;
+    user
+      .updateProfile({
+        displayName: nickName,
+        photoURL: fileURL,
+      })
+      .then(() => {
+        alert("프로필이 변경되었습니다.");
+      })
+      .catch((error) => {
+        alert(error);
       });
   }
 }

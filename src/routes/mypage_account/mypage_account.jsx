@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
-import { useEffect } from "react";
 import styles from "./mypage_account.module.css";
 import Loading from "../../components/loading/loading";
 const MypageAccount = ({
   history,
+  authService,
   database,
   imageUploader,
   isUser,
@@ -34,6 +34,7 @@ const MypageAccount = ({
       .then((fileURL) => {
         database.updateAccountInformation(uid, fileURL, nickName);
         updateProfile(fileURL, nickName);
+        authService.updateProfile(fileURL, nickName);
       })
       .then(() => {
         setIsLoading(false);

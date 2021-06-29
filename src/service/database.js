@@ -2,17 +2,10 @@ import { firebaseDatabase } from "./firebase";
 
 class Database {
   // 유저 데이터베이스에 등록하기
-  registerUser(uid, email, photoURL, currentDate) {
+  registerUser(uid) {
     firebaseDatabase.ref(`users/${uid}`).set({
-      information: {
-        basic: {
-          userName: "",
-          email: email,
-          avatar:
-            photoURL ||
-            "https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg",
-        },
-      },
+      information: "",
+      userDiary: "",
     });
   }
 
@@ -49,26 +42,9 @@ class Database {
         console.error(error);
       });
   }
-
-  //필수 정보 가져오기
-  getRequiredInformation(uid) {
-    return firebaseDatabase
-      .ref(`users/${uid}/information/required`)
-      .get()
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          return snapshot.val();
-        } else {
-          return false;
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
   // 필수 정보 저장하기
   setRequiredInformation(uid, information) {
-    firebaseDatabase.ref(`users/${uid}/information/required`).set(information);
+    firebaseDatabase.ref(`users/${uid}/information`).set(information);
   }
   // 오늘 날짜 일기 템플릿 만들기
   setTodayDiaryTemplate(uid, currentDate) {
@@ -275,18 +251,10 @@ class Database {
     return firebaseDatabase.ref().update(updates);
   }
 
-  //계정 정보 변경 (프로필 사진, 닉네임 변경)
-  updateAccountInformation(uid, avatarURL, nickname) {
-    const updates = {};
-    updates[`users/${uid}/information/basic/avatar`] = avatarURL;
-    updates[`users/${uid}/information/basic/userName`] = nickname;
-    return firebaseDatabase.ref().update(updates);
-  }
-
   // 건강 정보 변경 (활동, 활동지수, 나이, 키, 권장칼로리, 성별, 몸무게)
   updateHealthInformation(uid, content) {
     const updates = {};
-    updates[`users/${uid}/information/required`] = content;
+    updates[`users/${uid}/information`] = content;
     return firebaseDatabase.ref().update(updates);
   }
 }

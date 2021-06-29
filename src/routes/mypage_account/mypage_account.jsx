@@ -11,6 +11,7 @@ const MypageAccount = ({
   isUser,
   uid,
   user,
+  profile,
   updateProfile,
 }) => {
   const imgRef = useRef();
@@ -32,9 +33,8 @@ const MypageAccount = ({
     imageUploader //
       .uploadImage(fileRef.current.files[0]) //
       .then((fileURL) => {
-        database.updateAccountInformation(uid, fileURL, nickName);
-        updateProfile(fileURL, nickName);
         authService.updateProfile(fileURL, nickName);
+        updateProfile(fileURL, nickName);
       })
       .then(() => {
         setIsLoading(false);
@@ -46,7 +46,7 @@ const MypageAccount = ({
   };
   return (
     <>
-      {user ? (
+      {profile ? (
         <div className={styles.container}>
           <form className={styles.form1} onSubmit={onSubmitForm}>
             <div className={styles.title_box}>
@@ -61,7 +61,7 @@ const MypageAccount = ({
             <div className={styles.profile_box}>
               <img
                 className={styles.profile_img}
-                src={user ? user.information.basic.avatar : null}
+                src={profile ? profile.photoURL : null}
                 alt="avatar"
                 ref={imgRef}
               />
@@ -89,7 +89,7 @@ const MypageAccount = ({
               id="mypage_username"
               className={styles.input}
               type="text"
-              defaultValue={user ? user.information.basic.userName : ""}
+              defaultValue={profile ? profile.displayName : ""}
               ref={nickNameRef}
             />
             <label className={styles.input_label} htmlFor="mypage_email">
@@ -99,7 +99,7 @@ const MypageAccount = ({
               id="mypage_email"
               className={styles.input}
               type="email"
-              defaultValue={user ? user.information.basic.email : null}
+              defaultValue={profile ? profile.email : null}
               disabled
             />
             <button type="submit" className={styles.button_save}>

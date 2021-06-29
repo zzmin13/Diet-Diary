@@ -59,8 +59,7 @@ const Register = ({ authService, database, uid, loadUserInformation }) => {
         const data = {
           ...response,
           information: {
-            ...response.information,
-            required: requiredInformation,
+            ...requiredInformation,
           },
         };
         loadUserInformation(data);

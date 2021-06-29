@@ -102,9 +102,7 @@ const MypageHealth = ({
               <input
                 type="number"
                 className={styles.input_kcal}
-                defaultValue={
-                  user ? user.information.required.recommendedCalories : ""
-                }
+                defaultValue={user ? user.information.recommendedCalories : ""}
                 ref={recommendedCaloriesRef}
               />
               <button
@@ -131,7 +129,7 @@ const MypageHealth = ({
               id="mypage_height"
               className={styles.input}
               type="text"
-              defaultValue={user ? user.information.required.height : ""}
+              defaultValue={user ? user.information.height : ""}
               ref={heightRef}
               required
             />
@@ -142,7 +140,7 @@ const MypageHealth = ({
               id="mypage_weight"
               className={styles.input}
               type="text"
-              defaultValue={user ? user.information.required.weight : ""}
+              defaultValue={user ? user.information.weight : ""}
               ref={weightRef}
               required
             />
@@ -153,7 +151,7 @@ const MypageHealth = ({
               id="mypage_age"
               className={styles.input}
               type="text"
-              defaultValue={user ? user.information.required.age : ""}
+              defaultValue={user ? user.information.age : ""}
               ref={ageRef}
               required
             />
@@ -163,7 +161,7 @@ const MypageHealth = ({
             <select
               className={styles.input}
               id="mypage_sex"
-              defaultValue={user && user.information.required.sex}
+              defaultValue={user && user.information.sex}
               ref={sexRef}
             >
               <option value="male">남자</option>
@@ -175,7 +173,7 @@ const MypageHealth = ({
             <select
               className={styles.input}
               id="mypage_activity"
-              defaultValue={user && user.information.required.activity}
+              defaultValue={user && user.information.activity}
               ref={activityRef}
             >
               <option value="large">활발하게 활동적</option>

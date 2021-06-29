@@ -8,6 +8,7 @@ const LoginHeaderContainer = (props) => {
 };
 const mapStateToProps = (state) => ({
   isUser: state.userReducer.isUser,
+  profile: state.userReducer.profile,
   user: state.userReducer.user,
 });
 const mapDispatchToProps = (dispatch) => ({

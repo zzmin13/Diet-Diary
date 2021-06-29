@@ -10,6 +10,7 @@ const Main = ({
   database,
   history,
   user,
+  profile,
   uid,
   dateObject,
   dateObject: { date, day },
@@ -28,7 +29,7 @@ const Main = ({
             if (response === false) {
               window.location.reload();
             } else {
-              if (response.information.required === undefined) {
+              if (response.information === undefined) {
                 // 필수 정보가 없으면 /register로 이동
                 history.push("/register");
               }

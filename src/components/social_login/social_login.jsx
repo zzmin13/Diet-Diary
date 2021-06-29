@@ -18,22 +18,9 @@ const SocialLogin = (props) => {
     closeModal();
     const response = await authService.OauthLogin(providerName);
     const uid = response.user.uid;
-    const email = response.user.email;
-    const photoURL = response.user.photoURL;
-    const currentYear = `${new Date().getFullYear()}`;
-    const currentMonth =
-      new Date().getMonth() + 1 < 10
-        ? `0${new Date().getMonth() + 1}`
-        : `${new Date().getMonth() + 1}`;
-    const currentDate =
-      new Date().getDate() < 10
-        ? `0${new Date().getDate()}`
-        : `${new Date().getDate()}`;
-    const current = currentYear + currentMonth + currentDate;
-
     database.isUserExistInDatabase(response.user.uid).then((response) => {
       if (response === false) {
-        database.registerUser(uid, email, photoURL, current);
+        database.registerUser(uid);
       } else {
         history.push("/main");
       }

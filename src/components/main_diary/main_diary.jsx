@@ -25,7 +25,7 @@ const MainDiary = ({ date, daytext, user, goeditpage, handleDiaryDelete }) => {
               <span className={styles.bold}>하루 권장 칼로리</span>
             </div>
             <div className={styles.text_text2}>
-              <span>{user.information.required.recommendedCalories} </span>
+              <span>{user.information.recommendedCalories} </span>
               <span> Kcal</span>
             </div>
           </div>

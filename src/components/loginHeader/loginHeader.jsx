@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "./loginHeader.module.css";
 const LoginHeader = memo((props) => {
-  const { authService, logoutUser, user } = props;
+  const { authService, logoutUser, profile } = props;
   const [display, setDisplay] = useState(styles.invisible);
   const history = useHistory();
   const handleLogout = () => {
@@ -34,12 +34,12 @@ const LoginHeader = memo((props) => {
         </Link>
         <ul className={styles.navbar}>
           <li className={styles.navbar_item}>
-            {user.information ? (
+            {profile ? (
               <img
                 className={styles.avatar}
                 src={
-                  user.information.basic.avatar
-                    ? user.information.basic.avatar
+                  profile.photoURL
+                    ? profile.photoURL
                     : `https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg`
                 }
                 alt="avatar"
@@ -48,19 +48,19 @@ const LoginHeader = memo((props) => {
             ) : null}
           </li>
         </ul>
-        {user.information ? (
+        {profile ? (
           <div className={`${styles.userBox} ${display}`}>
             <div className={styles.profile}>
               <img
                 className={`${styles.avatar} ${styles.avatar_userBox}`}
                 src={
-                  user.information.basic.avatar
-                    ? user.information.basic.avatar
+                  profile.photoURL
+                    ? profile.photoURL
                     : `https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg`
                 }
                 alt="avatar"
               />
-              <h1 className={styles.email}>{user.information.basic.email}</h1>
+              <h1 className={styles.email}>{profile.email}</h1>
             </div>
             <ul>
               <li onClick={handleLogout} className={styles.userBox_item}>

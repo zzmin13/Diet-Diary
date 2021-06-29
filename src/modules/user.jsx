@@ -434,16 +434,10 @@ const userReducer = (state = initialState, action) => {
     case "UPDATE_PROFILE":
       return {
         ...state,
-        user: {
-          ...state.user,
-          information: {
-            ...state.user.information,
-            basic: {
-              ...state.user.information.basic,
-              avatar: action.avatarURL,
-              userName: action.nickname,
-            },
-          },
+        profile: {
+          ...state.profile,
+          displayName: action.nickname,
+          photoURL: action.avatarURL,
         },
       };
     case "UPDATE_HEALTH_INFORMATION":
@@ -452,10 +446,7 @@ const userReducer = (state = initialState, action) => {
         user: {
           ...state.user,
           information: {
-            ...state.user.information,
-            required: {
-              ...action.content,
-            },
+            ...action.content,
           },
         },
       };

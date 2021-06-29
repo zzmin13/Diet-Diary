@@ -16,6 +16,7 @@ const mapStateToProps = (state) => ({
   isUser: state.userReducer.isUser,
   user: state.userReducer.user,
   uid: state.userReducer.uid,
+  profile: state.userReducer.profile,
   dateObject: state.userReducer.dateObject,
 });
 const mapDispatchToProps = (dispatch) => ({

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import SocialLogin from "../../components/social_login/social_login";
 import styles from "./login.module.css";
@@ -27,8 +27,13 @@ const Login = (props) => {
     }
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-
     const response = await authService.emailLogin(email, password);
+  };
+  const goFindPage = () => {
+    if (props.closeModal) {
+      closeModal();
+    }
+    history.push("/find");
   };
   console.log(`login`);
   return (
@@ -64,13 +69,9 @@ const Login = (props) => {
             >
               <span className={styles.join}>Join</span>
             </Link>
-            <Link
-              to={{
-                pathname: "/find",
-              }}
-            >
-              <span className={styles.forgot}>Forgot your ID / Password?</span>
-            </Link>
+            <span onClick={goFindPage} className={styles.forgot}>
+              Forgot your ID / Password?
+            </span>
           </div>
         </form>
         <div className={styles.lineBox}>

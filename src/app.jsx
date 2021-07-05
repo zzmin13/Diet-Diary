@@ -2,6 +2,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import HomeContainer from "./containers/home_container";
 import Login from "./routes/login/login";
 import Join from "./routes/join/join";
+import Find from "./routes/find/find";
 import MainContainer from "./containers/main_container";
 import RegisterContainer from "./containers/register_contatiner";
 import DiaryContainer from "./containers/diary_container";
@@ -91,6 +92,17 @@ function App({
                     database={database}
                     {...props}
                   />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/find"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <Find authService={authService} {...props} />
                 </>
               );
             }}

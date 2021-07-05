@@ -2,9 +2,11 @@ import React from "react";
 import { useRef } from "react";
 import styles from "./mypage_health.module.css";
 import Loading from "../../components/loading/loading";
+import { useEffect } from "react";
 const MypageHealth = ({
   history,
   database,
+  isUser,
   user,
   uid,
   updateHealthInformation,
@@ -84,6 +86,11 @@ const MypageHealth = ({
   const handlePreventDefault = (e) => {
     e.preventDefault();
   };
+  useEffect(() => {
+    if (!isUser) {
+      history.push("/");
+    }
+  });
   return (
     <>
       {user ? (

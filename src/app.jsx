@@ -20,6 +20,8 @@ import WeightContainer from "./containers/weight_container";
 import MypageAccountContainer from "./containers/mypage_account_container";
 import MypageContainer from "./containers/mypage_container";
 import MypageHealthContainer from "./containers/mypage_health_container";
+import ChangePasswordContainer from "./containers/change_password_container";
+
 import { useEffect } from "react";
 import styles from "./app.module.css";
 
@@ -323,6 +325,21 @@ function App({
               return (
                 <>
                   <MypageHealthContainer database={database} {...props} />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/mypage/changepassword"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <ChangePasswordContainer
+                    authService={authService}
+                    database={database}
+                    {...props}
+                  />
                 </>
               );
             }}

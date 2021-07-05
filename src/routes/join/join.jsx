@@ -1,24 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styles from "./join.module.css";
 import SocialLogin from "../../components/social_login/social_login";
-import { useHistory } from "react-router";
+
 const Join = (props) => {
   const { authService, database } = props;
-  const history = useHistory();
   const text1 = "소셜계정으로 간편하게 가입하세요!";
   const text2 = "이미 회원이신가요?";
   const text3 = "로그인하기";
-  const currentYear = `${new Date().getFullYear()}`;
-  const currentMonth =
-    new Date().getMonth() + 1 < 10
-      ? `0${new Date().getMonth() + 1}`
-      : `${new Date().getMonth() + 1}`;
-  const currentDate =
-    new Date().getDate() < 10
-      ? `0${new Date().getDate()}`
-      : `${new Date().getDate()}`;
-  const current = currentYear + currentMonth + currentDate;
-  console.log(props);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -28,9 +16,6 @@ const Join = (props) => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const password2 = password2Ref.current.value;
-    console.log(email);
-    console.log(password);
-    console.log(password2);
 
     if (password !== password2) {
       alert("비밀번호가 일치하지 않습니다.");
@@ -40,15 +25,7 @@ const Join = (props) => {
       );
     } else {
       const response = await authService.createAccount(email, password);
-      console.log(response.user.uid);
-      console.log(response.user.email);
-      console.log(response.user.photoURL);
-      await database.registerUser(
-        response.user.uid,
-        response.user.email,
-        response.user.photoURL,
-        current
-      );
+      await database.registerUser(response.user.uid);
     }
   };
   const checkPassword = (password) => {
@@ -64,7 +41,6 @@ const Join = (props) => {
       props.closeModal();
     }
   };
-  console.log(`join`);
   return (
     <>
       <section className={styles.container}>

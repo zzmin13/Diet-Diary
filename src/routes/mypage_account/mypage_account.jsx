@@ -3,16 +3,14 @@ import { useState } from "react";
 import { useRef } from "react";
 import styles from "./mypage_account.module.css";
 import Loading from "../../components/loading/loading";
+import { useEffect } from "react";
 const MypageAccount = ({
   history,
   authService,
-  database,
   imageUploader,
-  isUser,
-  uid,
-  user,
   profile,
   updateProfile,
+  isUser,
 }) => {
   const imgRef = useRef();
   const fileRef = useRef();
@@ -44,6 +42,11 @@ const MypageAccount = ({
   const goBackPage = () => {
     history.push("/mypage");
   };
+  useEffect(() => {
+    if (!isUser) {
+      history.push("/");
+    }
+  });
   return (
     <>
       {profile ? (
@@ -61,7 +64,11 @@ const MypageAccount = ({
             <div className={styles.profile_box}>
               <img
                 className={styles.profile_img}
-                src={profile ? profile.photoURL : null}
+                src={
+                  profile.photoURL
+                    ? profile.photoURL
+                    : `https://res.cloudinary.com/dgdkgkx1k/image/upload/v1621578337/sh0ttupc1rv7s6iqbw2u.jpg`
+                }
                 alt="avatar"
                 ref={imgRef}
               />

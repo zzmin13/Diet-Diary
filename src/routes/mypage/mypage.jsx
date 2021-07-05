@@ -1,12 +1,21 @@
 import React from "react";
+import { useEffect } from "react";
 import styles from "./mypage.module.css";
-const Mypage = ({ profile, history }) => {
+const Mypage = ({ profile, history, isUser }) => {
   const goAccountPage = () => {
     history.push("/mypage/account");
   };
   const goHealthPage = () => {
     history.push("/mypage/health");
   };
+  const goChangePasswordPage = () => {
+    history.push("/mypage/changepassword");
+  };
+  useEffect(() => {
+    if (!isUser) {
+      history.push("/");
+    }
+  });
   return (
     <>
       {profile ? (
@@ -36,7 +45,7 @@ const Mypage = ({ profile, history }) => {
                 </div>
                 <p className={styles.button_text}>계정 설정</p>
               </button>
-              <button className={styles.button}>
+              <button onClick={goChangePasswordPage} className={styles.button}>
                 <div className={styles.icon_box}>
                   <i
                     className={`fas fa-lock ${styles.icon} ${styles.icon_password}`}

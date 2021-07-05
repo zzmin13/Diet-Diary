@@ -29,16 +29,6 @@ const Login = (props) => {
     const password = passwordRef.current.value;
 
     const response = await authService.emailLogin(email, password);
-    if (response !== undefined) {
-      // console.log(response.user.uid);
-      database.getRequiredInformation(response.user.uid).then((response) => {
-        if (response === false) {
-          history.push("/register");
-        } else {
-          history.push("/main");
-        }
-      });
-    }
   };
   console.log(`login`);
   return (

@@ -1,4 +1,9 @@
-import { firebaseAuth, googleProvider, githubProvider } from "./firebase";
+import {
+  firebaseAuth,
+  googleProvider,
+  githubProvider,
+  emailProvider,
+} from "./firebase";
 
 class AuthService {
   getProvider(providerName) {
@@ -22,7 +27,6 @@ class AuthService {
   onAuthStateChanged(callback) {
     firebaseAuth.onAuthStateChanged((user) => {
       callback(user);
-      console.log(user);
     });
   }
   logout() {
@@ -78,6 +82,34 @@ class AuthService {
       .catch((error) => {
         alert(error);
       });
+  }
+  sendPasswordResetEmail(email, sendSuccess) {
+    firebaseAuth
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        sendSuccess();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  updatePassword(newPassword, successUpdatePassword, failUpdatePassword) {
+    const user = firebaseAuth.currentUser;
+    user //
+      .updatePassword(newPassword) //
+      .then(() => {
+        // Update Successful.
+        successUpdatePassword();
+      })
+      .catch((error) => {
+        failUpdatePassword();
+        console.log(error);
+      });
+  }
+  reauthenticate(email, currentPassword) {
+    const user = firebaseAuth.currentUser;
+    const credential = emailProvider.credential(email, currentPassword);
+    return user.reauthenticateWithCredential(credential);
   }
 }
 

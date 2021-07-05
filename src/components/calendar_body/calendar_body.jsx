@@ -28,9 +28,11 @@ const CalendarBody = ({ calendarDate, dateObject, user, changeDate, date }) => {
           {element.map((element) =>
             element.substring(4, 6) === calendarDate.format("MM") ? (
               element === date ? (
-                <div className={`${styles.date_box} ${styles.selected}`}>
+                <div
+                  key={element}
+                  className={`${styles.date_box} ${styles.selected}`}
+                >
                   <span
-                    key={element}
                     onClick={onClickDate}
                     id={element}
                     className={`${styles.date_bold} ${styles.date} `}
@@ -40,15 +42,14 @@ const CalendarBody = ({ calendarDate, dateObject, user, changeDate, date }) => {
                       : element.substring(6, 8)}
                   </span>
                   {diaryDateArray.includes(element) ? (
-                    <div className={styles.diary_exist}></div>
+                    <div key={element} className={styles.diary_exist}></div>
                   ) : (
-                    <div className={styles.diary_none}></div>
+                    <div key={element} className={styles.diary_none}></div>
                   )}
                 </div>
               ) : (
-                <div className={styles.date_box}>
+                <div key={element} className={styles.date_box}>
                   <span
-                    key={element}
                     onClick={onClickDate}
                     id={element}
                     className={`${styles.date_bold} ${styles.date}`}
@@ -58,18 +59,15 @@ const CalendarBody = ({ calendarDate, dateObject, user, changeDate, date }) => {
                       : element.substring(6, 8)}
                   </span>
                   {diaryDateArray.includes(element) ? (
-                    <div className={styles.diary_exist}></div>
+                    <div key={element} className={styles.diary_exist}></div>
                   ) : (
-                    <div className={styles.diary_none}></div>
+                    <div key={element} className={styles.diary_none}></div>
                   )}
                 </div>
               )
             ) : (
-              <div className={styles.date_box}>
-                <span
-                  key={element}
-                  className={`${styles.date_gray} ${styles.date}`}
-                >
+              <div key={element} className={styles.date_box}>
+                <span className={`${styles.date_gray} ${styles.date}`}>
                   {element.substring(6, 8)[0] === "0"
                     ? element.substring(7, 8)
                     : element.substring(6, 8)}

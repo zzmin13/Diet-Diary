@@ -71,17 +71,32 @@ class AuthService {
   }
   updateProfile(fileURL, nickName) {
     const user = firebaseAuth.currentUser;
-    user
-      .updateProfile({
-        displayName: nickName,
-        photoURL: fileURL,
-      })
-      .then(() => {
-        alert("프로필이 변경되었습니다.");
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    if (fileURL !== undefined && nickName !== undefined) {
+      // 프로필사진, 닉네임 둘다 있을 때
+      user
+        .updateProfile({
+          displayName: nickName,
+          photoURL: fileURL,
+        })
+        .then(() => {
+          alert("프로필이 변경되었습니다.");
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    } else if (fileURL === undefined && nickName !== undefined) {
+      // 프로필 사진만 없을 때
+      user
+        .updateProfile({
+          displayName: nickName,
+        })
+        .then(() => {
+          alert("프로필이 변경되었습니다.");
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
   }
   sendPasswordResetEmail(email, sendSuccess, sendFail) {
     firebaseAuth

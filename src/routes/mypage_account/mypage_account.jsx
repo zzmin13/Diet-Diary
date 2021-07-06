@@ -28,16 +28,25 @@ const MypageAccount = ({
     event.preventDefault();
     const nickName = nickNameRef.current.value;
     setIsLoading(true);
-    imageUploader //
-      .uploadImage(fileRef.current.files[0]) //
-      .then((fileURL) => {
-        authService.updateProfile(fileURL, nickName);
-        updateProfile(fileURL, nickName);
-      })
-      .then(() => {
-        setIsLoading(false);
-        alert("변경사항이 저장되었습니다.");
-      });
+    if (fileRef.current.files[0]) {
+      imageUploader //
+        .uploadImage(fileRef.current.files[0]) //
+        .then((fileURL) => {
+          authService.updateProfile(fileURL, nickName);
+          updateProfile(fileURL, nickName);
+        })
+        .then(() => {
+          setIsLoading(false);
+          alert("변경사항이 저장되었습니다.");
+          history.push("/mypage");
+        });
+    } else {
+      authService.updateProfile(profile.photoURL, nickName);
+      updateProfile(profile.photoURL, nickName);
+      setIsLoading(false);
+      alert("변경사항이 저장되었습니다.");
+      history.push("/mypage");
+    }
   };
   const goBackPage = () => {
     history.push("/mypage");

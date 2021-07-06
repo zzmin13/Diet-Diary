@@ -6,7 +6,12 @@ const Find = ({ authService, history }) => {
   const emailRef = useRef();
   const sendSuccess = () => {
     alert("비밀번호 재설정 이메일이 성공적으로 전송되었습니다!");
-    history.push("/find/sent");
+    history.push({
+      pathname: "/find/sent",
+      state: {
+        email: emailRef.current.value,
+      },
+    });
   };
   const sendFail = (error) => {
     if (error.code === "auth/user-not-found") {

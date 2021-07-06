@@ -24,11 +24,11 @@ const LogoutHeader = memo((props) => {
   const closeModal = () => {
     setModalDisplay(false);
   };
-  const showLoginPopup = (event) => {
+  const showLoginPopup = () => {
     setModalDisplay(styles.block);
     setModalTarget("login");
   };
-  const showJoinPopup = (event) => {
+  const showJoinPopup = () => {
     setModalDisplay(styles.block);
     setModalTarget("join");
   };

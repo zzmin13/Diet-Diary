@@ -83,14 +83,14 @@ class AuthService {
         alert(error);
       });
   }
-  sendPasswordResetEmail(email, sendSuccess) {
+  sendPasswordResetEmail(email, sendSuccess, sendFail) {
     firebaseAuth
       .sendPasswordResetEmail(email)
       .then(() => {
         sendSuccess();
       })
       .catch((error) => {
-        console.log(error);
+        sendFail(error);
       });
   }
   updatePassword(newPassword, successUpdatePassword, failUpdatePassword) {

@@ -14,6 +14,10 @@
   justify-content: center;
   background-color: white;
 }
+.icon_lock {
+  font-size: 2rem;
+  color: colorBorderGrey;
+}
 .title {
   font-size: 1.5rem;
   padding: 20px;

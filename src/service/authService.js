@@ -19,14 +19,6 @@ class AuthService {
         throw new Error(`not supported provider : ${providerName}`);
     }
   }
-  // async OauthLogin(providerName) {
-  //   const provider = this.getProvider(providerName);
-  //   try {
-  //     return firebaseAuth.signInWithPopup(provider);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
   async OauthLogin(providerName) {
     const provider = this.getProvider(providerName);
     return firebaseAuth //
@@ -129,10 +121,21 @@ class AuthService {
         console.log(error);
       });
   }
+  getAccessToken() {}
   reauthenticate(email, currentPassword) {
     const user = firebaseAuth.currentUser;
     const credential = emailProvider.credential(email, currentPassword);
     return user.reauthenticateWithCredential(credential);
+  }
+  reauthenticateWithOauth(providerName, accessToken) {
+    const user = firebaseAuth.currentUser;
+    const provider = this.getProvider(providerName);
+    const credential = provider.credential(accessToken);
+    return user.reauthenticateWithCredential(credential);
+  }
+  deleteUser() {
+    const user = firebaseAuth.currentUser;
+    return user.delete();
   }
 }
 

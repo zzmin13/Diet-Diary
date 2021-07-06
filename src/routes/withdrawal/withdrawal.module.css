@@ -94,6 +94,47 @@
   border-radius: 5px;
   padding: 10px;
 }
+.account_box {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+.account_input:disabled {
+  border: 1px solid colorBorderGrey;
+  background-color: #eeeeee;
+  color: #9e9e9e;
+  height: 30px;
+  max-width: 250px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 5px;
+}
+.button_certify_inactive {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: fit-content;
+  height: fit-content;
+  padding: 8px 10px;
+  border-radius: 5px;
+  background-color: grey;
+  color: white;
+  font-size: 0.8rem;
+}
+.button_certify_inactive:hover,
+.button_certify_active:hover {
+  opacity: 0.9;
+  transform: scale(0.99);
+  cursor: pointer;
+}
+.button_certify_active {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: fit-content;
+  height: fit-content;
+  padding: 8px 10px;
+  border-radius: 5px;
+  background-color: cornflowerblue;
+  color: white;
+  font-size: 0.8rem;
+}
 .button_withdrawal {
   width: 250px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -104,7 +145,7 @@
   color: white;
   border: none;
   background-color: colorPink;
-  margin: 20px 0px 0px 15px; /*위 오른쪽 아래 왼쪽*/
+  margin: 5px 0px 0px 15px; /*위 오른쪽 아래 왼쪽*/
   padding: 7px 0px;
   border-radius: 5px;
 }
@@ -112,4 +153,9 @@
   opacity: 0.9;
   transform: scale(0.99);
   cursor: pointer;
+}
+.message_alert {
+  font-size: 0.8rem;
+  line-height: 200%;
+  color: red;
 }

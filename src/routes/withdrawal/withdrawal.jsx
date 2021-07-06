@@ -1,11 +1,104 @@
 import React from "react";
+import { useState } from "react";
+import { useRef } from "react";
 import styles from "./withdrawal.module.css";
-const Withdrawal = (props) => {
+const Withdrawal = ({
+  history,
+  authService,
+  database,
+  profile,
+  uid,
+  logoutUser,
+}) => {
+  let providerName;
+  if (profile.providerData[0].providerId === "google.com") {
+    providerName = "Google";
+  } else if (profile.providerData[0].providerId === "github.com") {
+    providerName = "Github";
+  } else if (profile.providerData[0].providerId === "facebook.com") {
+    providerName = "Facebook";
+  } else {
+    providerName = undefined;
+  }
+  const passwordRef = useRef();
+  const password2Ref = useRef();
+  const checkRef = useRef();
+  const certifyButtonRef = useRef();
+  const [isReauthenticate, setIsReauthenticate] = useState(false);
+  const [checkEqual, setCheckEqual] = useState(true);
+  const goBackPage = () => {
+    history.push("/mypage");
+  };
+  const handleOnSubmit = async (event) => {
+    event.preventDefault();
+    if (isReauthenticate === false) {
+      alert("계정 인증이 필요합니다.");
+    } else {
+      const answer = window.confirm("정말로 탈퇴하시겠습니까?");
+      if (answer === true) {
+        if (profile.providerData[0].providerId === "password") {
+          const password = passwordRef.current.value;
+          const password2 = passwordRef.current.value;
+          if (password !== password2) {
+            alert("비밀번호가 일치하지 않습니다.");
+          } else {
+            authService //
+              .reauthenticate(profile.email, password)
+              .then(() => {
+                // 현재 비밀번호와 일치했다면
+                // 1. 회원 삭제
+                // 2. 데이터베이스에서 데이터 삭제
+                // 3. 로그아웃 조치(state 변경)
+                // 4. /mypage/withdrawal/done 으로 이동
+                history.push("/mypage/withdrawal/done");
+              })
+              .catch(() => {
+                alert("현재 비밀번호와 일치하지 않습니다.");
+                passwordRef.current.value = "";
+                password2Ref.current.value = "";
+                passwordRef.current.focus();
+              });
+          }
+        } else {
+          authService
+            .deleteUser() //
+            .then(() => {
+              database
+                .deleteUser(uid) //
+                .then(() => {
+                  logoutUser();
+                  history.push("/mypage/withdrawal/done");
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      }
+    }
+  };
+  const checkPasswordEqual = () => {
+    if (passwordRef.current.value === password2Ref.current.value) {
+      setCheckEqual(true);
+    } else {
+      setCheckEqual(false);
+    }
+  };
+  const reauthenticateAccount = () => {
+    authService
+      .OauthLogin(providerName) //
+      .then(() => {
+        setIsReauthenticate(true);
+      });
+  };
   return (
     <div className={styles.container}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleOnSubmit}>
         <div className={styles.title_box}>
-          <button className={styles.button_back}>
+          <button onClick={goBackPage} className={styles.button_back}>
             <i className={`fas fa-arrow-circle-left ${styles.icon_back}`}></i>
           </button>
           <h1 className={styles.title}>회원 탈퇴</h1>
@@ -36,37 +129,84 @@ const Withdrawal = (props) => {
               type="checkbox"
               required={true}
               className={styles.agree_check}
+              ref={checkRef}
             />
             <span className={styles.agree_text}>
               해당 내용을 모두 확인하였으며, 회원탈퇴에 동의합니다.
             </span>
           </div>
         </div>
-        <div className={styles.section_2}>
-          <p className={styles.section_title}>
-            안전한 탈퇴를 위해 비밀번호를 확인해주세요.
-          </p>
-          <div className={styles.password_box}>
-            <label htmlFor="password" className={styles.password_label}>
-              비밀번호 입력
-            </label>
-            <input
-              type="password"
-              id="password"
-              className={styles.password_input}
-            />
+        {profile.providerData[0].providerId === "password" ? (
+          <div className={styles.section_2}>
+            <p className={styles.section_title}>
+              안전한 탈퇴를 위해 비밀번호를 확인해주세요.
+            </p>
+            <div className={styles.password_box}>
+              <label htmlFor="password" className={styles.password_label}>
+                비밀번호 입력
+              </label>
+              <input
+                type="password"
+                id="password"
+                className={styles.password_input}
+                required={true}
+                ref={passwordRef}
+                onChange={checkPasswordEqual}
+              />
+            </div>
+            <div className={styles.password_box}>
+              <label htmlFor="password2" className={styles.password_label}>
+                비밀번호 확인
+              </label>
+              <input
+                type="password"
+                id="password2"
+                className={styles.password_input}
+                required={true}
+                ref={password2Ref}
+                onChange={checkPasswordEqual}
+              />
+              {!checkEqual ? (
+                <p className={styles.message_alert}>
+                  비밀번호가 일치하지 않습니다.
+                </p>
+              ) : (
+                <p className={styles.message_alert}>&nbsp;</p>
+              )}
+            </div>
           </div>
-          <div className={styles.password_box}>
-            <label htmlFor="password2" className={styles.password_label}>
-              비밀번호 확인
-            </label>
-            <input
-              type="password"
-              id="password2"
-              className={styles.password_input}
-            />
+        ) : (
+          <div className={styles.section_2}>
+            <p className={styles.section_title}>
+              안전한 탈퇴를 위해 계정을 인증해주세요.
+            </p>
+            <div className={styles.account_box}>
+              <input
+                type="text"
+                className={styles.account_input}
+                defaultValue={profile.email}
+                disabled
+              />
+              {isReauthenticate ? (
+                <div
+                  ref={certifyButtonRef}
+                  onClick={reauthenticateAccount}
+                  className={styles.button_certify_active}
+                >
+                  인증됨
+                </div>
+              ) : (
+                <div
+                  ref={certifyButtonRef}
+                  onClick={reauthenticateAccount}
+                  className={styles.button_certify_inactive}
+                >
+                  인증하기
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
         <button className={styles.button_withdrawal}>회원 탈퇴</button>
       </form>
     </div>

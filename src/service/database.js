@@ -257,5 +257,12 @@ class Database {
     updates[`users/${uid}/information`] = content;
     return firebaseDatabase.ref().update(updates);
   }
+
+  // 유저 삭제
+  deleteUser(uid) {
+    const updates = {};
+    updates[`users/${uid}`] = null;
+    return firebaseDatabase.ref().update(updates);
+  }
 }
 export default Database;

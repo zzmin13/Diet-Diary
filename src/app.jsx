@@ -23,6 +23,7 @@ import MypageAccountContainer from "./containers/mypage_account_container";
 import MypageContainer from "./containers/mypage_container";
 import MypageHealthContainer from "./containers/mypage_health_container";
 import ChangePasswordContainer from "./containers/change_password_container";
+import WithdrawalContainer from "./containers/withdrawal_container";
 
 import { useEffect } from "react";
 import styles from "./app.module.css";
@@ -364,6 +365,21 @@ function App({
               return (
                 <>
                   <ChangePasswordContainer
+                    authService={authService}
+                    database={database}
+                    {...props}
+                  />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/mypage/withdrawal"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <WithdrawalContainer
                     authService={authService}
                     database={database}
                     {...props}

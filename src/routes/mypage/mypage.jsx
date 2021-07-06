@@ -8,6 +8,9 @@ const Mypage = ({ profile, history, isUser }) => {
   const goHealthPage = () => {
     history.push("/mypage/health");
   };
+  const goWithdrawalPage = () => {
+    history.push("/mypage/withdrawal");
+  };
   const goChangePasswordPage = () => {
     history.push("/mypage/changepassword");
   };
@@ -81,7 +84,7 @@ const Mypage = ({ profile, history, isUser }) => {
                 </div>
                 <p className={styles.button_text}>건강 정보 설정</p>
               </button>
-              <button className={styles.button}>
+              <button onClick={goWithdrawalPage} className={styles.button}>
                 <div className={styles.icon_box}>
                   <i
                     className={`fas fa-user-times ${styles.icon} ${styles.icon_withdrawal}`}

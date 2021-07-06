@@ -12,39 +12,34 @@
   justify-content: center;
   background-color: white;
 }
-.icon_lock {
+.icon_check {
   font-size: 2rem;
-  color: colorBorderGrey;
+  color: green;
 }
 .title {
   font-size: 1.5rem;
   padding: 20px;
-}
-.form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  align-items: center;
+  color: green;
 }
 .text {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.text_email {
+  font-weight: 600;
+  margin-right: 5px;
+  color: colorPink;
+}
 .text_element {
   line-height: 150%;
+  margin-bottom: 10px;
 }
-.text_element:last-child {
-  margin-bottom: 20px;
+.text_element_small {
+  font-size: 0.8rem;
+  line-height: 150%;
 }
-.input {
-  min-width: 250px;
-  height: 30px;
-  padding: 10px;
-  border: 1px solid colorBorderGrey;
-}
-.button_submit {
+.button_backMain {
   width: 250px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   font-weight: 600;
@@ -58,8 +53,7 @@
   padding: 7px 0px;
   border-radius: 5px;
 }
-
-.button_submit:hover {
+.button_backMain:hover {
   opacity: 0.9;
   transform: scale(0.99);
   cursor: pointer;

@@ -3,6 +3,7 @@ import HomeContainer from "./containers/home_container";
 import Login from "./routes/login/login";
 import Join from "./routes/join/join";
 import Find from "./routes/find/find";
+import FindSent from "./routes/find_sent/find_sent";
 import MainContainer from "./containers/main_container";
 import RegisterContainer from "./containers/register_contatiner";
 import DiaryContainer from "./containers/diary_container";
@@ -103,6 +104,17 @@ function App({
               return (
                 <>
                   <Find authService={authService} {...props} />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/find/sent"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <FindSent {...props} />
                 </>
               );
             }}

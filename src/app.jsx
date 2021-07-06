@@ -62,7 +62,11 @@ function App({
             render={(props) => {
               return (
                 <>
-                  <HomeContainer authService={authService} {...props} />
+                  <HomeContainer
+                    authService={authService}
+                    database={database}
+                    {...props}
+                  />
                 </>
               );
             }}

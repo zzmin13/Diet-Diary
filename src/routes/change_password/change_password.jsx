@@ -68,7 +68,6 @@ const ChangePassword = ({ authService, history, profile, isUser }) => {
   const failUpdatePassword = () => {
     alert("비밀번호 변경에 실패했습니다.");
   };
-  // console.log(profile.providerData[0].providerId);
   return (
     <>
       {profile ? (

@@ -3,14 +3,13 @@ import styles from "./home.module.css";
 
 const Home = (props) => {
   const { history, authService } = props;
-  const goLogin = (event) => {
+  const goLogin = () => {
     history.push("/login");
   };
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (USER) {
         history.push("/main");
-      } else {
       }
     });
   }, [authService, history]);

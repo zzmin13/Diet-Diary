@@ -2,6 +2,7 @@ import {
   firebaseAuth,
   googleProvider,
   githubProvider,
+  facebookProvider,
   emailProvider,
 } from "./firebase";
 
@@ -12,17 +13,27 @@ class AuthService {
         return googleProvider;
       case "Github":
         return githubProvider;
+      case "Facebook":
+        return facebookProvider;
       default:
         throw new Error(`not supported provider : ${providerName}`);
     }
   }
-  async OauthLogin(providerName) {
+  // async OauthLogin(providerName) {
+  //   const provider = this.getProvider(providerName);
+  //   try {
+  //     return firebaseAuth.signInWithPopup(provider);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  OauthLogin(providerName) {
     const provider = this.getProvider(providerName);
-    try {
-      return firebaseAuth.signInWithPopup(provider);
-    } catch (error) {
-      console.log(error);
-    }
+    return firebaseAuth //
+      .signInWithPopup(provider)
+      .catch((error) => {
+        console.log(error);
+      });
   }
   onAuthStateChanged(callback) {
     firebaseAuth.onAuthStateChanged((user) => {

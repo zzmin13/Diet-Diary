@@ -16,17 +16,33 @@ const SocialLogin = (props) => {
   const goSocialLogin = async (event) => {
     const providerName = event.currentTarget.name;
     closeModal();
-    const response = await authService.OauthLogin(providerName);
-    const uid = response.user.uid;
-    database.isUserExistInDatabase(response.user.uid).then((response) => {
-      if (response === false) {
-        database.registerUser(uid);
-      } else {
-        history.push("/main");
-      }
-    });
+    authService //
+      .OauthLogin(providerName) //
+      .then((result) => {
+        if (result.user.uid) {
+          database.isUserExistInDatabase(result.user.uid).then((response) => {
+            if (response === false) {
+              database.registerUser(result.user.uid);
+            }
+            history.push("/main");
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.code === "auth/account-exists-with-different-credential") {
+          alert("동일한 이메일로 가입한 계정이 있습니다.");
+        }
+      });
+    // const response = await authService.OauthLogin(providerName);
+    // const uid = response.user.uid;
+    // database.isUserExistInDatabase(response.user.uid).then((response) => {
+    //   if (response === false) {
+    //     database.registerUser(uid);
+    //   } else {
+    //     history.push("/main");
+    //   }
+    // });
   };
-  console.log(`socialLogin`);
   return (
     <div className={styles.socialLogin}>
       <span className={styles.text1}>{text1}</span>

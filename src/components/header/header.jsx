@@ -3,7 +3,7 @@ import LoginHeaderContainer from "../../containers/loginHeader_container";
 import LogoutHeader from "../logout_header/logout_header";
 
 const Header = (props) => {
-  const { authService, database, isUser, user } = props;
+  const { authService, database, isUser, user, uid } = props;
   return (
     <>
       {isUser ? (

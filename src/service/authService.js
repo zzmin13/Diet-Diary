@@ -27,13 +27,10 @@ class AuthService {
   //     console.log(error);
   //   }
   // }
-  OauthLogin(providerName) {
+  async OauthLogin(providerName) {
     const provider = this.getProvider(providerName);
     return firebaseAuth //
-      .signInWithPopup(provider)
-      .catch((error) => {
-        console.log(error);
-      });
+      .signInWithPopup(provider);
   }
   onAuthStateChanged(callback) {
     firebaseAuth.onAuthStateChanged((user) => {

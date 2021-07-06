@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import SocialLogin from "../../components/social_login/social_login";
 import styles from "./login.module.css";
@@ -27,7 +28,7 @@ const Login = (props) => {
     }
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    const response = await authService.emailLogin(email, password);
+    await authService.emailLogin(email, password);
   };
   const goFindPage = () => {
     if (props.closeModal) {

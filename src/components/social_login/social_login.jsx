@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import { useRef } from "react";
 import { useHistory } from "react-router";
 import styles from "./social_login.module.css";
 
@@ -12,36 +14,34 @@ const SocialLogin = (props) => {
     text2,
     text3,
   } = props;
+
   const history = useHistory();
   const goSocialLogin = async (event) => {
     const providerName = event.currentTarget.name;
-    closeModal();
-    authService //
-      .OauthLogin(providerName) //
-      .then((result) => {
-        if (result.user.uid) {
-          database.isUserExistInDatabase(result.user.uid).then((response) => {
-            if (response === false) {
-              database.registerUser(result.user.uid);
-            }
-            history.push("/main");
-          });
+    authService
+      .OauthLogin(providerName)
+      .then((response) => {
+        closeModal();
+        if (response.user) {
+          const uid = response.user.uid;
+          database //
+            .isUserExistInDatabase(uid)
+            .then((result) => {
+              if (result === false) {
+                database.registerUser(uid);
+              } else {
+                history.push("/main");
+              }
+            });
         }
       })
       .catch((error) => {
         if (error.code === "auth/account-exists-with-different-credential") {
-          alert("동일한 이메일로 가입한 계정이 있습니다.");
+          setTimeout(function () {
+            alert("동일한 이메일로 가입된 계정이 있습니다.");
+          }, 500);
         }
       });
-    // const response = await authService.OauthLogin(providerName);
-    // const uid = response.user.uid;
-    // database.isUserExistInDatabase(response.user.uid).then((response) => {
-    //   if (response === false) {
-    //     database.registerUser(uid);
-    //   } else {
-    //     history.push("/main");
-    //   }
-    // });
   };
   return (
     <div className={styles.socialLogin}>

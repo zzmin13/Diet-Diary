@@ -32,7 +32,7 @@ const DietSearch = ({
     foodSearch.getFoodInformation(term).then((response) => {
       const result = {};
       if (response.data.body.items) {
-        response.data.body.items.map((element, index) => {
+        response.data.body.items.forEach((element, index) => {
           result[index] = {
             name: element.DESC_KOR, // 이름
             oneServingSize: element.SERVING_WT, // 1회 제공량(g)

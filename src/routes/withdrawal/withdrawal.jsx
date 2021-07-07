@@ -31,7 +31,10 @@ const Withdrawal = ({
   };
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    if (isReauthenticate === false) {
+    if (
+      profile.providerData[0].providerId !== "password" &&
+      isReauthenticate === false
+    ) {
       alert("계정 인증이 필요합니다.");
     } else {
       const answer = window.confirm("정말로 탈퇴하시겠습니까?");
@@ -53,7 +56,12 @@ const Withdrawal = ({
                       .deleteUser(uid) //
                       .then(() => {
                         logoutUser();
-                        history.push("/mypage/withdrawal/done");
+                        history.push({
+                          pathname: "/mypage/withdrawal/done",
+                          state: {
+                            complete: true,
+                          },
+                        });
                       })
                       .catch((error) => {
                         console.log(error);

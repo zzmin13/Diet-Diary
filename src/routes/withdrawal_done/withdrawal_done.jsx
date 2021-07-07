@@ -9,7 +9,7 @@ const WithdrawalDone = ({ history, location }) => {
     if (location.state === undefined) {
       history.push("/");
     }
-  }, []);
+  }, [history, location.state]);
   return (
     <div className={styles.container}>
       <i className={`fas fa-check-circle ${styles.icon_check}`}></i>

@@ -25,7 +25,7 @@ const ExerciseEdit = (props) => {
     if (!isUser) {
       history.push("/main");
     }
-  }, []);
+  }, [state, isUser, history]);
   const onEditExercise = (event) => {
     event.preventDefault();
     const name = exerciseNameRef.current.value;

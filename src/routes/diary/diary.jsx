@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import NotDiary from "../../components/not_diary/not_diary";
 import styles from "./diary.module.css";
 const Diary = ({
-  authService,
   database,
   history,
   uid,

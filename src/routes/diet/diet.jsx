@@ -5,9 +5,9 @@ import NotDiary from "../../components/not_diary/not_diary";
 const Diet = (props) => {
   const {
     history,
-    authService,
     database,
     user,
+    isUser,
     uid,
     dateObject: { date },
     deleteDiet,
@@ -20,11 +20,9 @@ const Diet = (props) => {
     history.push("/main");
   };
   useEffect(() => {
-    authService.onAuthStateChanged((USER) => {
-      if (!USER) {
-        history.push("/");
-      }
-    });
+    if (!isUser) {
+      history.push("/main");
+    }
   });
   return (
     <>
@@ -114,6 +112,8 @@ const Diet = (props) => {
                                           deleteDiet={deleteDiet}
                                         />
                                       );
+                                    } else {
+                                      return null;
                                     }
                                   })
                                 : null
@@ -172,6 +172,8 @@ const Diet = (props) => {
                                           deleteDiet={deleteDiet}
                                         />
                                       );
+                                    } else {
+                                      return null;
                                     }
                                   })
                                 : null
@@ -230,6 +232,8 @@ const Diet = (props) => {
                                           deleteDiet={deleteDiet}
                                         />
                                       );
+                                    } else {
+                                      return null;
                                     }
                                   })
                                 : null
@@ -288,6 +292,8 @@ const Diet = (props) => {
                                           deleteDiet={deleteDiet}
                                         />
                                       );
+                                    } else {
+                                      return null;
                                     }
                                   })
                                 : null

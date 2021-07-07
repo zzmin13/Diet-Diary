@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "./common/reset.css";
-// import App from "./app";
 import AppContainer from "./containers/app_container";
 import "@fortawesome/fontawesome-free/js/all.js";
 import AuthService from "./service/authService";

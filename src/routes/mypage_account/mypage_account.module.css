@@ -34,7 +34,7 @@
 .title_box {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 .title {
   font-size: 1.3rem;

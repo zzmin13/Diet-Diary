@@ -6,10 +6,7 @@ import { loginUser, logoutUser } from "../modules/user";
 const HomeContainer = (props) => {
   return <Home {...props} />;
 };
-const mapStateToProps = (state) => ({
-  isUser: state.userReducer.isUser,
-  user: state.userReducer.user,
-});
+const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({
   loginUser: (currentUser) => {
     dispatch(loginUser(currentUser));

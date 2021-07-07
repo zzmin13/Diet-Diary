@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./calendar_body.module.css";
 
-const CalendarBody = ({ calendarDate, dateObject, user, changeDate, date }) => {
-  const week = Array.from(new Array(6), () => new Array());
+const CalendarBody = ({ calendarDate, user, changeDate, date }) => {
+  const week = Array.from(new Array(6), () => []);
   const diaryDateArray = Object.keys(user.userDiary);
   const firstDateOfMonth = calendarDate
     .clone()

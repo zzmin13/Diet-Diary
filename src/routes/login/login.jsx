@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
-import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import SocialLogin from "../../components/social_login/social_login";
 import styles from "./login.module.css";
 const Login = (props) => {
@@ -63,13 +62,9 @@ const Login = (props) => {
             로그인
           </button>
           <div className={styles.textBox}>
-            <Link
-              to={{
-                pathname: "/join",
-              }}
-            >
-              <span className={styles.join}>Join</span>
-            </Link>
+            <span onClick={props.changeToJoin} className={styles.join}>
+              Join
+            </span>
             <span onClick={goFindPage} className={styles.forgot}>
               Forgot your ID / Password?
             </span>

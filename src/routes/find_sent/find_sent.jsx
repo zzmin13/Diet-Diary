@@ -6,7 +6,7 @@ const FindSent = ({ history, location }) => {
     if (location.state === undefined) {
       history.push("/");
     }
-  }, []);
+  }, [history, location.state]);
   const goHome = () => {
     history.push("/");
   };

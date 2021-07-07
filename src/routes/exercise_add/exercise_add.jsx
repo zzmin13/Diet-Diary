@@ -26,19 +26,22 @@ const ExerciseAdd = ({
         setIsLoading(false);
       }
     });
-  }, []);
+  }, [database]);
   useEffect(() => {
     if (!isUser) {
       history.push("/main");
     }
   });
-  const onSelectExercise = useCallback((name) => {
-    const selectedExerciseKcal = exercise[name];
-    setSelectedExercise({
-      name,
-      kcal: selectedExerciseKcal,
-    });
-  });
+  const onSelectExercise = useCallback(
+    (name) => {
+      const selectedExerciseKcal = exercise[name];
+      setSelectedExercise({
+        name,
+        kcal: selectedExerciseKcal,
+      });
+    },
+    [exercise]
+  );
   const goBackPage = () => {
     history.push("/exercise");
   };

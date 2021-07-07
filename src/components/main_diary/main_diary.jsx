@@ -136,6 +136,8 @@ const MainDiary = ({ date, daytext, user, goeditpage, handleDiaryDelete }) => {
                                   }
                                 />
                               );
+                            } else {
+                              return null;
                             }
                           }
                         )
@@ -171,6 +173,8 @@ const MainDiary = ({ date, daytext, user, goeditpage, handleDiaryDelete }) => {
                                   }
                                 />
                               );
+                            } else {
+                              return null;
                             }
                           }
                         )
@@ -206,6 +210,8 @@ const MainDiary = ({ date, daytext, user, goeditpage, handleDiaryDelete }) => {
                                   }
                                 />
                               );
+                            } else {
+                              return null;
                             }
                           }
                         )
@@ -242,6 +248,8 @@ const MainDiary = ({ date, daytext, user, goeditpage, handleDiaryDelete }) => {
                                   }
                                 />
                               );
+                            } else {
+                              return null;
                             }
                           }
                         )
@@ -358,6 +366,8 @@ const MainDiary = ({ date, daytext, user, goeditpage, handleDiaryDelete }) => {
                       exercise={user.userDiary[date].exercise[element]}
                     />
                   );
+                } else {
+                  return null;
                 }
               })}
             </ul>

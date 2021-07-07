@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
 import styles from "./weight.module.css";
 
@@ -8,6 +9,7 @@ const Weight = ({
   dateObject: { date },
   user,
   uid,
+  isUser,
   history,
 }) => {
   const weightRef = useRef();
@@ -21,6 +23,11 @@ const Weight = ({
     alert("몸무게가 입력되었습니다.");
     history.push("/main");
   };
+  useEffect(() => {
+    if (!isUser) {
+      history.push("/main");
+    }
+  });
   return (
     <>
       {user && (

@@ -37,7 +37,6 @@ function App({
   loginUser,
   loadUserInformation,
 }) {
-  console.log(`App`);
   useEffect(() => {
     authService.onAuthStateChanged((USER) => {
       if (USER) {
@@ -51,7 +50,7 @@ function App({
         });
       }
     });
-  }, []);
+  }, [authService, database, loadUserInformation, loginUser]);
   return (
     <>
       <BrowserRouter>

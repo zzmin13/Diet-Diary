@@ -27,7 +27,7 @@ const DietEdit = (props) => {
     if (!isUser) {
       history.push("/main");
     }
-  }, []);
+  }, [history, isUser, state]);
   const handleOnEdit = (event) => {
     event.preventDefault();
     const prevTime = state.time;

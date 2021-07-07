@@ -20,6 +20,7 @@ const Mypage = ({ profile, history, isUser }) => {
   useEffect(() => {
     if (!isUser) {
       history.push("/");
+      console.log(`mypage에 의해서 홈으로 이동합니다.`);
     }
   });
   return (

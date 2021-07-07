@@ -7,6 +7,7 @@ const Water = ({
   database,
   uid,
   history,
+  isUser,
   user,
   dateObject: { date },
   loadUserInformation,
@@ -21,11 +22,9 @@ const Water = ({
     history.push("/main");
   };
   useEffect(() => {
-    authService.onAuthStateChanged((USER) => {
-      if (!USER) {
-        history.push("/");
-      }
-    });
+    if (!isUser) {
+      history.push("/main");
+    }
   });
   return (
     <>

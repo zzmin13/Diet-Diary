@@ -19,7 +19,6 @@ const Exercise = ({
   const goBackPage = () => {
     history.push("/main");
   };
-
   useEffect(() => {
     if (!isUser) {
       history.push("/main");
@@ -80,6 +79,8 @@ const Exercise = ({
                                   deleteExercise={deleteExercise}
                                 />
                               );
+                            } else {
+                              return null;
                             }
                           }
                         )}

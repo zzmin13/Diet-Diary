@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import { memo } from "react";
 import styles from "./home.module.css";
 
-const Home = (props) => {
+const Home = memo((props) => {
   const { history, authService } = props;
   const goLogin = () => {
     history.push("/login");
@@ -40,6 +41,6 @@ const Home = (props) => {
       </main>
     </>
   );
-};
+});
 
 export default Home;

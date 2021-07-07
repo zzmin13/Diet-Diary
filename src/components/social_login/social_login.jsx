@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import { useRef } from "react";
 import { useHistory } from "react-router";
 import styles from "./social_login.module.css";
 

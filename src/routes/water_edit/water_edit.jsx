@@ -41,7 +41,7 @@ const WaterEdit = (props) => {
     if (!isUser) {
       history.push("/main");
     }
-  }, []);
+  }, [isUser, history]);
   return (
     <>
       {user.userDiary && (

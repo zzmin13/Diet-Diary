@@ -1,15 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import DietAdd from "../routes/diet_add/diet_add";
+import DietSearch from "../routes/diet_search/diet_search";
 import {
   loginUser,
   logoutUser,
   loadUserInformation,
   addDiet,
 } from "../modules/user";
-
-const DietAddContainer = (props) => {
-  return <DietAdd {...props} />;
+const DietSearchContainer = (props) => {
+  return (
+    <>
+      <DietSearch {...props} />
+    </>
+  );
 };
 const mapStateToProps = (state) => ({
   isUser: state.userReducer.isUser,
@@ -31,5 +34,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(addDiet(current, time, content, totalCalories));
   },
 });
-
-export default connect(mapStateToProps, mapDispatchToProps)(DietAddContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DietSearchContainer);

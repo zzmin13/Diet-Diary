@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import HomeContainer from "./containers/home_container";
 import Login from "./routes/login/login";
 import Join from "./routes/join/join";
@@ -8,7 +8,8 @@ import MainContainer from "./containers/main_container";
 import RegisterContainer from "./containers/register_contatiner";
 import DiaryContainer from "./containers/diary_container";
 import DietContainer from "./containers/diet_container";
-import DietAddContainer from "./containers/diet_add_container";
+import DietSearchContainer from "./containers/diet_search_container";
+import DietDirectlyContainer from "./containers/diet_directly_container";
 import DietEditContainer from "./containers/diet_edit_container";
 import ExerciseContainer from "./containers/exercise_container";
 import ExerciseAddContainer from "./containers/exercise_add_container";
@@ -53,7 +54,7 @@ function App({
   }, [authService, database, loadUserInformation, loginUser]);
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <HeaderContainer authService={authService} database={database} />
         <NavbarContainer />
         <div className={styles.body_container}>
@@ -200,12 +201,28 @@ function App({
             }}
           />
           <Route
-            path="/diet/add"
+            path="/diet/search"
             exact={true}
             render={(props) => {
               return (
                 <>
-                  <DietAddContainer
+                  <DietSearchContainer
+                    authService={authService}
+                    database={database}
+                    foodSearch={foodSearch}
+                    {...props}
+                  />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/diet/directly"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <DietDirectlyContainer
                     authService={authService}
                     database={database}
                     foodSearch={foodSearch}
@@ -400,7 +417,7 @@ function App({
             }}
           />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }

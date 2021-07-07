@@ -45,3 +45,15 @@
   border: none;
   color: white;
 }
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .month {
+    font-size: 1rem;
+  }
+}
+/* pc (1025px 이상) */
+@media (min-width: 1025px) {
+}

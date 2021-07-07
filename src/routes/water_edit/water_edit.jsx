@@ -51,7 +51,6 @@ const WaterEdit = (props) => {
               <i
                 className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}
               ></i>
-              <span>BACK</span>
             </button>
             <div className={styles.content}>
               <div className={styles.title}>

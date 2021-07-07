@@ -1,4 +1,19 @@
-.body_container {
-  padding-left: 4.375rem;
-  min-height: 92vh;
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .body_container {
+    height: 84vh;
+  }
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .body_container {
+    height: 84vh;
+  }
+}
+/* pc (1025px 이상) */
+@media (min-width: 1025px) {
+  .body_container {
+    padding-left: 4.375rem;
+    min-height: 92vh;
+  }
 }

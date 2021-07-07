@@ -75,7 +75,6 @@ const WaterAdd = ({
       <div className={styles.main}>
         <button onClick={goBackPage} className={styles.button_back}>
           <i className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}></i>
-          <span>BACK</span>
         </button>
         <div className={styles.content}>
           <div className={styles.title}>

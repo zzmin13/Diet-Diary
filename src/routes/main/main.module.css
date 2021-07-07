@@ -3,27 +3,6 @@
 @value colorPink from "../../common/color.css";
 @value colorBorderGrey from "../../common/color.css";
 
-.container {
-  font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-  min-height: 92vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffebee;
-}
-.main {
-  display: flex;
-  align-items: center;
-  border-radius: 0.625rem;
-  border: 1px solid #f8bbd0;
-  background-color: white;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  width: 80%;
-  height: 90vh;
-  overflow-y: auto;
-}
 .calendar {
   width: 50%;
   height: 100%;
@@ -191,4 +170,86 @@
   height: 85vh;
   justify-content: center;
   align-items: center;
+}
+
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
+      "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffebee;
+  }
+  .main {
+    display: flex;
+    align-items: center;
+    border-radius: 0.625rem;
+    border: 1px solid #f8bbd0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    width: 80%;
+    height: 80vh;
+    overflow-y: auto;
+  }
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .container {
+    font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
+      "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffebee;
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.625rem;
+    border: 1px solid #f8bbd0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    width: 95%;
+    height: 80vh;
+    overflow-y: auto;
+  }
+  .calendar {
+    width: 100%;
+    height: 50%;
+  }
+  .diary {
+    width: 100%;
+    height: 50%;
+  }
+}
+/* pc (1025px 이상) */
+@media (min-width: 1025px) {
+  .container {
+    font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
+      "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
+    min-height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffebee;
+  }
+  .main {
+    display: flex;
+    align-items: center;
+    border-radius: 0.625rem;
+    border: 1px solid #f8bbd0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    width: 80%;
+    height: 90vh;
+    overflow-y: auto;
+  }
 }

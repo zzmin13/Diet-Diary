@@ -54,7 +54,7 @@ const LogoutHeader = memo((props) => {
             <span onClick={closeModal} className={styles.close}>
               &times;
             </span>
-            <div ref={modalRef}>
+            <div ref={modalRef} className={styles.modal_box}>
               {modalTarget === "login" ? (
                 <Login
                   authService={authService}

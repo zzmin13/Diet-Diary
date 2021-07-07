@@ -62,7 +62,12 @@ const Login = (props) => {
             로그인
           </button>
           <div className={styles.textBox}>
-            <span onClick={props.changeToJoin} className={styles.join}>
+            <span
+              onClick={
+                props.changeToJoin ? props.changeToJoin : historyPushJoin
+              }
+              className={styles.join}
+            >
               Join
             </span>
             <span onClick={goFindPage} className={styles.forgot}>

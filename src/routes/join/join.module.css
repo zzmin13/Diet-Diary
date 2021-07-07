@@ -184,3 +184,13 @@
   color: red;
   font-weight: 600;
 }
+
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .container {
+    height: 100%;
+  }
+}

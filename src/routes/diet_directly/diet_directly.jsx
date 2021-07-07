@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import { useHistory } from "react-router";
 import styles from "./diet_directly.module.css";
 const DietDirectly = ({
+  history,
   database,
   uid,
   user,
@@ -12,7 +12,6 @@ const DietDirectly = ({
   const foodSizeRef = useRef();
   const foodKcalRef = useRef();
   const timeRef = useRef();
-  const history = useHistory();
 
   const handleAddDiet = () => {
     if (
@@ -68,15 +67,21 @@ const DietDirectly = ({
       history.push("/diet");
     }
   };
+  const goBackPage = () => {
+    history.push("/diet");
+  };
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>직접 추가하기</h1>
-      <form className={styles.form}>
-        <div className={styles.item}>
-          <label className={styles.item_name} htmlFor="name">
-            음식명
-          </label>
-          <div className={styles.item_second}>
+      <div className={styles.main}>
+        <button onClick={goBackPage} className={styles.button_back}>
+          <i className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}></i>
+        </button>
+        <h1 className={styles.title}>직접 추가하기</h1>
+        <form className={styles.form}>
+          <div className={styles.item}>
+            <label className={styles.item_name} htmlFor="name">
+              음식명
+            </label>
             <input
               ref={foodNameRef}
               className={styles.item_input}
@@ -85,12 +90,10 @@ const DietDirectly = ({
               required={true}
             />
           </div>
-        </div>
-        <div className={styles.item}>
-          <label className={styles.item_name} htmlFor="amount">
-            음식량
-          </label>
-          <div className={styles.item_second}>
+          <div className={styles.item}>
+            <label className={styles.item_name} htmlFor="amount">
+              음식량 (g)
+            </label>
             <input
               ref={foodSizeRef}
               className={styles.item_input}
@@ -98,16 +101,11 @@ const DietDirectly = ({
               id="size"
               required={true}
             />
-            <label className={styles.item_behind} htmlFor="size">
-              g
-            </label>
           </div>
-        </div>
-        <div className={styles.item}>
-          <label className={styles.item_name} htmlFor="kcal">
-            칼로리
-          </label>
-          <div className={styles.item_second}>
+          <div className={styles.item}>
+            <label className={styles.item_name} htmlFor="kcal">
+              칼로리 (kcal)
+            </label>
             <input
               ref={foodKcalRef}
               className={styles.item_input}
@@ -115,16 +113,11 @@ const DietDirectly = ({
               id="kcal"
               required={true}
             />
-            <label className={styles.item_behind} htmlFor="kcal">
-              kcal
-            </label>
           </div>
-        </div>
-        <div className={styles.item}>
-          <label className={styles.item_name} htmlFor="time">
-            식사 시간
-          </label>
-          <div className={styles.item_second}>
+          <div className={styles.item}>
+            <label className={styles.item_name} htmlFor="time">
+              식사 시간
+            </label>
             <select ref={timeRef} id="time" className={styles.time_select}>
               <option>아침</option>
               <option>점심</option>
@@ -132,12 +125,13 @@ const DietDirectly = ({
               <option>간식</option>
             </select>
           </div>
-        </div>
-        <button onClick={handleAddDiet} className={styles.addButton}>
-          추가하기
-        </button>
-      </form>
+          <button onClick={handleAddDiet} className={styles.addButton}>
+            추가하기
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
+
 export default DietDirectly;

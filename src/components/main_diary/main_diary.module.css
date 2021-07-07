@@ -178,3 +178,20 @@
   transform: scale(0.99);
   cursor: pointer;
 }
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .title {
+    width: 90%;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+/* pc (1025px 이상) */
+@media (min-width: 1025px) {
+}

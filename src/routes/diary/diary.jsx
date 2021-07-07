@@ -33,7 +33,6 @@ const Diary = ({
               <i
                 className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}
               ></i>
-              <span>MAIN</span>
             </button>
             <div className={styles.content}>
               <h1 className={styles.title}>

@@ -35,3 +35,22 @@
 .button:hover {
   opacity: 0.8;
 }
+
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .content {
+    width: 80%;
+  }
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .content {
+    width: 80%;
+  }
+  .text {
+    font-size: 0.8rem;
+  }
+}
+/* pc (1025px 이상) */
+@media (min-width: 1025px) {
+}

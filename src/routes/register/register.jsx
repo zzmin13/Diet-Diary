@@ -9,7 +9,6 @@ const Register = ({ authService, database, uid, loadUserInformation }) => {
   const heightRef = useRef();
   const weightRef = useRef();
   const activityRef = useRef();
-  const alertMessageRef = useRef();
   const [loginUser, setLoginUser] = useState();
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
@@ -32,7 +31,7 @@ const Register = ({ authService, database, uid, loadUserInformation }) => {
     const weight = weightRef.current.value;
     const activity = activityRef.current.value;
     if (age === "" || height === "" || weight === "") {
-      alertMessageRef.current.innerText = `입력하지 않은 항목이 있습니다. 작성 후 다시 제출해주세요.`;
+      alert("입력하지 않은 항목이 있습니다. 작성 후 다시 제출해주세요.");
     } else {
       let activityPoint;
       if (activity === "large") {
@@ -66,9 +65,6 @@ const Register = ({ authService, database, uid, loadUserInformation }) => {
       });
       history.push("/main");
     }
-  };
-  const hideAlertMessage = () => {
-    alertMessageRef.current.innerText = "";
   };
 
   return (
@@ -246,7 +242,6 @@ const Register = ({ authService, database, uid, loadUserInformation }) => {
                 <label
                   htmlFor="slide04"
                   className={`${styles.left} ${styles.label}`}
-                  onClick={hideAlertMessage}
                 >
                   <i className={`fas fa-arrow-left ${styles.icon}`}></i>
                   <div className={styles.labelText}>이전</div>
@@ -258,7 +253,6 @@ const Register = ({ authService, database, uid, loadUserInformation }) => {
                   <p className={styles.completeText}>작성완료</p>
                 </div>
               </div>
-              <div ref={alertMessageRef} className={styles.alertMessage}></div>
             </div>
           </li>
         </ul>

@@ -6,7 +6,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 70vh;
+  /* height: 70vh; */
 }
 .week {
   width: 100%;
@@ -46,4 +46,24 @@
   height: 0.313rem;
   width: 80%;
   margin-top: 0.313rem;
+}
+
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    height: 70vh;
+  }
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  /* .date_box {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+  } */
+}
+/* pc (1025px 이상) */
+@media (min-width: 1025px) {
+  .container {
+    height: 70vh;
+  }
 }

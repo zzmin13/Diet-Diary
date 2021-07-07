@@ -86,3 +86,25 @@
   text-decoration: none;
   cursor: pointer;
 }
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .modal_content {
+    width: 70%;
+    height: 80%;
+    margin-top: 50px;
+  }
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .modal_content {
+    width: 90%;
+    height: 80%;
+    margin-top: 100px;
+  }
+  .modal_box {
+    height: 100%;
+  }
+}
+/* pc (1025px 이상) */
+@media (min-width: 1025px) {
+}

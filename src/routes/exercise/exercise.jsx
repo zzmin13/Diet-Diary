@@ -13,8 +13,11 @@ const Exercise = ({
   deleteExercise,
   loadUserInformation,
 }) => {
-  const goExerciseAddPage = () => {
-    history.push("/exercise/add");
+  const goExerciseSearchPage = () => {
+    history.push("/exercise/search");
+  };
+  const goExerciseDirectlyPage = () => {
+    history.push("/exercise/directly");
   };
   const goBackPage = () => {
     history.push("/main");
@@ -33,7 +36,6 @@ const Exercise = ({
               <i
                 className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}
               ></i>
-              <span>MAIN</span>
             </button>
             <div className={styles.content}>
               <div className={styles.title}>
@@ -87,8 +89,17 @@ const Exercise = ({
                       </ul>
                     </div>
                   </div>
-                  <button onClick={goExerciseAddPage} className={styles.button}>
-                    운동 추가하기
+                  <button
+                    onClick={goExerciseSearchPage}
+                    className={styles.button}
+                  >
+                    운동 검색하여 추가하기
+                  </button>
+                  <button
+                    onClick={goExerciseDirectlyPage}
+                    className={styles.button}
+                  >
+                    운동 직접 추가하기
                   </button>
                 </>
               ) : (

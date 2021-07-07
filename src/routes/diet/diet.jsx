@@ -13,8 +13,11 @@ const Diet = (props) => {
     deleteDiet,
     loadUserInformation,
   } = props;
-  const goDietAddPage = () => {
-    history.push("/diet/add");
+  const goDietAddSearchPage = () => {
+    history.push("/diet/search");
+  };
+  const goDietAddDirectlyPage = () => {
+    history.push("/diet/directly");
   };
   const goBackPage = () => {
     history.push("/main");
@@ -33,7 +36,6 @@ const Diet = (props) => {
               <i
                 className={`fas fa-long-arrow-alt-left ${styles.icon_back}`}
               ></i>
-              <span>MAIN</span>
             </button>
             <div className={styles.content}>
               <div className={styles.title}>
@@ -303,8 +305,17 @@ const Diet = (props) => {
                       </div>
                     </div>
                   </div>
-                  <button onClick={goDietAddPage} className={styles.button}>
-                    식사 추가하기
+                  <button
+                    onClick={goDietAddSearchPage}
+                    className={styles.button}
+                  >
+                    식사 검색하여 추가하기
+                  </button>
+                  <button
+                    onClick={goDietAddDirectlyPage}
+                    className={styles.button}
+                  >
+                    식사 직접 추가하기
                   </button>
                 </>
               ) : (

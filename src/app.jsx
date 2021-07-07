@@ -24,6 +24,7 @@ import MypageContainer from "./containers/mypage_container";
 import MypageHealthContainer from "./containers/mypage_health_container";
 import ChangePasswordContainer from "./containers/change_password_container";
 import WithdrawalContainer from "./containers/withdrawal_container";
+import WithdrawalDone from "./routes/withdrawal_done/withdrawal_done";
 
 import { useEffect } from "react";
 import styles from "./app.module.css";
@@ -384,6 +385,17 @@ function App({
                     database={database}
                     {...props}
                   />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/mypage/withdrawal/done"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <WithdrawalDone {...props} />
                 </>
               );
             }}

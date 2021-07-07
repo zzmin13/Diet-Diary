@@ -121,16 +121,9 @@ class AuthService {
         console.log(error);
       });
   }
-  getAccessToken() {}
   reauthenticate(email, currentPassword) {
     const user = firebaseAuth.currentUser;
     const credential = emailProvider.credential(email, currentPassword);
-    return user.reauthenticateWithCredential(credential);
-  }
-  reauthenticateWithOauth(providerName, accessToken) {
-    const user = firebaseAuth.currentUser;
-    const provider = this.getProvider(providerName);
-    const credential = provider.credential(accessToken);
     return user.reauthenticateWithCredential(credential);
   }
   deleteUser() {

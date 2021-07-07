@@ -36,21 +36,32 @@ const Withdrawal = ({
     } else {
       const answer = window.confirm("정말로 탈퇴하시겠습니까?");
       if (answer === true) {
+        // 1. password 방식 로그인 탈퇴
         if (profile.providerData[0].providerId === "password") {
           const password = passwordRef.current.value;
           const password2 = passwordRef.current.value;
           if (password !== password2) {
             alert("비밀번호가 일치하지 않습니다.");
           } else {
-            authService //
-              .reauthenticate(profile.email, password)
+            authService
+              .reauthenticate(profile.email, password) //
               .then(() => {
-                // 현재 비밀번호와 일치했다면
-                // 1. 회원 삭제
-                // 2. 데이터베이스에서 데이터 삭제
-                // 3. 로그아웃 조치(state 변경)
-                // 4. /mypage/withdrawal/done 으로 이동
-                history.push("/mypage/withdrawal/done");
+                authService
+                  .deleteUser() //
+                  .then(() => {
+                    database
+                      .deleteUser(uid) //
+                      .then(() => {
+                        logoutUser();
+                        history.push("/mypage/withdrawal/done");
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
               })
               .catch(() => {
                 alert("현재 비밀번호와 일치하지 않습니다.");
@@ -60,6 +71,7 @@ const Withdrawal = ({
               });
           }
         } else {
+          // 2. OAuth 방식 로그인 탈퇴
           authService
             .deleteUser() //
             .then(() => {
@@ -67,7 +79,12 @@ const Withdrawal = ({
                 .deleteUser(uid) //
                 .then(() => {
                   logoutUser();
-                  history.push("/mypage/withdrawal/done");
+                  history.push({
+                    pathname: "/mypage/withdrawal/done",
+                    state: {
+                      complete: true,
+                    },
+                  });
                 })
                 .catch((error) => {
                   console.log(error);

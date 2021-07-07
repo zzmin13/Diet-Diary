@@ -251,6 +251,13 @@ class Database {
     return firebaseDatabase.ref().update(updates);
   }
 
+  // 일기가 하나 밖에 없을 때 일기 지우면 아예 사라지는 것을 방지
+  createDiaryTemplate(uid) {
+    const updates = {};
+    updates[`users/${uid}/userDiary`] = "";
+    return firebaseDatabase.ref().update(updates);
+  }
+
   // 건강 정보 변경 (활동, 활동지수, 나이, 키, 권장칼로리, 성별, 몸무게)
   updateHealthInformation(uid, content) {
     const updates = {};

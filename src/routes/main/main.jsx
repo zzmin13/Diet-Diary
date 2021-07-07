@@ -52,6 +52,9 @@ const Main = memo(
     const handleDiaryDelete = (answer) => {
       if (answer === true) {
         database.deleteDiary(uid, date);
+        if (Object.keys(user.userDiary).length === 1) {
+          database.createDiaryTemplate(uid);
+        }
         deleteDiary(date);
         alert("일기가 삭제되었습니다!");
       } else {

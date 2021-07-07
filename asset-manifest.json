@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Diet-Diary/static/css/main.b3717d5d.chunk.css",
-    "main.js": "/Diet-Diary/static/js/main.86d45f66.chunk.js",
-    "main.js.map": "/Diet-Diary/static/js/main.86d45f66.chunk.js.map",
+    "main.css": "/Diet-Diary/static/css/main.6a7457b1.chunk.css",
+    "main.js": "/Diet-Diary/static/js/main.78d84a5e.chunk.js",
+    "main.js.map": "/Diet-Diary/static/js/main.78d84a5e.chunk.js.map",
     "runtime-main.js": "/Diet-Diary/static/js/runtime-main.1dd51523.js",
     "runtime-main.js.map": "/Diet-Diary/static/js/runtime-main.1dd51523.js.map",
-    "static/js/2.f28b03e7.chunk.js": "/Diet-Diary/static/js/2.f28b03e7.chunk.js",
-    "static/js/2.f28b03e7.chunk.js.map": "/Diet-Diary/static/js/2.f28b03e7.chunk.js.map",
+    "static/js/2.b4d08ab7.chunk.js": "/Diet-Diary/static/js/2.b4d08ab7.chunk.js",
+    "static/js/2.b4d08ab7.chunk.js.map": "/Diet-Diary/static/js/2.b4d08ab7.chunk.js.map",
     "index.html": "/Diet-Diary/index.html",
-    "static/css/main.b3717d5d.chunk.css.map": "/Diet-Diary/static/css/main.b3717d5d.chunk.css.map",
-    "static/js/2.f28b03e7.chunk.js.LICENSE.txt": "/Diet-Diary/static/js/2.f28b03e7.chunk.js.LICENSE.txt"
+    "static/css/main.6a7457b1.chunk.css.map": "/Diet-Diary/static/css/main.6a7457b1.chunk.css.map",
+    "static/js/2.b4d08ab7.chunk.js.LICENSE.txt": "/Diet-Diary/static/js/2.b4d08ab7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1dd51523.js",
-    "static/js/2.f28b03e7.chunk.js",
-    "static/css/main.b3717d5d.chunk.css",
-    "static/js/main.86d45f66.chunk.js"
+    "static/js/2.b4d08ab7.chunk.js",
+    "static/css/main.6a7457b1.chunk.css",
+    "static/js/main.78d84a5e.chunk.js"
   ]
 }

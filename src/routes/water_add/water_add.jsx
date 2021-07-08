@@ -21,21 +21,21 @@ const WaterAdd = ({
     }
   });
   const onIncrease = (event) => {
-    if (event.currentTarget.id === "cup") {
+    if (event.currentTarget.id === "cup_up") {
       cupRef.current.value = Number(cupRef.current.value) + 1;
       mlRef.current.value = cupRef.current.value * 170;
-    } else if (event.currentTarget.id === "ml") {
+    } else if (event.currentTarget.id === "ml_up") {
       mlRef.current.value = Number(mlRef.current.value) + 170;
       cupRef.current.value = mlRef.current.value / 170;
     }
   };
   const onDecrease = (event) => {
-    if (event.currentTarget.id === "cup") {
+    if (event.currentTarget.id === "cup_down") {
       if (Number(cupRef.current.value) - 1 >= 0) {
         cupRef.current.value = Number(cupRef.current.value) - 1;
         mlRef.current.value = cupRef.current.value * 170;
       }
-    } else if (event.currentTarget.id === "ml") {
+    } else if (event.currentTarget.id === "ml_down") {
       if (Number(mlRef.current.value) - 170 >= 0) {
         mlRef.current.value = Number(mlRef.current.value) - 170;
         cupRef.current.value = mlRef.current.value / 170;
@@ -102,7 +102,7 @@ const WaterAdd = ({
                   onClick={onIncrease}
                   type="button"
                   className={styles.updown_button}
-                  id="ml"
+                  id="ml_up"
                 >
                   <i
                     className={`fas fa-chevron-up ${styles.icon_up} ${styles.icon}`}
@@ -124,7 +124,7 @@ const WaterAdd = ({
                   onClick={onDecrease}
                   type="button"
                   className={styles.updown_button}
-                  id="ml"
+                  id="ml_down"
                 >
                   <i
                     className={`fas fa-chevron-down ${styles.icon_down} ${styles.icon}`}
@@ -138,7 +138,7 @@ const WaterAdd = ({
                   onClick={onIncrease}
                   type="button"
                   className={styles.updown_button}
-                  id="cup"
+                  id="cup_up"
                 >
                   <i
                     className={`fas fa-chevron-up ${styles.icon_up} ${styles.icon}`}
@@ -160,7 +160,7 @@ const WaterAdd = ({
                   onClick={onDecrease}
                   type="button"
                   className={styles.updown_button}
-                  id="cup"
+                  id="cup_down"
                 >
                   <i
                     className={`fas fa-chevron-down ${styles.icon_down} ${styles.icon}`}

@@ -159,3 +159,11 @@
   line-height: 200%;
   color: red;
 }
+
+@media (max-width: 768px) {
+  .button_withdrawal {
+    margin-left: 0px;
+    margin-top: 20px;
+    align-self: center;
+  }
+}

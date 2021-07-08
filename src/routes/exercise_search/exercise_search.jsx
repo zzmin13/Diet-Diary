@@ -29,6 +29,11 @@ const ExerciseSearch = ({
         setIsLoading(false);
       }
     });
+    return () => {
+      setIsLoading(true);
+      setExercise({});
+      setSelectedExercise({});
+    };
   }, [database]);
   useEffect(() => {
     if (!isUser) {
@@ -50,7 +55,7 @@ const ExerciseSearch = ({
     timeRef.current.value = 10;
   };
   const onIncrease = () => {
-    timeRef.current.value = Number(timeRef.current.value) + 1;
+    timeRef.current.value = Number(timeRef.current.value) + 10;
     if (nameRef.current.innerText !== "") {
       kcalRef.current.innerText = (
         (selectedExercise.kcal / 10) *
@@ -60,7 +65,7 @@ const ExerciseSearch = ({
   };
   const onDecrease = () => {
     if (timeRef.current.value > 1) {
-      timeRef.current.value = Number(timeRef.current.value) - 1;
+      timeRef.current.value = Number(timeRef.current.value) - 10;
       if (nameRef.current.innerText !== "") {
         kcalRef.current.innerText = (
           (selectedExercise.kcal / 10) *
@@ -181,7 +186,7 @@ const ExerciseSearch = ({
                           className={styles.input_number}
                           type="number"
                           defaultValue={10}
-                          step={1.0}
+                          step={10}
                           onChange={onChangeNumber}
                         />
                         <span className={styles.time_text}>분</span>

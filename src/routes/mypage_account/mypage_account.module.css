@@ -129,3 +129,25 @@
   justify-content: center;
   align-items: center;
 }
+
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .form1_title {
+    padding: 20px 0px;
+  }
+  .input_label {
+    margin: 20px 0px;
+  }
+  .input {
+    margin-left: 0px;
+  }
+  .button_save {
+    align-items: center;
+  }
+}
+/* pc (1025px 이상) */
+@media (min-width: 1025px) {
+}

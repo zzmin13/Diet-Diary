@@ -8,6 +8,7 @@
 @media (max-width: 768px) {
   .body_container {
     height: 84vh;
+    overflow-y: auto;
   }
 }
 /* pc (1025px 이상) */

@@ -5,7 +5,6 @@
 
 .calendar {
   width: 50%;
-  height: 100%;
   overflow-y: auto;
   padding: 0px 1.25rem;
   border-right: 1px solid colorBorderGrey;
@@ -202,7 +201,6 @@
     font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
       "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
       "Droid Sans", "Helvetica Neue", sans-serif;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -217,16 +215,13 @@
     background-color: white;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
     width: 95%;
-    height: 80vh;
-    overflow-y: auto;
+    height: 100%;
   }
   .calendar {
     width: 100%;
-    height: 50%;
   }
   .diary {
     width: 100%;
-    height: 50%;
   }
 }
 /* pc (1025px 이상) */

@@ -1,0 +1,122 @@
+@value colorPink from "../../common/color.css";
+@value colorBorderGrey from "../../common/color.css";
+
+.container {
+  font-family: "Montserrat", "Nanum Gothic", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffebee;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.625rem;
+  border: 1px solid #f8bbd0;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 80%;
+  height: 90vh;
+  overflow-y: auto;
+}
+.button_back {
+  margin-top: 1.25rem;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: colorPink;
+}
+.icon_back {
+  font-size: 2rem;
+}
+.title {
+  margin: 1.25rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.625rem;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  margin-bottom: 0.625rem;
+}
+.item_name {
+  margin: 10px;
+  font-weight: 600;
+  color: colorPink;
+}
+.item_input {
+  border: 3px solid #f8bbd0;
+  border-radius: 10px;
+  height: 1.875rem;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.addButton {
+  width: 15.625rem;
+  font-weight: 600;
+  font-family: "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  color: white;
+  border: none;
+  background-color: colorPink;
+  margin: 1.25rem 0px;
+  padding: 0.438rem 0px;
+  border-radius: 5px;
+}
+.addButton:hover {
+  opacity: 0.9;
+  transform: scale(0.99);
+  cursor: pointer;
+}
+
+/* tablet(768~1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    height: 100%;
+  }
+  .main {
+    width: 95%;
+    height: 80vh;
+  }
+}
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .container {
+    height: 100%;
+  }
+  .main {
+    width: 95%;
+    height: 80vh;
+  }
+
+  .icon_back {
+    font-size: 1.5rem;
+  }
+}
+/* pc (1025px 이상) */
+@media (min-width: 1025px) {
+  .container {
+    min-height: 92vh;
+  }
+  .main {
+    height: 90vh;
+  }
+}

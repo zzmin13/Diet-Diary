@@ -12,7 +12,8 @@ import DietSearchContainer from "./containers/diet_search_container";
 import DietDirectlyContainer from "./containers/diet_directly_container";
 import DietEditContainer from "./containers/diet_edit_container";
 import ExerciseContainer from "./containers/exercise_container";
-import ExerciseAddContainer from "./containers/exercise_add_container";
+import ExerciseSearchContainer from "./containers/exercise_search_container";
+import ExerciseDirectlyContainer from "./containers/exercise_directly_container";
 import ExerciseEditContainer from "./containers/exercise_edit_container";
 import WaterContainer from "./containers/water_container";
 import WaterAddContainer from "./containers/water_add_container";
@@ -248,12 +249,27 @@ function App({
             }}
           />
           <Route
-            path="/exercise/add"
+            path="/exercise/search"
             exact={true}
             render={(props) => {
               return (
                 <>
-                  <ExerciseAddContainer
+                  <ExerciseSearchContainer
+                    authService={authService}
+                    database={database}
+                    {...props}
+                  />
+                </>
+              );
+            }}
+          />
+          <Route
+            path="/exercise/directly"
+            exact={true}
+            render={(props) => {
+              return (
+                <>
+                  <ExerciseDirectlyContainer
                     authService={authService}
                     database={database}
                     {...props}

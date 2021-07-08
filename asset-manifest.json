@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Diet-Diary/static/css/main.b82972d9.chunk.css",
-    "main.js": "/Diet-Diary/static/js/main.1018484d.chunk.js",
-    "main.js.map": "/Diet-Diary/static/js/main.1018484d.chunk.js.map",
+    "main.js": "/Diet-Diary/static/js/main.fc543233.chunk.js",
+    "main.js.map": "/Diet-Diary/static/js/main.fc543233.chunk.js.map",
     "runtime-main.js": "/Diet-Diary/static/js/runtime-main.1dd51523.js",
     "runtime-main.js.map": "/Diet-Diary/static/js/runtime-main.1dd51523.js.map",
     "static/js/2.6efb9789.chunk.js": "/Diet-Diary/static/js/2.6efb9789.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.1dd51523.js",
     "static/js/2.6efb9789.chunk.js",
     "static/css/main.b82972d9.chunk.css",
-    "static/js/main.1018484d.chunk.js"
+    "static/js/main.fc543233.chunk.js"
   ]
 }

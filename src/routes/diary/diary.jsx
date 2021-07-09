@@ -26,7 +26,7 @@ const Diary = ({
   });
   return (
     <>
-      {user.userDiary ? (
+      {user ? (
         <div className={styles.container}>
           <div className={styles.main}>
             <button onClick={goBackPage} className={styles.button_back}>

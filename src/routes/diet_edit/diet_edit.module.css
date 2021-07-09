@@ -120,24 +120,39 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   .container {
     height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
   }
   .main {
     width: 95%;
     height: 80vh;
+  }
+  .addButton {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
   }
 }
 /* mobile(~768px) */
 @media (max-width: 768px) {
   .container {
     height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
   }
   .main {
     width: 95%;
     height: 80vh;
   }
-
   .icon_back {
     font-size: 1.5rem;
+  }
+  .addButton {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
   }
 }
 /* pc (1025px 이상) */

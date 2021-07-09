@@ -93,16 +93,26 @@
     height: 80%;
     margin-top: 50px;
   }
+  .header {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+  }
 }
 /* mobile(~768px) */
 @media (max-width: 768px) {
   .modal_content {
     width: 90%;
-    height: 80%;
-    margin-top: 100px;
+    height: 90%;
+    margin-top: 50px;
   }
   .modal_box {
     height: 100%;
+  }
+  .header {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
   }
 }
 /* pc (1025px 이상) */

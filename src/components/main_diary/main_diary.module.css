@@ -123,8 +123,7 @@
 .icon_edit {
   font-size: 0.8rem;
   margin-left: 0.313rem;
-  color: grey;
-  opacity: 0.3;
+  color: rgb(218, 218, 218);
 }
 .icon_edit:hover {
   cursor: pointer;

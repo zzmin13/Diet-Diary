@@ -33,3 +33,10 @@
   transform: scale(0.99);
   cursor: pointer;
 }
+
+/* mobile(~768px) */
+@media (max-width: 768px) {
+  .button {
+    margin-bottom: 50px;
+  }
+}

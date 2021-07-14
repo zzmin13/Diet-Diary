@@ -207,8 +207,19 @@
       "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
       "Helvetica Neue", sans-serif;
   }
+  .content {
+    height: 100%;
+  }
+  .title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   .form {
     width: 95%;
+    padding: 10px;
+  }
+  .lineBox {
+    margin: 15px 0px;
   }
   .input {
     width: 95%;
